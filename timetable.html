@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Hemasai · Daily Timetable</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060606;
+            --bg2: #0c0c0c;
+            --ln: #1c1c1c;
+            --tx: #ede9e0;
+            --tx2: #6e6a63;
+            --tx3: #2e2e2e;
+            --gold: #c8a84b;
+            --golda: rgba(200, 168, 75, .12);
+            --gn: #2dd4a0;
+            --gna: rgba(45, 212, 160, .1);
+            --bl: #5ba3ff;
+            --bla: rgba(91, 163, 255, .1);
+            --pu: #a78bfa;
+            --pua: rgba(167, 139, 250, .1);
+            --rd: #ff6b6b;
+            --rda: rgba(255, 107, 107, .1);
+            --or: #ff9954;
+            --ora: rgba(255, 153, 84, .1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--tx);
+            font-family: 'Sora', sans-serif;
+        }
+
+        a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav {
+            height: 54px;
+            background: rgba(6, 6, 6, .97);
+            border-bottom: 1px solid var(--ln);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .pulse {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--gn);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(45, 212, 160, .5)
+            }
+
+            70% {
+                box-shadow: 0 0 0 8px transparent
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 transparent
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--tx2);
+            transition: all .2s;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--gold);
+            border-color: rgba(200, 168, 75, .3);
+            background: var(--golda);
+        }
+
+        .main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 36px 24px 60px;
+        }
+
+        .sh-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .sh-label::before {
+            content: '';
+            width: 14px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .sh h2 {
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            margin-bottom: 4px;
+        }
+
+        .sh p {
+            font-size: 11px;
+            color: var(--tx2);
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--bg2);
+            border: 1px solid var(--ln);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 8px;
+            background: none;
+            border: none;
+            border-right: 1px solid var(--ln);
+            color: var(--tx2);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all .2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .tab span {
+            font-size: 7px;
+            opacity: .55;
+        }
+
+        .tab:last-child {
+            border-right: none;
+        }
+
+        .tab:hover {
+            background: rgba(255, 255, 255, .02);
+            color: var(--tx);
+        }
+
+        .tab.act {
+            background: var(--golda);
+            color: var(--gold);
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.act {
+            display: block;
+        }
+
+        .day-line {
+            display: flex;
+            gap: 0;
+            margin: 0 0 6px;
+            align-items: stretch;
+        }
+
+        .time-col {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--tx2);
+            width: 100px;
+            flex-shrink: 0;
+            padding: 14px 12px 14px 0;
+            display: flex;
+            align-items: center;
+            text-align: right;
+            justify-content: flex-end;
+        }
+
+        .block {
+            flex: 1;
+            border-radius: 7px;
+            padding: 14px 16px;
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .block-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .block-sub {
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .block-sub span {
+            color: var(--tx2);
+        }
+
+        .block-sub strong {
+            font-weight: 600;
+        }
+
+        .b-med {
+            background: var(--pua);
+            border-color: rgba(167, 139, 250, .3);
+        }
+
+        .b-gym {
+            background: linear-gradient(135deg, rgba(45, 212, 160, .08), rgba(45, 212, 160, .03));
+            border-color: rgba(45, 212, 160, .3);
+        }
+
+        .b-college {
+            background: linear-gradient(135deg, rgba(91, 163, 255, .08), rgba(91, 163, 255, .03));
+            border-color: rgba(91, 163, 255, .3);
+        }
+
+        .b-deep {
+            background: linear-gradient(135deg, rgba(200, 168, 75, .1), rgba(200, 168, 75, .03));
+            border-color: rgba(200, 168, 75, .4);
+        }
+
+        .b-apply {
+            background: linear-gradient(135deg, rgba(255, 153, 84, .08), rgba(255, 153, 84, .03));
+            border-color: rgba(255, 153, 84, .3);
+        }
+
+        .b-sleep {
+            background: rgba(255, 255, 255, .02);
+            border-color: var(--ln);
+        }
+
+        .b-flex {
+            background: var(--gna);
+            border-color: rgba(45, 212, 160, .3);
+        }
+
+        .b-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .b-med .b-label {
+            color: var(--pu);
+        }
+
+        .b-gym .b-label {
+            color: var(--gn);
+        }
+
+        .b-college .b-label {
+            color: var(--bl);
+        }
+
+        .b-deep .b-label {
+            color: var(--gold);
+        }
+
+        .b-apply .b-label {
+            color: var(--or);
+        }
+
+        .b-sleep .b-label {
+            color: var(--tx2);
+        }
+
+        .b-flex .b-label {
+            color: var(--gn);
+        }
+
+        .connector {
+            width: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--tx3);
+            font-size: 10px;
+        }
+
+        .alert {
+            border-radius: 7px;
+            padding: 11px 14px;
+            margin: 14px 0;
+        }
+
+        .aw {
+            background: var(--golda);
+            border: 1px solid rgba(200, 168, 75, .3);
+            border-left: 3px solid var(--gold);
+        }
+
+        .ar {
+            background: var(--rda);
+            border: 1px solid rgba(255, 107, 107, .3);
+            border-left: 3px solid var(--rd);
+        }
+
+        .al {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .aw .al {
+            color: var(--gold);
+        }
+
+        .ar .al {
+            color: var(--rd);
+        }
+
+        .alert p {
+            font-size: 11px;
+            color: var(--tx2);
+            line-height: 1.75;
+        }
+
+        .alert p strong {
+            color: var(--tx);
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .rule {
+            background: var(--bg2);
+            border: 1px solid var(--ln);
+            border-radius: 7px;
+            padding: 14px;
+        }
+
+        .rule-ico {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .rule-title {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .rule-desc {
+            font-size: 10.5px;
+            color: var(--tx2);
+            line-height: 1.65;
+        }
+
+        .sh-label2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin: 20px 0 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(200, 168, 75, .2);
+        }
+
+        .clock {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--gold);
+            text-align: center;
+            margin: 20px 0 8px;
+            letter-spacing: -2px;
+        }
+
+        .clock-sub {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--tx2);
+            margin-bottom: 20px;
+        }
+
+        footer {
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid var(--ln);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            color: var(--tx2);
+        }
+
+        @media(max-width:600px) {
+            .main {
+                padding: 16px 12px 60px;
+            }
+
+            .nav {
+                padding: 0 12px;
+            }
+
+            .time-col {
+                width: 62px;
+                font-size: 8px;
+            }
+
+            .block-sub {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-logo">
+            <div class="pulse"></div>Hemasai · AI Engineer Roadmap
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="roadmap.html" class="nav-link">Roadmap</a>
+            <a href="dsa.html" class="nav-link">DSA Java</a>
+            <a href="resources.html" class="nav-link">Resources</a>
+            <a href="timetable.html" class="nav-link active">Timetable</a>
+            <a href="apply.html" class="nav-link">Apply</a>
+        </div>
+    </nav>
+
+
+    <div class="main">
+        <div class="sh" style="margin-bottom:16px;">
+            <div class="sh-label">Daily Timetable · Built Around Gym + Meditation + VIT-AP</div>
+            <h2>Your Non-Negotiable Schedule</h2>
+            <p>Gym is part of the plan. Meditation is daily. Deep work happens in 3-hour blocks. Never cut gym to study.
+            </p>
+        </div>
+
+        <div class="clock" id="clock">00:00:00</div>
+        <div class="clock-sub" id="clock-sub">Loading...</div>
+
+        <div class="tabs">
+            <button class="tab act" onclick="sv('wd',this)">Weekday<span>Mon–Fri (Morning Gym)</span></button>
+            <button class="tab" onclick="sv('wde',this)">Weekday (Eve)<span>Mon–Fri (Evening Gym)</span></button>
+            <button class="tab" onclick="sv('sun',this)">Sunday<span>5 Deep Hours</span></button>
+            <button class="tab" onclick="sv('exam',this)">Exam Week<span>Minimum Viable</span></button>
+        </div>
+
+        <!-- WEEKDAY MORNING GYM -->
+        <div id="wd" class="view act">
+            <div class="alert aw">
+                <div class="al">Morning Gym Version</div>
+                <p>Choose this if you gym 5:30–7:00 AM. The 2:30–5:30 PM slot becomes your full uninterrupted 3-hour
+                    deep work block. Evening is free for applications + network.</p>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:00 AM</div>
+                <div class="block b-med">
+                    <div class="b-label">Meditation</div>
+                    <div class="block-title">Wake + 15 Min Meditation</div>
+                    <div class="block-sub"><strong>Non-negotiable. Every day.</strong> <span>Sets the cognitive tone for
+                            the entire day. No phone, no screen until after this. Sit, breathe, set 1 intention for the
+                            day.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:30 AM</div>
+                <div class="block b-gym">
+                    <div class="b-label">Gym · 1 Hour</div>
+                    <div class="block-title">Morning Gym Session</div>
+                    <div class="block-sub"><strong>1 hour. Get in, work hard, get out.</strong> <span>Do not skip.
+                            Physical training directly improves retention and focus for the study block. Gym is not
+                            sacrificed for study — ever.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">7:00 AM</div>
+                <div class="block b-sleep">
+                    <div class="b-label">Transition</div>
+                    <div class="block-title">Post-Gym Recovery</div>
+                    <div class="block-sub"><span>Shower, breakfast, commute. Light review of today's specific tasks (the
+                            3 items you wrote on Sunday). No social media.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">8:00 AM</div>
+                <div class="block b-college">
+                    <div class="b-label">VIT-AP Classes</div>
+                    <div class="block-title">College — 9 AM to 2 PM</div>
+                    <div class="block-sub"><strong>Attend all classes. Do not skip due to studying.</strong> <span>Key:
+                            Competitive Coding (STS4006) — Java DSA problems, directly useful. Theory of Computation —
+                            needs real attention. Engineering Clinics (ECS3001) — propose AI project to
+                            professor.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">2:30 PM</div>
+                <div class="block b-deep">
+                    <div class="b-label">⚡ Primary Deep Work Block</div>
+                    <div class="block-title">3 Hours — DSA + AI Skills + Projects</div>
+                    <div class="block-sub"><strong>Phone off. Pomodoro 50/10. This is where transformation
+                            happens.</strong><br><span>Hour 1 (2:30–3:30): Java DSA — 2 problems minimum. NeetCode video
+                            first, then code from memory.<br>Hour 2 (3:30–4:30): AI skills / LangChain / RAG / Project
+                            building. Exact task from Sunday's plan.<br>Hour 3 (4:30–5:30): Project building continued
+                            OR Mithra code study (Phase 1) OR interview prep (Phase 4+).</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:30 PM</div>
+                <div class="block b-flex">
+                    <div class="b-label">Flex / Break</div>
+                    <div class="block-title">Dinner + Mental Reset (1.5 hrs)</div>
+                    <div class="block-sub"><span>Dinner, short walk, complete mental break from screens. No studying.
+                            Lets the previous 3 hours consolidate in memory.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">7:30 PM</div>
+                <div class="block b-apply">
+                    <div class="b-label">Apply + Network</div>
+                    <div class="block-title">Job Applications + Cold DMs + GitHub</div>
+                    <div class="block-sub"><strong>30 min: Apply on Wellfound/LinkedIn. 30 min: 5-10 cold DMs to
+                            founders. 20 min: Push today's code to GitHub with descriptive commit.</strong><span> This
+                            block runs even on hard days. Even if only 10 min — send 3 applications. Never zero.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">9:30 PM</div>
+                <div class="block b-sleep">
+                    <div class="b-label">Wind Down</div>
+                    <div class="block-title">Wind Down — No Learning</div>
+                    <div class="block-sub"><span>Tomorrow's 3 specific tasks written in Notes. No screens 30 min before
+                            bed. Sleep by 10 PM. 7-8 hours sleep is non-negotiable — sleep debt cuts memory
+                            consolidation by 40%.</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEKDAY EVENING GYM -->
+        <div id="wde" class="view">
+            <div class="alert aw">
+                <div class="al">Evening Gym Version</div>
+                <p>Choose this if you gym 5:30–7:00 PM. Your morning 5:00–7:30 AM slot becomes a secondary deep work
+                    block before college. This version gives you 5+ hours total deep work.</p>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:00 AM</div>
+                <div class="block b-med">
+                    <div class="b-label">Meditation</div>
+                    <div class="block-title">Wake + 15 Min Meditation</div>
+                    <div class="block-sub">Same as always. Non-negotiable. Sets cognitive tone for the day.</div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:20 AM</div>
+                <div class="block b-deep">
+                    <div class="b-label">Morning Deep Work</div>
+                    <div class="block-title">2 Hours — Java DSA + Project Work</div>
+                    <div class="block-sub"><strong>Best brain time — no notifications.</strong> <span>Hour 1: Java DSA
+                            2-3 problems. Hour 2: Project building / Mithra code study. This session alone handles DSA
+                            and most of your skill building for the day.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">7:30 AM</div>
+                <div class="block b-sleep">
+                    <div class="b-label">Prep</div>
+                    <div class="block-title">Breakfast + Commute</div>
+                    <div class="block-sub"><span>Light breakfast. Review today's 3 specific tasks. Commute without
+                            social media — review DSA notes from yesterday instead.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">9:00 AM</div>
+                <div class="block b-college">
+                    <div class="b-label">VIT-AP Classes</div>
+                    <div class="block-title">College — 9 AM to 2 PM</div>
+                    <div class="block-sub"><span>Same as weekday version. Attend all. Prioritise: Competitive Coding,
+                            Theory of Computation, Engineering Clinics project.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">2:30 PM</div>
+                <div class="block b-deep">
+                    <div class="b-label">Afternoon Deep Work</div>
+                    <div class="block-title">3 Hours — AI Skills + Applications</div>
+                    <div class="block-sub"><strong>Hour 1: LangChain / RAG / Project building.</strong><span> Hour 2:
+                            Job applications (20 min) + cold DMs (20 min) + GitHub push (20 min). Hour 3: System design
+                            / interview prep (Phase 4+) or project continued.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:30 PM</div>
+                <div class="block b-gym">
+                    <div class="b-label">Gym · 1 Hour</div>
+                    <div class="block-title">Evening Gym Session</div>
+                    <div class="block-sub"><strong>Non-negotiable.</strong> <span>After 3 hours of deep work, physical
+                            training resets the nervous system. Do not skip — gym after deep work makes the deep work
+                            better, not worse.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">7:00 PM</div>
+                <div class="block b-sleep">
+                    <div class="b-label">Recovery</div>
+                    <div class="block-title">Post-Gym / Dinner</div>
+                    <div class="block-sub"><span>Shower, dinner, 45-min relaxation. Tomorrow's 3 specific tasks written.
+                            In bed by 10 PM.</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUNDAY -->
+        <div id="sun" class="view">
+            <div class="day-line">
+                <div class="time-col">5:00 AM</div>
+                <div class="block b-med">
+                    <div class="b-label">Meditation</div>
+                    <div class="block-title">Wake + 15 Min Meditation</div>
+                    <div class="block-sub">Same as every day. No exceptions on Sunday.</div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:20 AM</div>
+                <div class="block b-deep">
+                    <div class="b-label">⚡ Deep Work · 3 Hours</div>
+                    <div class="block-title">Primary Build Session — Hardest Work of the Week</div>
+                    <div class="block-sub"><strong>Best creative block of the entire week. Protect it.</strong><span> No
+                            phone. No social media. Build the hardest thing on your list — the thing you've been putting
+                            off all week. This 3-hour block achieves more than 6 scattered hours on weekdays.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">8:30 AM</div>
+                <div class="block b-sleep">
+                    <div class="b-label">Break</div>
+                    <div class="block-title">Breakfast + Rest</div>
+                    <div class="block-sub"><span>Actual break. Walk. Cook real food. Your brain needs recovery between
+                            deep work blocks to consolidate what you built this morning.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">9:30 AM</div>
+                <div class="block b-gym">
+                    <div class="b-label">Gym</div>
+                    <div class="block-title">Sunday Gym Session — 1 Hour</div>
+                    <div class="block-sub"><strong>Sunday gym is non-negotiable.</strong> <span>7-day streak matters for
+                            physical progress and for maintaining the discipline habit itself.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">11:00 AM</div>
+                <div class="block b-flex">
+                    <div class="b-label">Recovery</div>
+                    <div class="block-title">Free Time / Personal</div>
+                    <div class="block-sub"><span>Full mental rest. No studying. Lunch with family, friends, or alone
+                            peacefully. Recharges for Monday's deep work.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">6:00 PM</div>
+                <div class="block b-apply">
+                    <div class="b-label">Apply + Research</div>
+                    <div class="block-title">Research 10 New Companies + Apply + DMs</div>
+                    <div class="block-sub"><strong>Research 10 companies to apply Monday morning (15 min). Send 10 DMs.
+                            Apply 10 jobs.</strong><span> Sunday research makes Monday applications 3x faster and more
+                            targeted.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">8:00 PM</div>
+                <div class="block b-deep">
+                    <div class="b-label">Weekly Review Ritual</div>
+                    <div class="block-title">20-Minute Sunday Ritual — Never Skip</div>
+                    <div class="block-sub"><strong>3 Questions:</strong><span> What did I build this week? What can I
+                            explain now that I couldn't last week? What blocked me?<br><strong>DSA check:</strong> Count
+                            total problems. On track for milestone?<br><strong>Monday prep:</strong> Write 3 specific
+                            tasks for Mon + Tue + Wed — exact file names and functions, not just "study
+                            LangChain".<br><strong>Energy audit:</strong> 1 change to make next week better.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXAM WEEK -->
+        <div id="exam" class="view">
+            <div class="alert ar">
+                <div class="al">Exam Week Rule</div>
+                <p><strong>Never zero.</strong> The minimum below keeps your engineering brain active and your pipeline
+                    alive — without sacrificing exam performance. A 30-min minimum day is always possible.</p>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:00 AM</div>
+                <div class="block b-med">
+                    <div class="b-label">Non-Negotiable</div>
+                    <div class="block-title">Meditation · 15 Minutes</div>
+                    <div class="block-sub"><strong>Especially important during exam week</strong><span> — meditation
+                            reduces cortisol and improves recall. Every single morning.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:20 AM</div>
+                <div class="block b-sleep">
+                    <div class="b-label">Non-Negotiable</div>
+                    <div class="block-title">1 LeetCode Easy in Java — 20 Minutes</div>
+                    <div class="block-sub"><strong>Just 1 problem. Easy difficulty only during exams.</strong><span>
+                            Keeps your problem-solving warm. Don't let it go cold for 3 weeks — warming it back up takes
+                            2x as long as maintaining it.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">5:45 AM</div>
+                <div class="block b-gym">
+                    <div class="b-label">Non-Negotiable</div>
+                    <div class="block-title">Gym · 45-60 Min</div>
+                    <div class="block-sub"><strong>Physical exercise improves memory retention before exams by
+                            20-30%.</strong><span> Do not skip gym during exams thinking it saves time — it doesn't. It
+                            costs you focus and memory.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">7:00 AM</div>
+                <div class="block b-college">
+                    <div class="b-label">Exam Study</div>
+                    <div class="block-title">Study for Exams — Full Day</div>
+                    <div class="block-sub"><span>Theory of Computation — needs serious attention.<br>Competitive Coding
+                            — Java DSA, directly useful to your career.<br>Software Engineering — architecture patterns
+                            matter.<br>Soft Computing — light study, don't over-invest time here.</span></div>
+                </div>
+            </div>
+            <div class="day-line">
+                <div class="time-col">8:00 PM</div>
+                <div class="block b-apply">
+                    <div class="b-label">Non-Negotiable</div>
+                    <div class="block-title">3 Job Applications — 10 Minutes</div>
+                    <div class="block-sub"><strong>Just 3. Wellfound or LinkedIn Easy Apply.</strong><span> Your
+                            pipeline cannot pause 3 weeks — recruiters move fast and don't wait. 10 minutes.
+                            Done.</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sh-label2" style="margin-top:28px;">The Non-Negotiable Rules</div>
+        <div class="rule-grid">
+            <div class="rule">
+                <div class="rule-ico">🧘</div>
+                <div class="rule-title">15 Min Meditation — Every Day</div>
+                <div class="rule-desc">No exceptions. Not even exam days. Not even days you "don't feel like it". This
+                    is the cognitive foundation the rest of the schedule rests on.</div>
+            </div>
+            <div class="rule">
+                <div class="rule-ico">🏋️</div>
+                <div class="rule-title">Never Cut Gym to Study</div>
+                <div class="rule-desc">Physical training improves cognitive performance and retention. There is no
+                    scenario where skipping gym gives you more study benefit than the cognitive cost to your brain.
+                </div>
+            </div>
+            <div class="rule">
+                <div class="rule-ico">😴</div>
+                <div class="rule-title">10 PM Hard Stop — Sleep</div>
+                <div class="rule-desc">7-8 hours sleep. Non-negotiable. Sleep deprivation reduces memory consolidation
+                    by up to 40%. You cannot study until 1 AM and also learn effectively. Pick one.</div>
+            </div>
+            <div class="rule">
+                <div class="rule-ico">📵</div>
+                <div class="rule-title">Phone Off During Deep Work</div>
+                <div class="rule-desc">Not on silent — OFF. Or in another room. A single notification kills 23 minutes
+                    of focus on average. Your 3-hour block becomes 1 effective hour without this rule.</div>
+            </div>
+            <div class="rule">
+                <div class="rule-ico">📝</div>
+                <div class="rule-title">3 Specific Tasks Every Sunday</div>
+                <div class="rule-desc">Write exact Monday–Wednesday tasks: file names, function names, specific
+                    problems. "Study LangChain" → zero. "Build retrieve() function in journal_rag.py" → done.</div>
+            </div>
+            <div class="rule">
+                <div class="rule-ico">⚡</div>
+                <div class="rule-title">Never Zero Application Days</div>
+                <div class="rule-desc">3 applications minimum, every day including exams. Your pipeline is your safety
+                    net. Stopping applications for 3 weeks kills momentum that takes weeks to restart.</div>
+            </div>
+        </div>
+
+    </div>
+    <footer>Hemasai Vattikuti · Daily Timetable · March 2026</footer>
+    <script>
+        function sv(id, btn) { document.querySelectorAll('.view').forEach(v => v.classList.remove('act')); document.querySelectorAll('.tab').forEach(t => t.classList.remove('act')); document.getElementById(id).classList.add('act'); btn.classList.add('act'); }
+        function tick() { var now = new Date(); var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds(); var pad = n => String(n).padStart(2, '0'); document.getElementById('clock').textContent = pad(h) + ':' + pad(m) + ':' + pad(s); var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; var d = days[now.getDay()]; var isExam = false; document.getElementById('clock-sub').textContent = d + ' · ' + (isExam ? 'Exam Week' : 'Normal Week'); }
+        setInterval(tick, 1000); tick();
+    </script>
+</body>
+
+</html>
