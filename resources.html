@@ -1,363 +1,1112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Resources · AI Engineer Roadmap</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#080A0F">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="apple-touch-icon" href="icon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#080A0F;color:#D4DCF0;font-family:'Inter',sans-serif;font-size:13px;line-height:1.6}
-a{text-decoration:none;color:inherit}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:#1e2840;border-radius:2px}
-.nav{position:sticky;top:0;z-index:100;background:#0D1017;border-bottom:1px solid rgba(255,255,255,.1);padding:10px 14px;display:flex;flex-direction:column;gap:6px}
-.nav-logo{font-family:'JetBrains Mono',monospace;font-size:10px;color:#6B7DA8;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-.pulse{width:6px;height:6px;border-radius:50%;background:#34D399;animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
-.nav-links{display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.nav-links::-webkit-scrollbar{display:none}
-.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:5px;color:#7A8AAE;letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0}
-.nav-link:hover,.nav-link.active{color:#FBBF24;border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.1)}
-.main{max-width:720px;margin:0 auto;padding:28px 20px 80px}
-.page-title{font-size:20px;font-weight:600;color:#EEF2FF;letter-spacing:-.02em;margin-bottom:6px}
-.page-sub{font-size:12px;color:#5C6E9A;margin-bottom:28px}
-.tier-key{display:flex;gap:14px;margin-bottom:28px;padding:12px 14px;background:#0D1017;border:1px solid rgba(255,255,255,.1);border-radius:8px}
-.tier-key-item{display:flex;align-items:center;gap:8px;font-size:11px;color:#8B9BBF}
-.badge{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px}
-.badge-f{background:rgba(52,211,153,.12);color:#34D399;border:1px solid rgba(52,211,153,.28)}
-.badge-q{background:rgba(167,139,250,.12);color:#A78BFA;border:1px solid rgba(167,139,250,.28)}
-.badge-opt{background:rgba(251,146,60,.1);color:#FB923C;border:1px solid rgba(251,146,60,.25);font-size:8px}
-.phase-section{margin-bottom:32px}
-.phase-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.phase-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;flex-shrink:0}
-.phase-title{font-size:13px;font-weight:600}
-.phase-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:#5C6E9A;margin-top:1px}
-.topic-group{margin-bottom:10px}
-.topic-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#5C6E9A;margin-bottom:6px;padding-left:2px}
-.res-card{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-radius:7px;background:#0D1017;border:1px solid rgba(255,255,255,.1);margin-bottom:5px;transition:all .15s}
-.res-card:hover{border-color:rgba(255,255,255,.2);transform:translateX(2px);text-decoration:none}
-.res-name{font-size:11.5px;font-weight:500;margin-bottom:2px;line-height:1.4}
-.res-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:#5C6E9A}
-.divider{height:1px;background:rgba(255,255,255,.07);margin:24px 0}
-footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.08);font-family:'JetBrains Mono',monospace;font-size:9px;color:#5C6E9A;letter-spacing:.1em;margin-bottom:70px}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:#0D1017;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:stretch;padding:0 4px}
-.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 4px 14px;text-decoration:none;color:#5C6E9A;transition:color .2s}
-.bnav-item:hover{color:#A0AECF}
-.bnav-item.active{color:#FBBF24}
-.bnav-icon{font-size:18px;line-height:1}
-.bnav-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;line-height:1}
-@media(max-width:600px){.tier-key{flex-direction:column;gap:8px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Resources · AI Engineer Roadmap</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#080A0F">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      background: #080A0F;
+      color: #D4DCF0;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.6
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1e2840;
+      border-radius: 2px
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0D1017;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #6B7DA8;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #34D399;
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, .5)
+      }
+
+      70% {
+        box-shadow: 0 0 0 7px transparent
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 transparent
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none
+    }
+
+    .nav-links::-webkit-scrollbar {
+      display: none
+    }
+
+    .nav-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 5px 12px;
+      border-radius: 5px;
+      color: #7A8AAE;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      transition: all .2s;
+      white-space: nowrap;
+      flex-shrink: 0
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #FBBF24;
+      border-color: rgba(251, 191, 36, .35);
+      background: rgba(251, 191, 36, .1)
+    }
+
+    .main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 20px 80px
+    }
+
+    .page-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #EEF2FF;
+      letter-spacing: -.02em;
+      margin-bottom: 6px
+    }
+
+    .page-sub {
+      font-size: 12px;
+      color: #5C6E9A;
+      margin-bottom: 28px
+    }
+
+    .tier-key {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding: 12px 14px;
+      background: #0D1017;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 8px
+    }
+
+    .tier-key-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #8B9BBF
+    }
+
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 4px
+    }
+
+    .badge-f {
+      background: rgba(52, 211, 153, .12);
+      color: #34D399;
+      border: 1px solid rgba(52, 211, 153, .28)
+    }
+
+    .badge-q {
+      background: rgba(167, 139, 250, .12);
+      color: #A78BFA;
+      border: 1px solid rgba(167, 139, 250, .28)
+    }
+
+    .badge-opt {
+      background: rgba(251, 146, 60, .1);
+      color: #FB923C;
+      border: 1px solid rgba(251, 146, 60, .25);
+      font-size: 8px
+    }
+
+    .phase-section {
+      margin-bottom: 32px
+    }
+
+    .phase-hdr {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px
+    }
+
+    .phase-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      flex-shrink: 0
+    }
+
+    .phase-title {
+      font-size: 13px;
+      font-weight: 600
+    }
+
+    .phase-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #5C6E9A;
+      margin-top: 1px
+    }
+
+    .topic-group {
+      margin-bottom: 10px
+    }
+
+    .topic-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #5C6E9A;
+      margin-bottom: 6px;
+      padding-left: 2px
+    }
+
+    .res-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 13px;
+      border-radius: 7px;
+      background: #0D1017;
+      border: 1px solid rgba(255, 255, 255, .1);
+      margin-bottom: 5px;
+      transition: all .15s
+    }
+
+    .res-card:hover {
+      border-color: rgba(255, 255, 255, .2);
+      transform: translateX(2px);
+      text-decoration: none
+    }
+
+    .res-name {
+      font-size: 11.5px;
+      font-weight: 500;
+      margin-bottom: 2px;
+      line-height: 1.4
+    }
+
+    .res-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #5C6E9A
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, .07);
+      margin: 24px 0
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #5C6E9A;
+      letter-spacing: .1em;
+      margin-bottom: 70px
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: #0D1017;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      display: flex;
+      align-items: stretch;
+      padding: 0 4px
+    }
+
+    .bnav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 10px 4px 14px;
+      text-decoration: none;
+      color: #5C6E9A;
+      transition: color .2s
+    }
+
+    .bnav-item:hover {
+      color: #A0AECF
+    }
+
+    .bnav-item.active {
+      color: #FBBF24
+    }
+
+    .bnav-icon {
+      font-size: 18px;
+      line-height: 1
+    }
+
+    .bnav-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      line-height: 1
+    }
+
+    @media(max-width:600px) {
+      .tier-key {
+        flex-direction: column;
+        gap: 8px
+      }
+    }
+  </style>
 </head>
+
 <body>
-<nav class="nav">
-  <div class="nav-logo"><div class="pulse"></div>Hemasai · AI Roadmap</div>
-  <div class="nav-links">
-    <a href="roadmap.html" class="nav-link">Roadmap</a>
-    <a href="resources.html" class="nav-link active">Resources</a>
-    <a href="timetable.html" class="nav-link">Timetable</a>
-    <a href="review.html" class="nav-link">Review</a>
-  </div>
-</nav>
-<div class="main">
-  <div class="page-title">All Resources</div>
-  <div class="page-sub">Every F (fast) and Q (quality) resource across all 8 phases — in one place</div>
+  <nav class="nav">
+    <div class="nav-logo">
+      <div class="pulse"></div>Hemasai · AI Roadmap
+    </div>
 
-  <div class="tier-key">
-    <div class="tier-key-item"><span class="badge badge-f">F</span>Fast — optimised for time, covers everything quickly</div>
-    <div class="tier-key-item"><span class="badge badge-q">Q</span>Quality — full mastery, deeper understanding</div>
-  </div>
+    <div class="nav-links">
+      <a href="roadmap.html" class="nav-link">Roadmap</a>
+      <a href="resources.html" class="nav-link active">Resources</a>
+      <a href="timetable.html" class="nav-link">Timetable</a>
+      <a href="review.html" class="nav-link">Review</a>
+    </div>
+  </nav>
+  <div class="main">
+    <div class="page-title">All Resources</div>
+    <div class="page-sub">Every F (fast) and Q (quality) resource across all 8 phases — in one place</div>
 
-  <!-- DSA -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(167,139,250,.18);color:#A78BFA;border:1.5px solid rgba(167,139,250,.4)">∞</div>
-      <div><div class="phase-title" style="color:#A78BFA">DSA — Parallel Every Day</div><div class="phase-sub">Striver A2Z · 2–3 problems/day</div></div>
+    <div class="tier-key">
+      <div class="tier-key-item"><span class="badge badge-f">F</span>Fast — optimised for time, covers everything
+        quickly</div>
+      <div class="tier-key-item"><span class="badge badge-q">Q</span>Quality — full mastery, deeper understanding</div>
     </div>
-    <div class="topic-group">
-      <div class="topic-label">Striver A2Z Sheet</div>
-      <a href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/" target="_blank" class="res-card">
-        <span class="badge badge-f">F</span>
-        <div><div class="res-name" style="color:#34D399">Striver A2Z Sheet — takeuforward.org ↗</div><div class="res-meta">The single most structured DSA path for product company interviews</div></div>
-      </a>
-      <a href="https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O" target="_blank" class="res-card">
-        <span class="badge badge-q">Q</span>
-        <div><div class="res-name" style="color:#A78BFA">Abdul Bari DSA Full Course — YouTube ↗</div><div class="res-meta">Full theory + intuition for every major DSA topic</div></div>
-      </a>
+
+    <!-- DSA -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(167,139,250,.18);color:#A78BFA;border:1.5px solid rgba(167,139,250,.4)">∞</div>
+        <div>
+          <div class="phase-title" style="color:#A78BFA">DSA — Parallel Every Day</div>
+          <div class="phase-sub">Striver A2Z · 2–3 problems/day</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Striver A2Z Sheet</div>
+        <a href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/" target="_blank"
+          class="res-card">
+          <span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Striver A2Z Sheet — takeuforward.org ↗</div>
+            <div class="res-meta">The single most structured DSA path for product company interviews</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O" target="_blank"
+          class="res-card">
+          <span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Abdul Bari DSA Full Course — YouTube ↗</div>
+            <div class="res-meta">Full theory + intuition for every major DSA topic</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(52,211,153,.18);color:#34D399;border:1.5px solid rgba(52,211,153,.4)">1</div>
+        <div>
+          <div class="phase-title" style="color:#34D399">Python Foundation</div>
+          <div class="phase-sub">Core · OOP · Decorators · Generators · Async</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Python Core + OOP</div>
+        <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Python Full Course — Mosh Hamedani · 6h · YouTube ↗</div>
+            <div class="res-meta">Fast, comprehensive, beginner to solid foundation</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Python Tutorial Playlist — Corey Schafer · YouTube ↗</div>
+            <div class="res-meta">Best in-depth Python series — OOP, decorators, generators all covered</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Decorators + Generators + Async</div>
+        <a href="https://www.youtube.com/watch?v=2IW-ZEui4h4" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Python Asyncio — ArjanCodes · 1h · YouTube ↗</div>
+            <div class="res-meta">Practical async/await, event loop, asyncio.gather</div>
+          </div>
+        </a>
+        <a href="https://docs.python.org/3/library/asyncio.html" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">asyncio Official Docs — Python 3 ↗</div>
+            <div class="res-meta">Complete reference — coroutines, tasks, event loop internals</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Error Handling + File I/O</div>
+        <a href="https://www.youtube.com/watch?v=NIWwJbo-9_8" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Python Error Handling — Corey Schafer · YouTube ↗</div>
+            <div class="res-meta">try/except/finally, custom exceptions, context managers</div>
+          </div>
+        </a>
+        <a href="https://docs.python.org/3/tutorial/" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Python 3 Official Tutorial — docs.python.org ↗</div>
+            <div class="res-meta">Complete language reference with examples</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(96,165,250,.18);color:#60A5FA;border:1.5px solid rgba(96,165,250,.4)">2</div>
+        <div>
+          <div class="phase-title" style="color:#60A5FA">Backend + Database + API Design</div>
+          <div class="phase-sub">FastAPI · Pydantic · Auth · PostgreSQL · Redis</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">FastAPI Core</div>
+        <a href="https://fastapi.tiangolo.com/tutorial/" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">FastAPI Official Tutorial — fastapi.tiangolo.com ↗</div>
+            <div class="res-meta">Official docs — routing, Pydantic, DI, middleware, background tasks</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/results?search_query=FastAPI+full+course+Bitfumes" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">FastAPI Full Course — Bitfumes · 5h · YouTube ↗</div>
+            <div class="res-meta">Full project-based FastAPI course with auth and DB</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">JWT Auth + OAuth2</div>
+        <a href="https://www.youtube.com/watch?v=7Q17ubqLfaM" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">JWT Explained — Web Dev Simplified · 15min · YouTube ↗</div>
+            <div class="res-meta">Token structure, signing, verification explained clearly</div>
+          </div>
+        </a>
+        <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">FastAPI Security Docs — Official JWT + OAuth2 ↗</div>
+            <div class="res-meta">Full implementation: bcrypt, JWT, OAuth2PasswordBearer</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">PostgreSQL + SQLAlchemy</div>
+        <a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">SQL Full Course — freeCodeCamp · YouTube ↗</div>
+            <div class="res-meta">Complete SQL from scratch — JOINs, indexes, transactions</div>
+          </div>
+        </a>
+        <a href="https://www.postgresqltutorial.com/" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">PostgreSQL Tutorial — postgresqltutorial.com ↗</div>
+            <div class="res-meta">Deep PostgreSQL reference with EXPLAIN ANALYZE, pgvector, Alembic</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Redis + Caching</div>
+        <a href="https://www.youtube.com/watch?v=jgpVdJB2sKQ" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Redis Crash Course — Traversy Media · 30min · YouTube ↗</div>
+            <div class="res-meta">SET/GET/TTL, cache patterns, pub/sub basics</div>
+          </div>
+        </a>
+        <a href="https://university.redis.com/courses/ru101/" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Redis University — RU101 Free Course ↗</div>
+            <div class="res-meta">Official Redis course — data structures, caching, streams</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">REST API Design</div>
+        <a href="https://www.youtube.com/watch?v=-MTSQjw5DrM" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">REST API Best Practices — freeCodeCamp · YouTube ↗</div>
+            <div class="res-meta">HTTP methods, status codes, versioning, pagination, error handling</div>
+          </div>
+        </a>
+        <a href="https://www.manning.com/books/api-design-patterns" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">API Design Patterns — JJ Geewax · Manning Book ↗</div>
+            <div class="res-meta">Production API design — naming, versioning, idempotency</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">LLD + Design Patterns</div>
+        <a href="https://www.youtube.com/results?search_query=ArjanCodes+SOLID+principles+Python" target="_blank"
+          class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">SOLID Principles in Python — ArjanCodes · YouTube ↗</div>
+            <div class="res-meta">S/O/L/I/D with real code examples in Python</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/results?search_query=Concept+and+Coding+LLD+low+level+design+playlist"
+          target="_blank" class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">LLD Full Playlist — Concept && Coding · YouTube ↗</div>
+            <div class="res-meta">Strategy, Factory, Observer, Repository — interview-focused</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">pytest + Logging</div>
+        <a href="https://www.youtube.com/watch?v=cHYq1MRoyI0" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">pytest Tutorial — Corey Schafer · YouTube ↗</div>
+            <div class="res-meta">Unit tests, fixtures, mocking, parametrize</div>
+          </div>
+        </a>
+        <a href="https://docs.pytest.org/en/stable/" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">pytest Official Docs — docs.pytest.org ↗</div>
+            <div class="res-meta">Complete pytest reference</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(192,132,252,.18);color:#C084FC;border:1.5px solid rgba(192,132,252,.4)">3</div>
+        <div>
+          <div class="phase-title" style="color:#C084FC">System Design + Deployment</div>
+          <div class="phase-sub">HLD · CAP · Docker · OS · Networks</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">HLD Fundamentals</div>
+        <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">System Design Primer — GitHub · donnemartin ↗</div>
+            <div class="res-meta">Most starred system design resource on GitHub</div>
+          </div>
+        </a>
+        <a href="https://bytebytego.com/" target="_blank" class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">ByteByteGo — System Design Newsletter + YouTube ↗</div>
+            <div class="res-meta">Visual system design — Alex Xu's diagrams and breakdowns</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">CAP Theorem + Distributed Systems</div>
+        <a href="https://www.youtube.com/results?search_query=CAP+theorem+explained+ByteByteGo" target="_blank"
+          class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">CAP Theorem Explained — ByteByteGo · YouTube ↗</div>
+            <div class="res-meta">Clear 10-min visual explanation</div>
+          </div>
+        </a>
+        <a href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/"
+          target="_blank" class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Designing Data-Intensive Applications — Martin Kleppmann ↗</div>
+            <div class="res-meta">The bible of distributed systems engineering</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Message Queues + Async</div>
+        <a href="https://www.youtube.com/results?search_query=message+queues+Hussein+Nasser" target="_blank"
+          class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Message Queues — Hussein Nasser · YouTube ↗</div>
+            <div class="res-meta">Kafka, RabbitMQ, event-driven patterns explained well</div>
+          </div>
+        </a>
+        <a href="https://kafka.apache.org/documentation/" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Kafka Official Docs — Introduction ↗</div>
+            <div class="res-meta">Topics, partitions, consumers, producers, retention</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Docker + CI/CD</div>
+        <a href="https://www.youtube.com/watch?v=fqMOX6JJhGo" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Docker Full Course — freeCodeCamp · YouTube ↗</div>
+            <div class="res-meta">Dockerfile, images, compose, networking — complete course</div>
+          </div>
+        </a>
+        <a href="https://docs.docker.com/get-started/" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Docker Official Docs — Get Started Series ↗</div>
+            <div class="res-meta">Official multi-part tutorial with best practices</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">OS + Computer Networks</div>
+        <a href="https://www.youtube.com/results?search_query=operating+systems+interview+Gate+Smashers+1+hour"
+          target="_blank" class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">OS + Networks — Gate Smashers · YouTube ↗</div>
+            <div class="res-meta">Fast interview prep — processes, threads, deadlock, HTTP, TCP</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRhX6r2uhhlubuF5QextdCSM" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Computer Networks Full — Neso Academy · YouTube ↗</div>
+            <div class="res-meta">Complete networking from physical to application layer</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(251,113,133,.18);color:#FB7185;border:1.5px solid rgba(251,113,133,.4)">4</div>
+        <div>
+          <div class="phase-title" style="color:#FB7185">AI Core — LLM + Embeddings</div>
+          <div class="phase-sub">LLM fundamentals · HuggingFace · Embeddings · NumPy</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">LLM Fundamentals</div>
+        <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Intro to LLMs — Andrej Karpathy · 1h · YouTube ↗</div>
+            <div class="res-meta">Tokens, context windows, sampling, model families — best intro</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Build GPT from Scratch — Andrej Karpathy · YouTube ↗</div>
+            <div class="res-meta">Build a working GPT — deepest understanding of LLMs</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">HuggingFace + Transformers</div>
+        <a href="https://www.youtube.com/watch?v=QEaBAZQCtwE" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">HuggingFace Crash Course — Patrick Loeber · 1h · YouTube ↗</div>
+            <div class="res-meta">pipeline(), AutoTokenizer, AutoModel, model hub</div>
+          </div>
+        </a>
+        <a href="https://huggingface.co/learn/nlp-course/chapter1/1" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">HuggingFace NLP Course — huggingface.co · Free ↗</div>
+            <div class="res-meta">Official HF course — tokenizers, models, training, fine-tuning</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Embeddings + Vector Similarity</div>
+        <a href="https://www.pinecone.io/learn/vector-embeddings/" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Vector Embeddings Explained — Pinecone Learn ↗</div>
+            <div class="res-meta">Semantic similarity, cosine distance, HNSW indexing</div>
+          </div>
+        </a>
+        <a href="https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Vector DB + Embeddings — DeepLearning.AI · Free ↗</div>
+            <div class="res-meta">Hands-on: embed, store, query — with pgvector and Pinecone</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">NumPy + Pandas</div>
+        <a href="https://www.youtube.com/watch?v=vmEHCJofslg" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">NumPy + Pandas Crash Course — Keith Galli · YouTube ↗</div>
+            <div class="res-meta">Arrays, DataFrames, filtering, groupby — fast and practical</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=GPVsHOlRBBI" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">NumPy Full Course — freeCodeCamp · YouTube ↗</div>
+            <div class="res-meta">Broadcasting, vectorized ops, linear algebra essentials</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- PHASE 5 -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(45,212,191,.18);color:#2DD4BF;border:1.5px solid rgba(45,212,191,.4)">5</div>
+        <div>
+          <div class="phase-title" style="color:#2DD4BF">Applied AI — RAG + LangChain</div>
+          <div class="phase-sub">Prompt Engineering · LangChain · RAG · Agents</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Prompt Engineering</div>
+        <a href="https://www.promptingguide.ai/" target="_blank" class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Prompt Engineering Guide — DAIR.AI · Free ↗</div>
+            <div class="res-meta">Zero-shot, few-shot, CoT, ReAct, structured outputs</div>
+          </div>
+        </a>
+        <a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Prompt Engineering for Devs — DeepLearning.AI · Free ↗</div>
+            <div class="res-meta">Andrew Ng + OpenAI — principles, iterative prompting, chaining</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">LangChain + RAG</div>
+        <a href="https://www.youtube.com/watch?v=HSZ_uaif57o" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">LangChain Full Course — freeCodeCamp · 5h · YouTube ↗</div>
+            <div class="res-meta">Chains, retrievers, memory, document loaders, LCEL</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLfaIDFEXuae2LXbO1_PKyVJiQ23ZztA0x" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">RAG From Scratch — LangChain Official · YouTube Series ↗</div>
+            <div class="res-meta">Build every RAG variant from first principles</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">LangGraph + Agents</div>
+        <a href="https://langchain-ai.github.io/langgraph/tutorials/introduction/" target="_blank"
+          class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">LangGraph Quickstart — Official Docs · Free ↗</div>
+            <div class="res-meta">StateGraph, nodes, edges, conditional routing</div>
+          </div>
+        </a>
+        <a href="https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">AI Agents in LangGraph — DeepLearning.AI · Free ↗</div>
+            <div class="res-meta">Multi-agent systems, human-in-the-loop, MemorySaver</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Streaming + LLM API</div>
+        <a href="https://platform.openai.com/docs/quickstart" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">OpenAI API Quickstart — Official Docs ↗</div>
+            <div class="res-meta">API calls, streaming, function calling, cost management</div>
+          </div>
+        </a>
+        <a href="https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Functions, Tools & Agents — DeepLearning.AI · Free ↗</div>
+            <div class="res-meta">Tool calling, structured outputs, agent patterns</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- PHASE 6 -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(56,189,248,.18);color:#38BDF8;border:1.5px solid rgba(56,189,248,.4)">6</div>
+        <div>
+          <div class="phase-title" style="color:#38BDF8">Advanced AI — Agents + LLMOps</div>
+          <div class="phase-sub">Multi-Agent · RAGAS · Production Patterns</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Multi-Agent Systems</div>
+        <a href="https://langchain-ai.github.io/langgraph/tutorials/multi_agent/multi-agent-collaboration/"
+          target="_blank" class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">LangGraph Multi-Agent Tutorial — Official Docs ↗</div>
+            <div class="res-meta">Supervisor pattern, parallel nodes, shared state</div>
+          </div>
+        </a>
+        <a href="https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Multi-Agent Systems — DeepLearning.AI · Free ↗</div>
+            <div class="res-meta">Agent collaboration, memory, human-in-the-loop</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">RAG Evaluation + LLMOps</div>
+        <a href="https://docs.ragas.io/en/latest/" target="_blank" class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">RAGAS Docs — RAG Evaluation Framework ↗</div>
+            <div class="res-meta">Faithfulness, context precision, answer relevance scores</div>
+          </div>
+        </a>
+        <a href="https://www.deeplearning.ai/short-courses/evaluating-debugging-generative-ai/" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Evaluating Generative AI — DeepLearning.AI · Free ↗</div>
+            <div class="res-meta">Evaluation frameworks, LangSmith tracing, debugging hallucinations</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Production AI Patterns</div>
+        <a href="https://eugeneyan.com/writing/llm-patterns/" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">LLM Patterns — eugeneyan.com · Free Blog ↗</div>
+            <div class="res-meta">Rate limiting, fallback models, caching, cost optimization</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PL1T8fO7ArWleMMI8KPJ_5D5XSlovTW_Ur" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Full Stack LLM Bootcamp — The Full Stack · YouTube ↗</div>
+            <div class="res-meta">End-to-end production LLM system engineering</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- PHASE 7 -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(251,191,36,.18);color:#FBBF24;border:1.5px solid rgba(251,191,36,.4)">7</div>
+        <div>
+          <div class="phase-title" style="color:#FBBF24">Job Layer — Interview + Negotiation</div>
+          <div class="phase-sub">Resume · Mock Interviews · Salary Negotiation</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Resume + Portfolio</div>
+        <a href="https://www.youtube.com/results?search_query=software+engineer+resume+guide+2024" target="_blank"
+          class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Technical Resume Guide — Codebasics · YouTube ↗</div>
+            <div class="res-meta">1-page format, quantified impact, live project URLs</div>
+          </div>
+        </a>
+        <a href="https://ocs.fas.harvard.edu/files/ocs/files/hes-resume-cover-letter-guide.pdf" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Harvard Resume Guide — Free PDF ↗</div>
+            <div class="res-meta">Structure, language, impact framing for technical resumes</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Mock Interviews</div>
+        <a href="https://www.pramp.com/" target="_blank" class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Pramp — Free Peer Mock Interviews ↗</div>
+            <div class="res-meta">Real-time mock: DSA, system design, behavioral</div>
+          </div>
+        </a>
+        <a href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Grokking System Design Interview — Educative ↗</div>
+            <div class="res-meta">URL shortener, Twitter, Uber — complete breakdowns</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Salary Negotiation</div>
+        <a href="https://www.kalzumeus.com/2012/01/23/salary-negotiation/" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Salary Negotiation — Kalzumeus · Free Article ↗</div>
+            <div class="res-meta">Never name first, competing offers, anchoring high</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.in/Never-Split-Difference-Negotiating-Depended/dp/1847941494" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Never Split the Difference — Chris Voss · Book ↗</div>
+            <div class="res-meta">FBI negotiation tactics applied to salary conversations</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Job Boards + Outreach</div>
+        <a href="https://wellfound.com/" target="_blank" class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Wellfound (AngelList) — AI Engineer Jobs India ↗</div>
+            <div class="res-meta">Best platform for AI startup jobs in India</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/jobs/" target="_blank" class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">LinkedIn Jobs — Optimize Profile + Outreach ↗</div>
+            <div class="res-meta">Cold DMs, recruiter messages, 300+ application pipeline</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- PHASE 8 OPTIONAL -->
+    <div class="phase-section">
+      <div class="phase-hdr">
+        <div class="phase-dot"
+          style="background:rgba(251,146,60,.18);color:#FB923C;border:1.5px solid rgba(251,146,60,.4)">8</div>
+        <div>
+          <div class="phase-title" style="color:#FB923C">ML / DL — Depth Layer <span
+              class="badge badge-opt">OPTIONAL</span></div>
+          <div class="phase-sub">Use when time allows · Pushes to ₹20–25 LPA</div>
+        </div>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">ML Fundamentals</div>
+        <a href="https://www.youtube.com/watch?v=0B5eIE_1vpU" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">scikit-learn Crash Course — freeCodeCamp · 2.5h · YouTube ↗
+            </div>
+            <div class="res-meta">Regression, classification, clustering, cross-validation</div>
+          </div>
+        </a>
+        <a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/" target="_blank"
+          class="res-card"><span class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Hands-On ML — Aurélien Géron · O'Reilly Book ↗</div>
+            <div class="res-meta">The definitive ML book — scikit-learn + TensorFlow</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Deep Learning</div>
+        <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank"
+          class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Neural Networks from Scratch — 3Blue1Brown · YouTube ↗</div>
+            <div class="res-meta">Best visual introduction to neural networks and backprop</div>
+          </div>
+        </a>
+        <a href="https://www.coursera.org/specializations/deep-learning" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Deep Learning Specialization — Andrew Ng · Coursera ↗</div>
+            <div class="res-meta">5-course deep learning specialization — CNN, RNN, optimization</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">PyTorch</div>
+        <a href="https://www.youtube.com/watch?v=Z_ikDlimN6A" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">PyTorch in 1 Hour — Daniel Bourke · YouTube ↗</div>
+            <div class="res-meta">Tensors, autograd, training loop, save/load</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=Z_ikDlimN6A" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">PyTorch Full Course — Daniel Bourke · 26h · YouTube ↗</div>
+            <div class="res-meta">Complete PyTorch — CNNs, transfer learning, deployment</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Transformers Architecture</div>
+        <a href="https://www.youtube.com/watch?v=iDulhoQ2pro" target="_blank" class="res-card"><span
+            class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Attention is All You Need — Yannic Kilcher · YouTube ↗</div>
+            <div class="res-meta">Paper walkthrough — self-attention, multi-head, positional encoding</div>
+          </div>
+        </a>
+        <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">Illustrated Transformer — Jay Alammar · Blog ↗</div>
+            <div class="res-meta">Best visual explanation of transformer architecture</div>
+          </div>
+        </a>
+      </div>
+      <div class="topic-group">
+        <div class="topic-label">Fine-tuning LoRA / QLoRA</div>
+        <a href="https://www.deeplearning.ai/short-courses/finetuning-large-language-models/" target="_blank"
+          class="res-card"><span class="badge badge-f">F</span>
+          <div>
+            <div class="res-name" style="color:#34D399">Finetuning LLMs — DeepLearning.AI · Free Short Course ↗</div>
+            <div class="res-meta">When to fine-tune vs RAG, LoRA concept, HuggingFace Trainer</div>
+          </div>
+        </a>
+        <a href="https://huggingface.co/learn/nlp-course/chapter3/1" target="_blank" class="res-card"><span
+            class="badge badge-q">Q</span>
+          <div>
+            <div class="res-name" style="color:#A78BFA">HuggingFace Fine-tuning Guide — huggingface.co ↗</div>
+            <div class="res-meta">Complete PEFT + LoRA + QLoRA fine-tuning pipeline</div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
-  <div class="divider"></div>
+  <footer>Hemasai Vattikuti · AI Engineer Roadmap · All Resources</footer>
 
-  <!-- PHASE 1 -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(52,211,153,.18);color:#34D399;border:1.5px solid rgba(52,211,153,.4)">1</div>
-      <div><div class="phase-title" style="color:#34D399">Python Foundation</div><div class="phase-sub">Core · OOP · Decorators · Generators · Async</div></div>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Python Core + OOP</div>
-      <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Python Full Course — Mosh Hamedani · 6h · YouTube ↗</div><div class="res-meta">Fast, comprehensive, beginner to solid foundation</div></div></a>
-      <a href="https://www.youtube.com/playlist?list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Python Tutorial Playlist — Corey Schafer · YouTube ↗</div><div class="res-meta">Best in-depth Python series — OOP, decorators, generators all covered</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Decorators + Generators + Async</div>
-      <a href="https://www.youtube.com/watch?v=2IW-ZEui4h4" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Python Asyncio — ArjanCodes · 1h · YouTube ↗</div><div class="res-meta">Practical async/await, event loop, asyncio.gather</div></div></a>
-      <a href="https://docs.python.org/3/library/asyncio.html" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">asyncio Official Docs — Python 3 ↗</div><div class="res-meta">Complete reference — coroutines, tasks, event loop internals</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Error Handling + File I/O</div>
-      <a href="https://www.youtube.com/watch?v=NIWwJbo-9_8" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Python Error Handling — Corey Schafer · YouTube ↗</div><div class="res-meta">try/except/finally, custom exceptions, context managers</div></div></a>
-      <a href="https://docs.python.org/3/tutorial/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Python 3 Official Tutorial — docs.python.org ↗</div><div class="res-meta">Complete language reference with examples</div></div></a>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- PHASE 2 -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(96,165,250,.18);color:#60A5FA;border:1.5px solid rgba(96,165,250,.4)">2</div>
-      <div><div class="phase-title" style="color:#60A5FA">Backend + Database + API Design</div><div class="phase-sub">FastAPI · Pydantic · Auth · PostgreSQL · Redis</div></div>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">FastAPI Core</div>
-      <a href="https://fastapi.tiangolo.com/tutorial/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">FastAPI Official Tutorial — fastapi.tiangolo.com ↗</div><div class="res-meta">Official docs — routing, Pydantic, DI, middleware, background tasks</div></div></a>
-      <a href="https://www.youtube.com/results?search_query=FastAPI+full+course+Bitfumes" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">FastAPI Full Course — Bitfumes · 5h · YouTube ↗</div><div class="res-meta">Full project-based FastAPI course with auth and DB</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">JWT Auth + OAuth2</div>
-      <a href="https://www.youtube.com/watch?v=7Q17ubqLfaM" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">JWT Explained — Web Dev Simplified · 15min · YouTube ↗</div><div class="res-meta">Token structure, signing, verification explained clearly</div></div></a>
-      <a href="https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">FastAPI Security Docs — Official JWT + OAuth2 ↗</div><div class="res-meta">Full implementation: bcrypt, JWT, OAuth2PasswordBearer</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">PostgreSQL + SQLAlchemy</div>
-      <a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">SQL Full Course — freeCodeCamp · YouTube ↗</div><div class="res-meta">Complete SQL from scratch — JOINs, indexes, transactions</div></div></a>
-      <a href="https://www.postgresqltutorial.com/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">PostgreSQL Tutorial — postgresqltutorial.com ↗</div><div class="res-meta">Deep PostgreSQL reference with EXPLAIN ANALYZE, pgvector, Alembic</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Redis + Caching</div>
-      <a href="https://www.youtube.com/watch?v=jgpVdJB2sKQ" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Redis Crash Course — Traversy Media · 30min · YouTube ↗</div><div class="res-meta">SET/GET/TTL, cache patterns, pub/sub basics</div></div></a>
-      <a href="https://university.redis.com/courses/ru101/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Redis University — RU101 Free Course ↗</div><div class="res-meta">Official Redis course — data structures, caching, streams</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">REST API Design</div>
-      <a href="https://www.youtube.com/watch?v=-MTSQjw5DrM" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">REST API Best Practices — freeCodeCamp · YouTube ↗</div><div class="res-meta">HTTP methods, status codes, versioning, pagination, error handling</div></div></a>
-      <a href="https://www.manning.com/books/api-design-patterns" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">API Design Patterns — JJ Geewax · Manning Book ↗</div><div class="res-meta">Production API design — naming, versioning, idempotency</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">LLD + Design Patterns</div>
-      <a href="https://www.youtube.com/results?search_query=ArjanCodes+SOLID+principles+Python" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">SOLID Principles in Python — ArjanCodes · YouTube ↗</div><div class="res-meta">S/O/L/I/D with real code examples in Python</div></div></a>
-      <a href="https://www.youtube.com/results?search_query=Concept+and+Coding+LLD+low+level+design+playlist" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">LLD Full Playlist — Concept && Coding · YouTube ↗</div><div class="res-meta">Strategy, Factory, Observer, Repository — interview-focused</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">pytest + Logging</div>
-      <a href="https://www.youtube.com/watch?v=cHYq1MRoyI0" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">pytest Tutorial — Corey Schafer · YouTube ↗</div><div class="res-meta">Unit tests, fixtures, mocking, parametrize</div></div></a>
-      <a href="https://docs.pytest.org/en/stable/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">pytest Official Docs — docs.pytest.org ↗</div><div class="res-meta">Complete pytest reference</div></div></a>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- PHASE 3 -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(192,132,252,.18);color:#C084FC;border:1.5px solid rgba(192,132,252,.4)">3</div>
-      <div><div class="phase-title" style="color:#C084FC">System Design + Deployment</div><div class="phase-sub">HLD · CAP · Docker · OS · Networks</div></div>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">HLD Fundamentals</div>
-      <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">System Design Primer — GitHub · donnemartin ↗</div><div class="res-meta">Most starred system design resource on GitHub</div></div></a>
-      <a href="https://bytebytego.com/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">ByteByteGo — System Design Newsletter + YouTube ↗</div><div class="res-meta">Visual system design — Alex Xu's diagrams and breakdowns</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">CAP Theorem + Distributed Systems</div>
-      <a href="https://www.youtube.com/results?search_query=CAP+theorem+explained+ByteByteGo" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">CAP Theorem Explained — ByteByteGo · YouTube ↗</div><div class="res-meta">Clear 10-min visual explanation</div></div></a>
-      <a href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Designing Data-Intensive Applications — Martin Kleppmann ↗</div><div class="res-meta">The bible of distributed systems engineering</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Message Queues + Async</div>
-      <a href="https://www.youtube.com/results?search_query=message+queues+Hussein+Nasser" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Message Queues — Hussein Nasser · YouTube ↗</div><div class="res-meta">Kafka, RabbitMQ, event-driven patterns explained well</div></div></a>
-      <a href="https://kafka.apache.org/documentation/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Kafka Official Docs — Introduction ↗</div><div class="res-meta">Topics, partitions, consumers, producers, retention</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Docker + CI/CD</div>
-      <a href="https://www.youtube.com/watch?v=fqMOX6JJhGo" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Docker Full Course — freeCodeCamp · YouTube ↗</div><div class="res-meta">Dockerfile, images, compose, networking — complete course</div></div></a>
-      <a href="https://docs.docker.com/get-started/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Docker Official Docs — Get Started Series ↗</div><div class="res-meta">Official multi-part tutorial with best practices</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">OS + Computer Networks</div>
-      <a href="https://www.youtube.com/results?search_query=operating+systems+interview+Gate+Smashers+1+hour" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">OS + Networks — Gate Smashers · YouTube ↗</div><div class="res-meta">Fast interview prep — processes, threads, deadlock, HTTP, TCP</div></div></a>
-      <a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRhX6r2uhhlubuF5QextdCSM" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Computer Networks Full — Neso Academy · YouTube ↗</div><div class="res-meta">Complete networking from physical to application layer</div></div></a>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- PHASE 4 -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(251,113,133,.18);color:#FB7185;border:1.5px solid rgba(251,113,133,.4)">4</div>
-      <div><div class="phase-title" style="color:#FB7185">AI Core — LLM + Embeddings</div><div class="phase-sub">LLM fundamentals · HuggingFace · Embeddings · NumPy</div></div>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">LLM Fundamentals</div>
-      <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Intro to LLMs — Andrej Karpathy · 1h · YouTube ↗</div><div class="res-meta">Tokens, context windows, sampling, model families — best intro</div></div></a>
-      <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Build GPT from Scratch — Andrej Karpathy · YouTube ↗</div><div class="res-meta">Build a working GPT — deepest understanding of LLMs</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">HuggingFace + Transformers</div>
-      <a href="https://www.youtube.com/watch?v=QEaBAZQCtwE" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">HuggingFace Crash Course — Patrick Loeber · 1h · YouTube ↗</div><div class="res-meta">pipeline(), AutoTokenizer, AutoModel, model hub</div></div></a>
-      <a href="https://huggingface.co/learn/nlp-course/chapter1/1" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">HuggingFace NLP Course — huggingface.co · Free ↗</div><div class="res-meta">Official HF course — tokenizers, models, training, fine-tuning</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Embeddings + Vector Similarity</div>
-      <a href="https://www.pinecone.io/learn/vector-embeddings/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Vector Embeddings Explained — Pinecone Learn ↗</div><div class="res-meta">Semantic similarity, cosine distance, HNSW indexing</div></div></a>
-      <a href="https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Vector DB + Embeddings — DeepLearning.AI · Free ↗</div><div class="res-meta">Hands-on: embed, store, query — with pgvector and Pinecone</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">NumPy + Pandas</div>
-      <a href="https://www.youtube.com/watch?v=vmEHCJofslg" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">NumPy + Pandas Crash Course — Keith Galli · YouTube ↗</div><div class="res-meta">Arrays, DataFrames, filtering, groupby — fast and practical</div></div></a>
-      <a href="https://www.youtube.com/watch?v=GPVsHOlRBBI" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">NumPy Full Course — freeCodeCamp · YouTube ↗</div><div class="res-meta">Broadcasting, vectorized ops, linear algebra essentials</div></div></a>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- PHASE 5 -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(45,212,191,.18);color:#2DD4BF;border:1.5px solid rgba(45,212,191,.4)">5</div>
-      <div><div class="phase-title" style="color:#2DD4BF">Applied AI — RAG + LangChain</div><div class="phase-sub">Prompt Engineering · LangChain · RAG · Agents</div></div>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Prompt Engineering</div>
-      <a href="https://www.promptingguide.ai/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Prompt Engineering Guide — DAIR.AI · Free ↗</div><div class="res-meta">Zero-shot, few-shot, CoT, ReAct, structured outputs</div></div></a>
-      <a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Prompt Engineering for Devs — DeepLearning.AI · Free ↗</div><div class="res-meta">Andrew Ng + OpenAI — principles, iterative prompting, chaining</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">LangChain + RAG</div>
-      <a href="https://www.youtube.com/watch?v=HSZ_uaif57o" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">LangChain Full Course — freeCodeCamp · 5h · YouTube ↗</div><div class="res-meta">Chains, retrievers, memory, document loaders, LCEL</div></div></a>
-      <a href="https://www.youtube.com/playlist?list=PLfaIDFEXuae2LXbO1_PKyVJiQ23ZztA0x" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">RAG From Scratch — LangChain Official · YouTube Series ↗</div><div class="res-meta">Build every RAG variant from first principles</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">LangGraph + Agents</div>
-      <a href="https://langchain-ai.github.io/langgraph/tutorials/introduction/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">LangGraph Quickstart — Official Docs · Free ↗</div><div class="res-meta">StateGraph, nodes, edges, conditional routing</div></div></a>
-      <a href="https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">AI Agents in LangGraph — DeepLearning.AI · Free ↗</div><div class="res-meta">Multi-agent systems, human-in-the-loop, MemorySaver</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Streaming + LLM API</div>
-      <a href="https://platform.openai.com/docs/quickstart" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">OpenAI API Quickstart — Official Docs ↗</div><div class="res-meta">API calls, streaming, function calling, cost management</div></div></a>
-      <a href="https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Functions, Tools & Agents — DeepLearning.AI · Free ↗</div><div class="res-meta">Tool calling, structured outputs, agent patterns</div></div></a>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- PHASE 6 -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(56,189,248,.18);color:#38BDF8;border:1.5px solid rgba(56,189,248,.4)">6</div>
-      <div><div class="phase-title" style="color:#38BDF8">Advanced AI — Agents + LLMOps</div><div class="phase-sub">Multi-Agent · RAGAS · Production Patterns</div></div>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Multi-Agent Systems</div>
-      <a href="https://langchain-ai.github.io/langgraph/tutorials/multi_agent/multi-agent-collaboration/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">LangGraph Multi-Agent Tutorial — Official Docs ↗</div><div class="res-meta">Supervisor pattern, parallel nodes, shared state</div></div></a>
-      <a href="https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Multi-Agent Systems — DeepLearning.AI · Free ↗</div><div class="res-meta">Agent collaboration, memory, human-in-the-loop</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">RAG Evaluation + LLMOps</div>
-      <a href="https://docs.ragas.io/en/latest/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">RAGAS Docs — RAG Evaluation Framework ↗</div><div class="res-meta">Faithfulness, context precision, answer relevance scores</div></div></a>
-      <a href="https://www.deeplearning.ai/short-courses/evaluating-debugging-generative-ai/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Evaluating Generative AI — DeepLearning.AI · Free ↗</div><div class="res-meta">Evaluation frameworks, LangSmith tracing, debugging hallucinations</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Production AI Patterns</div>
-      <a href="https://eugeneyan.com/writing/llm-patterns/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">LLM Patterns — eugeneyan.com · Free Blog ↗</div><div class="res-meta">Rate limiting, fallback models, caching, cost optimization</div></div></a>
-      <a href="https://www.youtube.com/playlist?list=PL1T8fO7ArWleMMI8KPJ_5D5XSlovTW_Ur" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Full Stack LLM Bootcamp — The Full Stack · YouTube ↗</div><div class="res-meta">End-to-end production LLM system engineering</div></div></a>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- PHASE 7 -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(251,191,36,.18);color:#FBBF24;border:1.5px solid rgba(251,191,36,.4)">7</div>
-      <div><div class="phase-title" style="color:#FBBF24">Job Layer — Interview + Negotiation</div><div class="phase-sub">Resume · Mock Interviews · Salary Negotiation</div></div>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Resume + Portfolio</div>
-      <a href="https://www.youtube.com/results?search_query=software+engineer+resume+guide+2024" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Technical Resume Guide — Codebasics · YouTube ↗</div><div class="res-meta">1-page format, quantified impact, live project URLs</div></div></a>
-      <a href="https://ocs.fas.harvard.edu/files/ocs/files/hes-resume-cover-letter-guide.pdf" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Harvard Resume Guide — Free PDF ↗</div><div class="res-meta">Structure, language, impact framing for technical resumes</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Mock Interviews</div>
-      <a href="https://www.pramp.com/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Pramp — Free Peer Mock Interviews ↗</div><div class="res-meta">Real-time mock: DSA, system design, behavioral</div></div></a>
-      <a href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Grokking System Design Interview — Educative ↗</div><div class="res-meta">URL shortener, Twitter, Uber — complete breakdowns</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Salary Negotiation</div>
-      <a href="https://www.kalzumeus.com/2012/01/23/salary-negotiation/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Salary Negotiation — Kalzumeus · Free Article ↗</div><div class="res-meta">Never name first, competing offers, anchoring high</div></div></a>
-      <a href="https://www.amazon.in/Never-Split-Difference-Negotiating-Depended/dp/1847941494" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Never Split the Difference — Chris Voss · Book ↗</div><div class="res-meta">FBI negotiation tactics applied to salary conversations</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Job Boards + Outreach</div>
-      <a href="https://wellfound.com/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Wellfound (AngelList) — AI Engineer Jobs India ↗</div><div class="res-meta">Best platform for AI startup jobs in India</div></div></a>
-      <a href="https://www.linkedin.com/jobs/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">LinkedIn Jobs — Optimize Profile + Outreach ↗</div><div class="res-meta">Cold DMs, recruiter messages, 300+ application pipeline</div></div></a>
-    </div>
-  </div>
-  <div class="divider"></div>
-
-  <!-- PHASE 8 OPTIONAL -->
-  <div class="phase-section">
-    <div class="phase-hdr">
-      <div class="phase-dot" style="background:rgba(251,146,60,.18);color:#FB923C;border:1.5px solid rgba(251,146,60,.4)">8</div>
-      <div><div class="phase-title" style="color:#FB923C">ML / DL — Depth Layer <span class="badge badge-opt">OPTIONAL</span></div><div class="phase-sub">Use when time allows · Pushes to ₹20–25 LPA</div></div>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">ML Fundamentals</div>
-      <a href="https://www.youtube.com/watch?v=0B5eIE_1vpU" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">scikit-learn Crash Course — freeCodeCamp · 2.5h · YouTube ↗</div><div class="res-meta">Regression, classification, clustering, cross-validation</div></div></a>
-      <a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Hands-On ML — Aurélien Géron · O'Reilly Book ↗</div><div class="res-meta">The definitive ML book — scikit-learn + TensorFlow</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Deep Learning</div>
-      <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Neural Networks from Scratch — 3Blue1Brown · YouTube ↗</div><div class="res-meta">Best visual introduction to neural networks and backprop</div></div></a>
-      <a href="https://www.coursera.org/specializations/deep-learning" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Deep Learning Specialization — Andrew Ng · Coursera ↗</div><div class="res-meta">5-course deep learning specialization — CNN, RNN, optimization</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">PyTorch</div>
-      <a href="https://www.youtube.com/watch?v=Z_ikDlimN6A" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">PyTorch in 1 Hour — Daniel Bourke · YouTube ↗</div><div class="res-meta">Tensors, autograd, training loop, save/load</div></div></a>
-      <a href="https://www.youtube.com/watch?v=Z_ikDlimN6A" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">PyTorch Full Course — Daniel Bourke · 26h · YouTube ↗</div><div class="res-meta">Complete PyTorch — CNNs, transfer learning, deployment</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Transformers Architecture</div>
-      <a href="https://www.youtube.com/watch?v=iDulhoQ2pro" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Attention is All You Need — Yannic Kilcher · YouTube ↗</div><div class="res-meta">Paper walkthrough — self-attention, multi-head, positional encoding</div></div></a>
-      <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">Illustrated Transformer — Jay Alammar · Blog ↗</div><div class="res-meta">Best visual explanation of transformer architecture</div></div></a>
-    </div>
-    <div class="topic-group">
-      <div class="topic-label">Fine-tuning LoRA / QLoRA</div>
-      <a href="https://www.deeplearning.ai/short-courses/finetuning-large-language-models/" target="_blank" class="res-card"><span class="badge badge-f">F</span><div><div class="res-name" style="color:#34D399">Finetuning LLMs — DeepLearning.AI · Free Short Course ↗</div><div class="res-meta">When to fine-tune vs RAG, LoRA concept, HuggingFace Trainer</div></div></a>
-      <a href="https://huggingface.co/learn/nlp-course/chapter3/1" target="_blank" class="res-card"><span class="badge badge-q">Q</span><div><div class="res-name" style="color:#A78BFA">HuggingFace Fine-tuning Guide — huggingface.co ↗</div><div class="res-meta">Complete PEFT + LoRA + QLoRA fine-tuning pipeline</div></div></a>
-    </div>
-  </div>
-</div>
-<footer>Hemasai Vattikuti · AI Engineer Roadmap · All Resources</footer>
-
-<nav class="bottom-nav">
-  <a href="roadmap.html" class="bnav-item">
-    <span class="bnav-icon">🗺️</span>
-    <span class="bnav-label">Roadmap</span>
-  </a>
-  <a href="resources.html" class="bnav-item active">
-    <span class="bnav-icon">📚</span>
-    <span class="bnav-label">Resources</span>
-  </a>
-  <a href="timetable.html" class="bnav-item">
-    <span class="bnav-icon">⏰</span>
-    <span class="bnav-label">Timetable</span>
-  </a>
-  <a href="review.html" class="bnav-item">
-    <span class="bnav-icon">✅</span>
-    <span class="bnav-label">Review</span>
-  </a>
-</nav>
+  <nav class="bottom-nav">
+    <a href="roadmap.html" class="bnav-item">
+      <span class="bnav-icon">🗺️</span>
+      <span class="bnav-label">Roadmap</span>
+    </a>
+    <a href="resources.html" class="bnav-item active">
+      <span class="bnav-icon">📚</span>
+      <span class="bnav-label">Resources</span>
+    </a>
+    <a href="timetable.html" class="bnav-item">
+      <span class="bnav-icon">⏰</span>
+      <span class="bnav-label">Timetable</span>
+    </a>
+    <a href="review.html" class="bnav-item">
+      <span class="bnav-icon">✅</span>
+      <span class="bnav-label">Review</span>
+    </a>
+  </nav>
 </body>
+
 </html>
