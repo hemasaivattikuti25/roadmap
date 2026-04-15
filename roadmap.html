@@ -18,12 +18,14 @@ a{text-decoration:none;color:inherit}
 ::-webkit-scrollbar-thumb{background:#1e2840;border-radius:2px}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:#0D1017;border-bottom:1px solid rgba(255,255,255,0.1);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B7DA8;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.nav{position:sticky;top:0;z-index:100;background:#0D1017;border-bottom:1px solid rgba(255,255,255,0.1);padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.nav-top{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:10px;color:#6B7DA8;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 .pulse{width:6px;height:6px;border-radius:50%;background:#34D399;animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
-.nav-links{display:flex;gap:4px}
-.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 13px;border-radius:5px;color:#7A8AAE;letter-spacing:.12em;text-transform:uppercase;border:1px solid transparent;transition:all .2s}
+.nav-links{display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;padding:6px 14px;border-radius:6px;color:#7A8AAE;letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .nav-link:hover,.nav-link.active{color:#FBBF24;border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.1)}
 
 /* HEADER */
@@ -142,16 +144,29 @@ a{text-decoration:none;color:inherit}
 footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.1);font-family:'JetBrains Mono',monospace;font-size:10px;color:#5C6E9A;letter-spacing:.1em}
 
 @media(max-width:640px){
-  .nav-links{display:none}
-  .main{padding:16px 12px 60px}
-  .header{padding:16px 14px}
+  .main{padding:12px 10px 80px}
+  .header{padding:14px 12px 12px}
+  .header-title{font-size:17px}
+  .phase-header{padding:13px 12px}
+  .phase-title{font-size:15px}
+  .phase-sub{font-size:11px;white-space:normal}
+  .phase-circle{width:36px;height:36px}
+  .topic-name{font-size:15px}
+  .topic-row{padding:11px 11px}
+  .topic-tag{font-size:10px;padding:2px 6px}
+  .res-name{font-size:13px}
+  .bottom-strip{padding:14px}
+  .milestone-range{min-width:70px;font-size:10px}
+  .milestone-result{font-size:13px}
 }
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <div class="nav-logo"><div class="pulse"></div>Hemasai · AI Engineer Roadmap</div>
+  <div class="nav-top">
+    <div class="nav-logo"><div class="pulse"></div>Hemasai · AI Roadmap</div>
+  </div>
   <div class="nav-links">
     <a href="roadmap.html" class="nav-link active">Roadmap</a>
     <a href="resources.html" class="nav-link">Resources</a>
@@ -815,8 +830,17 @@ function renderBottomStrip() {
 }
 
 // INIT
-render();
-renderBottomStrip();
+window.onerror = function(msg, src, line, col, err) {
+  const main = document.getElementById('main');
+  if(main) main.innerHTML = '<div style="color:#FB7185;padding:20px 16px;font-family:monospace;font-size:13px;background:#0D1017;border-radius:8px;margin:16px">JS Error: ' + msg + '<br><small style="color:#5C6E9A">Line ' + line + '</small></div>';
+};
+try {
+  render();
+  renderBottomStrip();
+} catch(e) {
+  const main = document.getElementById('main');
+  if(main) main.innerHTML = '<div style="color:#FB7185;padding:20px 16px;font-family:monospace;font-size:13px;background:#0D1017;border-radius:8px;margin:16px">Error: ' + e.message + '</div>';
+}
 if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
 </script>
 </body>
