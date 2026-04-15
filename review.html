@@ -108,33 +108,6 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
 .bnav-icon{font-size:18px;line-height:1}
 .bnav-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;line-height:1}
 @media(max-width:600px){.months{gap:6px}}
-
-/* DSA SHEET */
-.dsa-section{margin-bottom:32px}
-.dsa-section-title{font-size:18px;font-weight:600;color:var(--text-head);letter-spacing:-.02em;margin-bottom:4px}
-.dsa-section-sub{font-size:12px;color:var(--text-dimmer);margin-bottom:16px;font-family:'JetBrains Mono',monospace}
-.dsa-progress-wrap{margin-bottom:18px}
-.dsa-chapter{border:1px solid var(--border-nav);border-radius:10px;background:var(--bg-panel);overflow:hidden;margin-bottom:8px;transition:border-color .2s}
-.dsa-chapter.chapter-open{border-color:rgba(167,139,250,.35)}
-.dsa-chap-hdr{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;transition:background .15s}
-.dsa-chap-hdr:hover{background:var(--btn-hover)}
-.dsa-chap-dot{width:28px;height:28px;border-radius:50%;background:rgba(167,139,250,.15);border:1.5px solid rgba(167,139,250,.4);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#A78BFA;flex-shrink:0}
-.dsa-chap-info{flex:1;min-width:0}
-.dsa-chap-title{font-size:14px;font-weight:600;color:var(--text-phase);margin-bottom:3px}
-.dsa-chap-bar-wrap{height:3px;background:var(--track-bg);border-radius:2px;width:100%}
-.dsa-chap-bar{height:3px;border-radius:2px;background:linear-gradient(90deg,#A78BFA,#60A5FA);transition:width .4s ease}
-.dsa-chap-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);white-space:nowrap;flex-shrink:0}
-.dsa-chap-arrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);transition:transform .2s;flex-shrink:0}
-.dsa-chap-arrow.open{transform:rotate(90deg)}
-.dsa-topics{display:none;padding:4px 16px 14px;animation:fi .15s ease both}
-.dsa-topics.open{display:flex;flex-wrap:wrap;gap:6px}
-.dsa-topic-chip{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:7px;border:1px solid var(--border-nav);background:var(--bg-topic);cursor:pointer;transition:all .15s;user-select:none}
-.dsa-topic-chip:hover{border-color:rgba(167,139,250,.35);background:var(--bg-topic-hover)}
-.dsa-topic-chip.done{border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.08)}
-.dsa-topic-cb{width:14px;height:14px;border-radius:3px;border:1.5px solid rgba(167,139,250,.5);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all .2s;color:#A78BFA}
-.dsa-topic-chip.done .dsa-topic-cb{background:#A78BFA;border-color:#A78BFA;color:#fff}
-.dsa-topic-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);transition:color .15s}
-.dsa-topic-chip.done .dsa-topic-label{color:#A78BFA}
 </style>
 </head>
 <body>
@@ -173,20 +146,6 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
     <div class="rule-row"><div class="rdot" style="background:#A78BFA"></div>Your gym habit and sleep are not separate from your career goal. They are the engine that powers it.</div>
     <div class="rule-row"><div class="rdot" style="background:#FB7185"></div>Stop comparing your chapter 1 to someone else's chapter 8. The only competition is last month's you.</div>
     <div class="rule-row"><div class="rdot" style="background:#2DD4BF"></div>Every project you deploy is proof. Proof > certificates. Proof > grades. Build and ship.</div>
-  </div>
-
-  <!-- DSA SHEET -->
-  <div class="dsa-section">
-    <div class="dsa-section-title">Striver A2Z — DSA Complete Sheet</div>
-    <div class="dsa-section-sub">Mark topics as done · Progress saves automatically</div>
-    <div class="dsa-progress-wrap">
-      <div class="progress-label">
-        <span id="dsa-progress-text">DSA overall</span>
-        <span id="dsa-progress-pct">0%</span>
-      </div>
-      <div class="progress-track"><div class="progress-fill" id="dsa-progress-fill" style="width:0%"></div></div>
-    </div>
-    <div id="dsa-chapters"></div>
   </div>
 
   <!-- MONTHS -->
@@ -233,32 +192,6 @@ function toggleTheme(){
   if(btn) btn.textContent=saved==='dark'?'☀️':'🌙';
 })();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
-
-/* ── STRIVER A2Z DSA COMPLETE SHEET ── */
-const DSA_CHAPTERS = [
-  { id:'arrays', num:1, title:'Arrays', topics:['Largest Element','Second Largest','Check Sorted','Remove Duplicates','Left Rotate by 1','Left Rotate by K','Move Zeros','Linear Search','Union of Arrays','Intersection of Arrays','Missing Number','Max Consecutive 1s','Three Sum Check','Single Number','Longest Sub-array with Sum K','2 Sum Problem','Sort 0s 1s 2s','Majority Element','Kadane\'s Algorithm','Stock Buy Sell','Rearrange Elements','Next Permutation','Leaders in Array','Longest Consecutive Sequence','Set Matrix Zeros','Rotate Matrix 90°','Spiral Traversal','Count Subarrays with Sum K','Pascal\'s Triangle','Merge Overlapping Intervals','Merge Sorted Arrays','Find Duplicate','Repeat and Missing','Count Inversions','Reverse Pairs','Maximum Product Subarray'] },
-  { id:'bs', num:2, title:'Binary Search', topics:['Binary Search Basics','Lower Bound','Upper Bound','Search Insert Position','Floor & Ceiling','First/Last Occurrence','Count Occurrences','Search Rotated Array','Minimum in Rotated Array','Single Element (Sorted)','Peak Element','Square Root','Nth Root','Koko Eating Bananas','Minimum Days to Bloom','Aggressive Cows','Book Allocation','Split Array Largest Sum','Painter\'s Partition','Minimum Days Make Bouquets','Kth Missing Positive','Kth Element 2 Sorted Arrays','Find Median 2 Arrays','Search 2D Matrix','Find Peak 2D'] },
-  { id:'strings', num:3, title:'Strings', topics:['Reverse Words','Palindrome Check','Roman to Integer','Integer to Roman','Implement Atoi','Count Words','Anagram Check','String Rotation Check','Longest Common Prefix','Rabin-Karp Algorithm','KMP Algorithm','Z-Function','Minimum chars to make palindrome','Repeated String Match','Smallest Window Substring','Count Palindromic Substrings','Longest Palindromic Substring','String Compression'] },
-  { id:'ll', num:4, title:'Linked List', topics:['Traverse & Print','Find Length','Insert at Head/Tail','Delete at Position','Search in LL','Reverse LL','Loop Detection (Floyd)','Remove Loop','Find Start of Loop','Length of Loop','Palindrome LL','Multiply Two LLs','Middle of LL','Nth from End','Reverse in Groups of K','Rotate List','Deep Copy with Random Pointer','Flatten a LL','Sort LL','Add 1 to Number LL','Add Two Numbers','Intersection of LLs','Clone LL'] },
-  { id:'stacks', num:5, title:'Stacks & Queues', topics:['Implement Stack','Implement Queue','Implement Stack using Queue','Implement Queue using Stack','Min Stack','Valid Parentheses','Next Greater Element','Sort Stack','LRU Cache','LFU Cache','Balanced Parentheses','Largest Rectangle Histogram','Maximal Rectangle','Sliding Window Maximum','Implement Deque','Circular Queue','Celebrity Problem','Stock Span','Asteroid Collision','Remove Digit to Maximize'] },
-  { id:'trees', num:6, title:'Binary Trees', topics:['Inorder Traversal','Preorder Traversal','Postorder Traversal','Level Order Traversal','Height of Tree','Check Balanced','Diameter of Tree','Identical Trees','Zigzag Traversal','Boundary Traversal','Vertical Order Traversal','Top/Bottom View','Right/Left Side View','Symmetric Tree','Check Same Tree','Path Sum','Root to Leaf Path','LCA of Two Nodes','Max Width','Children Sum Property','Nodes at Distance K','Burn Binary Tree','Count Nodes in Complete Tree','Construct from Inorder+Preorder','Serialize & Deserialize','Flatten to Linked List','Morris Traversal'] },
-  { id:'bst', num:7, title:'BST', topics:['Search in BST','Insert in BST','Delete in BST','Floor in BST','Ceil in BST','Kth Smallest/Largest','Inorder Successor/Predecessor','Two Sum BST','Recover BST','Construct BST from Preorder','Convert to Greater Sum Tree','LCA in BST','Validate BST','BST Iterator'] },
-  { id:'graphs', num:8, title:'Graphs', topics:['BFS Traversal','DFS Traversal','Number of Provinces','BFS in Matrix','Flood Fill','Rotten Oranges','Cycle Detection (BFS)','Cycle Detection (DFS)','0/1 Matrix Distance','Surrounded Regions','Number of Enclaves','Word Ladder I','Word Ladder II','Bipartite Graph','Detect Cycle Directed','Topological Sort (BFS)','Topological Sort (DFS)','Kahn\'s Algorithm','Cycle in Directed Graph','Course Schedule','Find Order Prerequisites','Alien Dictionary','Shortest Path DAG','Shortest Path BFS','Dijkstra\'s Algorithm','Bellman Ford','Floyd Warshall','MST Prim\'s','MST Kruskal\'s','Disjoint Set Union','Accounts Merge','Number of Islands II','Strongly Connected (Kosaraju)','Bridges in Graph','Articulation Points'] },
-  { id:'dp', num:9, title:'Dynamic Programming', topics:['Climbing Stairs','Frog Jump','Frog Jump K steps','Maximum Sum Non-Adjacent','House Robber II','Ninja Training','Grid Unique Paths','Grid Unique Paths II','Min Path Sum','Triangle Min Path','Min/Max Falling Path','Chocolates on Grid','Subset Sum equals Target','Partition Equal Subset','Partition Set into 2 Subsets','Count Subsets with Sum K','Count Partitions with Given Diff','0/1 Knapsack','Coin Change Min Coins','Coin Change Count Ways','Unbounded Knapsack','Rod Cutting','Longest Common Subsequence','Longest Palindromic Subsequence','Edit Distance','Wildcard Matching','Longest Increasing Subsequence','LIS with Binary Search','Russian Doll Envelopes','Matrix Chain Multiplication','Burst Balloons','Palindromic Partitioning','Stocks I–VI','Buying/Selling Cooldown','MCM','Front-Back Traversal DP'] },
-  { id:'backtracking', num:10, title:'Backtracking', topics:['N Queens','Sudoku Solver','Rat in Maze','Combination Sum I','Combination Sum II','Subsets I','Subsets II','Permutations I','Permutations II','Word Search','Palindrome Partitioning','Phone Letter Combinations','Generate Parentheses','Power Set'] },
-  { id:'greedy', num:11, title:'Greedy', topics:['Assign Cookies','Fractional Knapsack','Greedy Job Sequencing','Activity Selection','N Meetings in One Room','Minimum Platforms','Jump Game I','Jump Game II','Valid Parenthesis String','Candy Distribution','Insert Interval','Merge Intervals','Non-Overlapping Intervals'] },
-  { id:'tries', num:12, title:'Tries', topics:['Implement Trie','Insert/Search/StartsWith','Longest Common Prefix (Trie)','Count Words Equal To/Starting With','Maximum XOR of Two Numbers','Maximum XOR with Element'] },
-  { id:'heap', num:13, title:'Heaps', topics:['Max Heap Operations','Min Heap Operations','Kth Largest Element','Kth Smallest','Merge K Sorted Lists','K Most Frequent Elements','Find Median from Data Stream','Top K Frequent Words','Sliding Window Median','Task Scheduler','Hand of Straights'] },
-];
-
-const dsaState = { open: null };
-
-function renderDSA() {
-  const container = document.getElementById('dsa-chapters');
-  if(!container) return;
-  container.innerHTML = DSA_CHAPTERS.map(ch => renderChapter(ch)).join('');
-  updateDSAProgress();
-}
 
 function renderChapter(ch) {
   const saved = JSON.parse(localStorage.getItem('dsa_'+ch.id)||'{}');
@@ -529,7 +462,6 @@ function updateProgress() {
 }
 
 render();
-renderDSA();
 </script>
 </body>
 </html>
