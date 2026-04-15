@@ -106,7 +106,7 @@ a{text-decoration:none;color:inherit}
 
 /* PHASE CARD */
 .phase-card{border:1px solid var(--border-subtle);border-radius:12px;background:var(--bg-panel);overflow:hidden;transition:border-color .2s,background .2s}
-.phase-card.open{background-color:var(--bg-base)}
+.phase-card.open{background-color:var(--bg-card)}
 
 .phase-header{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer;transition:background .15s}
 .phase-header:hover{background:var(--btn-hover)}
@@ -737,7 +737,7 @@ function renderPhase(p, pi) {
 
   return `
     ${pi > 0 ? `<div class="connector"><div class="connector-line"></div></div>` : ''}
-    <div class="phase-card ${isOpen?'open':''}" id="pc-${p.id}" style="--pc:${c};border-color:${isOpen ? hexA(.22) : 'rgba(255,255,255,0.06)'};background:${isOpen ? hexA(.04) : '#0D1017'}">
+    <div class="phase-card ${isOpen?'open':''}" id="pc-${p.id}" style="--pc:${c};border-color:${isOpen ? hexA(.22) : 'var(--border-subtle)'};${isOpen ? 'background:'+hexA(.04) : ''}">
       <div class="phase-header" onclick="togglePhase('${p.id}')">
         <div class="phase-circle" style="background:${p.optional?'transparent':hexA(.18)};border:1.5px solid ${hexA(.4)}">
           ${p.optional
@@ -826,7 +826,7 @@ function renderTopic(t, ti, pid, c, hexA) {
   const isSel = !!state.topic[key];
   return `
     <div>
-      <div class="topic-row ${isSel?'open':''}" onclick="toggleTopic('${key}')" style="--tc:${c};${isSel?'border-color:'+c+'55;background:#161E32':''}">
+      <div class="topic-row ${isSel?'open':''}" onclick="toggleTopic('${key}')" style="--tc:${c};${isSel?'border-color:'+c+'55;background:var(--bg-topic-hover)':''}">  
         <div class="topic-row-inner">
           <div style="flex:1;min-width:0">
             <div class="topic-name" style="${isSel?'color:'+c:''}">${t.name}</div>
