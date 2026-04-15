@@ -388,11 +388,11 @@ const PHASES = [
         quality: { label:"FastAPI Security Docs — Official JWT + OAuth2", url:"https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/" }
       },
       {
-        name: "PostgreSQL + SQLAlchemy",
-        tags: ["JOINs","Indexes","Transactions","ORM","Alembic migrations","pgvector","EXPLAIN ANALYZE"],
-        why: "pgvector is how you store AI embeddings. Every AI system you build will use PostgreSQL. Own it completely.",
+        name: "PostgreSQL + SQLAlchemy + Alembic",
+        tags: ["JOINs","Indexes","Transactions","ORM","Alembic migrate","alembic upgrade head","alembic revision","pgvector","EXPLAIN ANALYZE"],
+        why: "pgvector is how you store AI embeddings. Every real FastAPI+Postgres project requires Alembic migrations — you cannot manually alter tables in production. If you can't run an Alembic migration, you can't maintain a production schema.",
         fast: { label:"SQL Full Course — freeCodeCamp · YouTube", url:"https://www.youtube.com/watch?v=HXV3zeQKqGY" },
-        quality: { label:"PostgreSQL Tutorial — postgresqltutorial.com", url:"https://www.postgresqltutorial.com/" }
+        quality: { label:"Alembic Official Docs — alembic.sqlalchemy.org", url:"https://alembic.sqlalchemy.org/en/latest/tutorial.html" }
       },
       {
         name: "Redis + Caching",
@@ -451,6 +451,13 @@ const PHASES = [
         why: "Every ₹15 LPA+ interview has a system design round. No prep here = automatic reject regardless of DSA performance.",
         fast: { label:"System Design Primer — GitHub · donnemartin", url:"https://github.com/donnemartin/system-design-primer" },
         quality: { label:"ByteByteGo — System Design Newsletter + YouTube", url:"https://bytebytego.com/" }
+      },
+      {
+        name: "AI System Design Patterns",
+        tags: ["Design a RAG system","batch vs real-time inference","embedding pipeline design","LLM gateway","AI chatbot at scale","vector DB at scale","model serving"],
+        why: "₹15 LPA AI roles ask AI-specific system design questions, not just URL shorteners. 'Design a document Q&A for 10,000 concurrent users' is a completely different problem. Zero coverage here = automatic fail in the AI system design round.",
+        fast: { label:"ByteByteGo AI System Design — bytebytego.com", url:"https://bytebytego.com/" },
+        quality: { label:"Designing Machine Learning Systems — Chip Huyen · O'Reilly", url:"https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" }
       },
       {
         name: "CAP Theorem + Distributed Systems",
@@ -512,10 +519,17 @@ const PHASES = [
       },
       {
         name: "Embeddings + Vector Similarity",
-        tags: ["Word2Vec","Sentence embeddings","Cosine similarity","Dot product","HNSW indexing","pgvector"],
-        why: "Embeddings are the core of every RAG system. You need to understand them deeply — not just call an API.",
+        tags: ["Word2Vec","Sentence embeddings","Cosine similarity","Dot product","HNSW indexing","pgvector","ChromaDB","Qdrant","Pinecone","pgvector vs Qdrant tradeoffs"],
+        why: "Embeddings are the core of every RAG system. You need to understand them deeply — not just call an API. 'Why pgvector over Pinecone/Qdrant?' is a real interview question at every AI startup. Know the tradeoff: local dev = ChromaDB, existing Postgres = pgvector, production scale = Qdrant.",
         fast: { label:"Vector Embeddings Explained — Pinecone Learn", url:"https://www.pinecone.io/learn/vector-embeddings/" },
         quality: { label:"Vector DB + Embeddings — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/" }
+      },
+      {
+        name: "Local Models + Inference (Ollama)",
+        tags: ["Ollama","Llama 3","Mistral","GGUF","local inference","quantization","cost reduction","ollama run","ollama serve"],
+        why: "Every startup interview asks: 'How would you cut LLM API costs by 90%?' The answer is Ollama + Llama 3. If you can only call OpenAI's API, you are an API customer, not a production AI engineer. Gets a local model running in 10 minutes.",
+        fast: { label:"Ollama Official Quickstart — github.com/ollama/ollama", url:"https://github.com/ollama/ollama" },
+        quality: { label:"HuggingFace Open-Source AI Cookbook — huggingface.co/learn/cookbook", url:"https://huggingface.co/learn/cookbook" }
       },
       {
         name: "NumPy + Pandas",
@@ -557,10 +571,24 @@ const PHASES = [
       },
       {
         name: "LangChain + RAG Pipeline",
-        tags: ["LCEL pipe","Chains","Retrievers","Memory","Document loaders","Output parsers","Reranking"],
-        why: "Industry standard. Every AI startup uses this. Appears in 70%+ of Applied AI job descriptions. Non-negotiable.",
+        tags: ["LCEL pipe","Chains","Retrievers","Memory","Document loaders","Output parsers","chunk_size","chunk_overlap","semantic chunking","HyDE","Reranking","Cohere rerank"],
+        why: "Industry standard. Every AI startup uses this. 'Why did you use 500 character chunks? What's the overlap?' is a real interview question about your own project. If you cannot explain your chunking strategy, you don't understand your system.",
         fast: { label:"LangChain Full Course — freeCodeCamp · 5h · YouTube", url:"https://www.youtube.com/watch?v=HSZ_uaif57o" },
         quality: { label:"RAG From Scratch — LangChain Official · YouTube Series", url:"https://www.youtube.com/playlist?list=PLfaIDFEXuae2LXbO1_PKyVJiQ23ZztA0x" }
+      },
+      {
+        name: "RAG Evaluation (RAGAS + LangSmith)",
+        tags: ["RAGAS","Context Precision","Faithfulness","Answer Relevancy","LangSmith tracing","hallucination detection","evaluation dataset","ragas.evaluate()"],
+        why: "Building a RAG system is easy. Proving it doesn't hallucinate is hard. 'What's your faithfulness score?' is asked in every serious Applied AI interview. Add RAGAS from the first day you write a retrieval chain — not one phase later.",
+        fast: { label:"RAGAS Official Quickstart — docs.ragas.io", url:"https://docs.ragas.io/en/latest/" },
+        quality: { label:"Evaluating Generative AI — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/evaluating-debugging-generative-ai/" }
+      },
+      {
+        name: "AI Stack Containerization",
+        tags: ["Dockerfile","docker-compose","FastAPI container","ChromaDB service","pgvector service","multi-service orchestration","environment variables","docker-compose up"],
+        why: "'How do I run your RAG system on my machine?' If your answer is 'deploy to Render', you fail. If your answer is docker-compose up, you get the offer. Packaging your entire AI stack into one command is a production engineering requirement.",
+        fast: { label:"FastAPI Docker Deployment Guide — fastapi.tiangolo.com", url:"https://fastapi.tiangolo.com/deployment/docker/" },
+        quality: { label:"Docker Crash Course — TechWorld with Nana · YouTube", url:"https://www.youtube.com/results?search_query=TechWorld+with+Nana+Docker+crash+course" }
       },
       {
         name: "LangGraph + Agents",
@@ -615,10 +643,17 @@ const PHASES = [
       },
       {
         name: "Production AI Patterns",
-        tags: ["Rate limiting LLM calls","Fallback models","Async job queues","Cost optimization","Response caching","Retry with backoff"],
-        why: "Building a demo is easy. Making it production-grade is what companies pay ₹15–20 LPA for. This is the real gap.",
+        tags: ["Rate limiting LLM calls","per-user token budgets","exponential backoff on 429","Fallback models","fallback model chains","Async job queues","Cost optimization","Response caching","Retry with backoff"],
+        why: "Building a demo is easy. Making it production-grade is what companies pay ₹15–20 LPA for. 'How do you prevent one user from burning $100 of tokens?' — LLM rate limiting is structurally different from general API rate limiting. This is the real gap.",
         fast: { label:"LLM Patterns — eugeneyan.com · Free Blog", url:"https://eugeneyan.com/writing/llm-patterns/" },
         quality: { label:"Full Stack LLM Bootcamp — The Full Stack · YouTube", url:"https://www.youtube.com/playlist?list=PL1T8fO7ArWleMMI8KPJ_5D5XSlovTW_Ur" }
+      },
+      {
+        name: "LLM Guardrails + Safety",
+        tags: ["prompt injection","output validation","toxicity filtering","guardrails-ai","input sanitization","jailbreak detection","NeMo Guardrails"],
+        why: "'What happens if a user injects a malicious prompt into your RAG system?' Zero answer = reject at senior AI roles. Guardrails are table stakes in production. Mentioning this in an interview signals you've built beyond demos.",
+        fast: { label:"Guardrails AI Docs — docs.getguardrails.ai", url:"https://docs.getguardrails.ai/" },
+        quality: { label:"NVIDIA NeMo Guardrails — GitHub", url:"https://github.com/NVIDIA/NeMo-Guardrails" }
       }
     ]
   },
@@ -646,10 +681,10 @@ const PHASES = [
       },
       {
         name: "Interview Execution",
-        tags: ["STAR method","DSA under pressure","System design framework","Behavioral scripts","Mock interviews","Pramp"],
-        why: "Most rejections are not from lack of knowledge — it's delivery. Practice this as deliberately as you practice code.",
+        tags: ["STAR method","DSA under pressure","System design framework","Behavioral scripts","Mock interviews","Pramp","situation-task-action-result"],
+        why: "Most rejections are not from lack of knowledge — it's delivery. 'Tell me about a time your system failed in production' needs a structured STAR answer. Practice this as deliberately as you practice code.",
         fast: { label:"Pramp — Free Peer Mock Interviews", url:"https://www.pramp.com/" },
-        quality: { label:"Grokking the System Design Interview — Educative", url:"https://www.educative.io/courses/grokking-the-system-design-interview" }
+        quality: { label:"STAR Method Guide — Indeed Career Advice · Free", url:"https://www.indeed.com/career-advice/interviewing/how-to-use-the-star-interview-response-technique" }
       },
       {
         name: "Salary Negotiation",
