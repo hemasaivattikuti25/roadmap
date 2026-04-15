@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -10,18 +10,36 @@
 <link rel="apple-touch-icon" href="icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* THEME VARIABLES */
+:root,[data-theme="dark"]{
+  --bg-base:#080A0F;--bg-panel:#0D1017;--bg-card:#0C1020;
+  --border-nav:rgba(255,255,255,.1);--border-nav-top:rgba(255,255,255,.12);
+  --text-body:#D4DCF0;--text-muted:#A0AECF;--text-dim:#6B7DA8;
+  --text-dimmer:#5C6E9A;--text-meta:#7A8AAE;--text-sub:#8B9BBF;
+  --scrollbar:#1e2840;--btn-hover:rgba(255,255,255,.025);
+}
+[data-theme="light"]{
+  --bg-base:#F0F4FF;--bg-panel:#FFFFFF;--bg-card:#F5F8FF;
+  --border-nav:rgba(0,0,0,.1);--border-nav-top:rgba(0,0,0,.12);
+  --text-body:#1A2135;--text-muted:#3D4F72;--text-dim:#6B7DA8;
+  --text-dimmer:#5C6E9A;--text-meta:#5A6E94;--text-sub:#5A6E94;
+  --scrollbar:#C2CCDF;--btn-hover:rgba(0,0,0,.03);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#080A0F;color:#D4DCF0;font-family:'Inter',sans-serif;font-size:13px;line-height:1.6}
+body{background:var(--bg-base);color:var(--text-body);font-family:'Inter',sans-serif;font-size:13px;line-height:1.6;transition:background .25s,color .25s}
 a{text-decoration:none;color:inherit}
 ::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:#1e2840;border-radius:2px}
-.nav{position:sticky;top:0;z-index:100;background:#0D1017;border-bottom:1px solid rgba(255,255,255,.1);padding:10px 14px;display:flex;flex-direction:column;gap:6px}
-.nav-logo{font-family:'JetBrains Mono',monospace;font-size:10px;color:#6B7DA8;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+::-webkit-scrollbar-thumb{background:var(--scrollbar);border-radius:2px}
+.nav{position:sticky;top:0;z-index:100;background:var(--bg-panel);border-bottom:1px solid var(--border-nav);padding:10px 14px;display:flex;flex-direction:column;gap:6px;transition:background .25s,border-color .25s}
+.nav-top{display:flex;align-items:center;justify-content:space-between}
+.theme-btn{font-size:14px;border:none;background:transparent;cursor:pointer;padding:4px 6px;border-radius:6px;line-height:1;transition:background .2s;flex-shrink:0}
+.theme-btn:hover{background:var(--btn-hover)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 .pulse{width:6px;height:6px;border-radius:50%;background:#34D399;animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 .nav-links{display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .nav-links::-webkit-scrollbar{display:none}
-.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:5px;color:#7A8AAE;letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:5px;color:var(--text-meta);letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .nav-link:hover,.nav-link.active{color:#FBBF24;border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.1)}
 .main{max-width:720px;margin:0 auto;padding:28px 20px 80px}
 .page-title{font-size:20px;font-weight:600;color:#EEF2FF;letter-spacing:-.02em;margin-bottom:4px}
@@ -36,29 +54,29 @@ a{text-decoration:none;color:inherit}
 /* SCHEDULE */
 .schedule{display:none}
 .schedule.active{display:block}
-.rule-card{background:#0D1017;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:14px}
+.rule-card{background:var(--bg-panel);border:1px solid var(--border-nav);border-radius:10px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:14px}
 .rule-time{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;white-space:nowrap;min-width:90px;padding-top:1px}
 .rule-body{flex:1}
 .rule-title{font-size:13px;font-weight:600;margin-bottom:3px}
-.rule-desc{font-size:11.5px;color:#8B9BBF;line-height:1.6}
+.rule-desc{font-size:11.5px;color:var(--text-sub);line-height:1.6}
 .rule-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
 .rule-tag{font-family:'JetBrains Mono',monospace;font-size:9px;padding:1px 7px;border-radius:3px;border:1px solid}
 
 /* RULES */
 .rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:24px}
-.rule-box{background:#0D1017;border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:14px}
-.rule-box-title{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#5C6E9A;margin-bottom:10px}
-.rule-item{font-size:11.5px;color:#8B9BBF;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.rule-box{background:var(--bg-panel);border:1px solid var(--border-nav);border-radius:9px;padding:14px}
+.rule-box-title{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:10px}
+.rule-item{font-size:11.5px;color:var(--text-sub);padding:4px 0;border-bottom:1px solid var(--border-nav);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
 .rule-item:last-child{border:none}
 .ri-dot{width:4px;height:4px;border-radius:50%;margin-top:6px;flex-shrink:0}
 
-.section-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#5C6E9A;margin:20px 0 8px;display:flex;align-items:center;gap:8px}
-.section-label::after{content:'';flex:1;height:1px;background:#1e2840}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dimmer);margin:20px 0 8px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border-nav)}
 
-footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.08);font-family:'JetBrains Mono',monospace;font-size:9px;color:#5C6E9A;letter-spacing:.1em;margin-top:8px;margin-bottom:70px}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:#0D1017;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:stretch;padding:0 4px}
-.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 4px 14px;text-decoration:none;color:#5C6E9A;transition:color .2s}
-.bnav-item:hover{color:#A0AECF}
+footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);letter-spacing:.1em;margin-top:8px;margin-bottom:70px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg-panel);border-top:1px solid var(--border-nav-top);display:flex;align-items:stretch;padding:0 4px;transition:background .25s,border-color .25s}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 4px 14px;text-decoration:none;color:var(--text-dimmer);transition:color .2s}
+.bnav-item:hover{color:var(--text-muted)}
 .bnav-item.active{color:#FBBF24}
 .bnav-icon{font-size:18px;line-height:1}
 .bnav-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;line-height:1}
@@ -67,7 +85,10 @@ footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.08)
 </head>
 <body>
 <nav class="nav">
-  <div class="nav-logo"><div class="pulse"></div>Hemasai · AI Roadmap</div>
+  <div class="nav-top">
+    <div class="nav-logo"><div class="pulse"></div>Hemasai · AI Roadmap</div>
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+  </div>
   <div class="nav-links">
     <a href="roadmap.html" class="nav-link">Roadmap</a>
     <a href="resources.html" class="nav-link">Resources</a>
@@ -382,6 +403,19 @@ function switchTab(id, el) {
   document.getElementById(id).classList.add('active');
   el.classList.add('active');
 }
+function toggleTheme(){
+  const html=document.documentElement;
+  const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀️':'🌙';
+}
+(function(){
+  const saved=localStorage.getItem('theme')||'dark';
+  document.documentElement.setAttribute('data-theme',saved);
+  const btn=document.getElementById('theme-btn');
+  if(btn) btn.textContent=saved==='dark'?'☀️':'🌙';
+})();
 </script>
 </body>
 </html>
