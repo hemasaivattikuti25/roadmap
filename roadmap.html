@@ -141,7 +141,16 @@ a{text-decoration:none;color:inherit}
 .milestone-result{font-size:14px;color:#A8B8D8}
 
 /* FOOTER */
-footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.1);font-family:'JetBrains Mono',monospace;font-size:10px;color:#5C6E9A;letter-spacing:.1em}
+footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.1);font-family:'JetBrains Mono',monospace;font-size:10px;color:#5C6E9A;letter-spacing:.1em;margin-bottom:70px}
+
+/* BOTTOM TAB BAR */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:#0D1017;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:stretch;padding:0 4px 0}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 4px 14px;text-decoration:none;color:#5C6E9A;transition:color .2s;border:none;background:none;cursor:pointer;font-family:'JetBrains Mono',monospace}
+.bnav-item:hover{color:#A0AECF}
+.bnav-item.active{color:#FBBF24}
+.bnav-item.active .bnav-icon{color:#FBBF24}
+.bnav-icon{font-size:18px;line-height:1}
+.bnav-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;line-height:1}
 
 @media(max-width:640px){
   .main{padding:12px 10px 80px}
@@ -194,7 +203,26 @@ footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.1);
 
 <div class="main" id="main"><!-- phases injected by JS --></div>
 
-<footer>Hemasai Vattikuti · AI Engineer Roadmap · March–September 2026</footer>
+<footer>Hemasai Vattikuti · AI Engineer Roadmap</footer>
+
+<nav class="bottom-nav">
+  <a href="roadmap.html" class="bnav-item active">
+    <span class="bnav-icon">🗺️</span>
+    <span class="bnav-label">Roadmap</span>
+  </a>
+  <a href="resources.html" class="bnav-item">
+    <span class="bnav-icon">📚</span>
+    <span class="bnav-label">Resources</span>
+  </a>
+  <a href="timetable.html" class="bnav-item">
+    <span class="bnav-icon">⏰</span>
+    <span class="bnav-label">Timetable</span>
+  </a>
+  <a href="review.html" class="bnav-item">
+    <span class="bnav-icon">✅</span>
+    <span class="bnav-label">Review</span>
+  </a>
+</nav>
 
 <script>
 /* ─────────────────────────────────────────────

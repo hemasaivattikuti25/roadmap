@@ -44,7 +44,13 @@ a{text-decoration:none;color:inherit}
 .res-name{font-size:11.5px;font-weight:500;margin-bottom:2px;line-height:1.4}
 .res-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:#5C6E9A}
 .divider{height:1px;background:rgba(255,255,255,.07);margin:24px 0}
-footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.08);font-family:'JetBrains Mono',monospace;font-size:9px;color:#5C6E9A;letter-spacing:.1em}
+footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.08);font-family:'JetBrains Mono',monospace;font-size:9px;color:#5C6E9A;letter-spacing:.1em;margin-bottom:70px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:#0D1017;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:stretch;padding:0 4px}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 4px 14px;text-decoration:none;color:#5C6E9A;transition:color .2s}
+.bnav-item:hover{color:#A0AECF}
+.bnav-item.active{color:#FBBF24}
+.bnav-icon{font-size:18px;line-height:1}
+.bnav-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;line-height:1}
 @media(max-width:600px){.tier-key{flex-direction:column;gap:8px}}
 </style>
 </head>
@@ -334,5 +340,24 @@ footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.08)
   </div>
 </div>
 <footer>Hemasai Vattikuti · AI Engineer Roadmap · All Resources</footer>
+
+<nav class="bottom-nav">
+  <a href="roadmap.html" class="bnav-item">
+    <span class="bnav-icon">🗺️</span>
+    <span class="bnav-label">Roadmap</span>
+  </a>
+  <a href="resources.html" class="bnav-item active">
+    <span class="bnav-icon">📚</span>
+    <span class="bnav-label">Resources</span>
+  </a>
+  <a href="timetable.html" class="bnav-item">
+    <span class="bnav-icon">⏰</span>
+    <span class="bnav-label">Timetable</span>
+  </a>
+  <a href="review.html" class="bnav-item">
+    <span class="bnav-icon">✅</span>
+    <span class="bnav-label">Review</span>
+  </a>
+</nav>
 </body>
 </html>
