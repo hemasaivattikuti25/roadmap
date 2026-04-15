@@ -1,0 +1,50 @@
+{
+  "name": "Hemasai · AI Engineer Roadmap",
+  "short_name": "AI Roadmap",
+  "description": "₹15–20 LPA AI Engineer Roadmap — Python → FastAPI → RAG → Agents",
+  "start_url": "/roadmap.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080A0F",
+  "theme_color": "#080A0F",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Roadmap",
+      "short_name": "Roadmap",
+      "description": "View the 8-phase roadmap",
+      "url": "/roadmap.html",
+      "icons": [{ "src": "icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Resources",
+      "short_name": "Resources",
+      "description": "All F and Q resources",
+      "url": "/resources.html",
+      "icons": [{ "src": "icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Timetable",
+      "short_name": "Schedule",
+      "description": "Daily schedule",
+      "url": "/timetable.html",
+      "icons": [{ "src": "icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Review",
+      "short_name": "Review",
+      "description": "Monthly milestone tracker",
+      "url": "/review.html",
+      "icons": [{ "src": "icon.svg", "sizes": "any" }]
+    }
+  ]
+}
