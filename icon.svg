@@ -1,30 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="80" fill="#080A0F"/>
+  <rect width="512" height="512" rx="80" fill="#FFFFFF"/>
   <!-- outer ring -->
-  <circle cx="256" cy="256" r="180" fill="none" stroke="#FFFFFF" stroke-width="5" opacity="0.18"/>
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#D1D5DB" stroke-width="5" opacity="0.6"/>
   <!-- outer nodes -->
-  <circle cx="256" cy="130" r="18" fill="#FFFFFF" opacity="0.9"/>
-  <circle cx="370" cy="196" r="14" fill="#FFFFFF" opacity="0.75"/>
-  <circle cx="370" cy="316" r="14" fill="#FFFFFF" opacity="0.75"/>
-  <circle cx="256" cy="382" r="18" fill="#FFFFFF" opacity="0.9"/>
-  <circle cx="142" cy="316" r="14" fill="#FFFFFF" opacity="0.75"/>
-  <circle cx="142" cy="196" r="14" fill="#FFFFFF" opacity="0.75"/>
+  <circle cx="256" cy="130" r="18" fill="#34D399"/>
+  <circle cx="370" cy="196" r="14" fill="#A78BFA"/>
+  <circle cx="370" cy="316" r="14" fill="#60A5FA"/>
+  <circle cx="256" cy="382" r="18" fill="#34D399"/>
+  <circle cx="142" cy="316" r="14" fill="#A78BFA"/>
+  <circle cx="142" cy="196" r="14" fill="#60A5FA"/>
   <!-- edges -->
-  <line x1="256" y1="130" x2="370" y2="196" stroke="#FFFFFF" stroke-width="2" opacity="0.35"/>
-  <line x1="370" y1="196" x2="370" y2="316" stroke="#FFFFFF" stroke-width="2" opacity="0.35"/>
-  <line x1="370" y1="316" x2="256" y2="382" stroke="#FFFFFF" stroke-width="2" opacity="0.35"/>
-  <line x1="256" y1="382" x2="142" y2="316" stroke="#FFFFFF" stroke-width="2" opacity="0.35"/>
-  <line x1="142" y1="316" x2="142" y2="196" stroke="#FFFFFF" stroke-width="2" opacity="0.35"/>
-  <line x1="142" y1="196" x2="256" y2="130" stroke="#FFFFFF" stroke-width="2" opacity="0.35"/>
-  <!-- spokes to center -->
-  <line x1="256" y1="240" x2="256" y2="130" stroke="#FFFFFF" stroke-width="1.5" opacity="0.2"/>
-  <line x1="268" y1="248" x2="370" y2="196" stroke="#FFFFFF" stroke-width="1.5" opacity="0.2"/>
-  <line x1="268" y1="264" x2="370" y2="316" stroke="#FFFFFF" stroke-width="1.5" opacity="0.2"/>
-  <line x1="256" y1="272" x2="256" y2="382" stroke="#FFFFFF" stroke-width="1.5" opacity="0.2"/>
-  <line x1="244" y1="264" x2="142" y2="316" stroke="#FFFFFF" stroke-width="1.5" opacity="0.2"/>
-  <line x1="244" y1="248" x2="142" y2="196" stroke="#FFFFFF" stroke-width="1.5" opacity="0.2"/>
+  <line x1="256" y1="130" x2="370" y2="196" stroke="#94A3B8" stroke-width="2" opacity="0.5"/>
+  <line x1="370" y1="196" x2="370" y2="316" stroke="#94A3B8" stroke-width="2" opacity="0.5"/>
+  <line x1="370" y1="316" x2="256" y2="382" stroke="#94A3B8" stroke-width="2" opacity="0.5"/>
+  <line x1="256" y1="382" x2="142" y2="316" stroke="#94A3B8" stroke-width="2" opacity="0.5"/>
+  <line x1="142" y1="316" x2="142" y2="196" stroke="#94A3B8" stroke-width="2" opacity="0.5"/>
+  <line x1="142" y1="196" x2="256" y2="130" stroke="#94A3B8" stroke-width="2" opacity="0.5"/>
+  <!-- spokes -->
+  <line x1="256" y1="240" x2="256" y2="130" stroke="#94A3B8" stroke-width="1.5" opacity="0.3"/>
+  <line x1="268" y1="248" x2="370" y2="196" stroke="#94A3B8" stroke-width="1.5" opacity="0.3"/>
+  <line x1="268" y1="264" x2="370" y2="316" stroke="#94A3B8" stroke-width="1.5" opacity="0.3"/>
+  <line x1="256" y1="272" x2="256" y2="382" stroke="#94A3B8" stroke-width="1.5" opacity="0.3"/>
+  <line x1="244" y1="264" x2="142" y2="316" stroke="#94A3B8" stroke-width="1.5" opacity="0.3"/>
+  <line x1="244" y1="248" x2="142" y2="196" stroke="#94A3B8" stroke-width="1.5" opacity="0.3"/>
   <!-- center glow -->
-  <circle cx="256" cy="256" r="42" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="256" cy="256" r="42" fill="#34D399" opacity="0.12"/>
   <!-- center dot -->
-  <circle cx="256" cy="256" r="18" fill="#FFFFFF" opacity="0.95"/>
+  <circle cx="256" cy="256" r="18" fill="#34D399"/>
 </svg>
