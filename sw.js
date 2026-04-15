@@ -1,11 +1,12 @@
-const CACHE = 'ai-roadmap-v1';
+const CACHE = 'ai-roadmap-v5';
 const ASSETS = [
   '/roadmap.html',
   '/resources.html',
   '/timetable.html',
   '/review.html',
   '/manifest.json',
-  '/icon.svg'
+  '/icon.svg',
+  '/sw.js'
 ];
 
 self.addEventListener('install', e => {
@@ -25,15 +26,29 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(res => {
-        if (!res || res.status !== 200 || res.type !== 'basic') return res;
-        const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
-        return res;
-      }).catch(() => caches.match('/roadmap.html'));
-    })
-  );
+  // Network-first for HTML, cache-first for assets
+  const isHTML = e.request.destination === 'document';
+  if (isHTML) {
+    e.respondWith(
+      fetch(e.request)
+        .then(res => {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+          return res;
+        })
+        .catch(() => caches.match(e.request))
+    );
+  } else {
+    e.respondWith(
+      caches.match(e.request).then(cached => {
+        if (cached) return cached;
+        return fetch(e.request).then(res => {
+          if (!res || res.status !== 200 || res.type !== 'basic') return res;
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+          return res;
+        }).catch(() => caches.match('/roadmap.html'));
+      })
+    );
+  }
 });
