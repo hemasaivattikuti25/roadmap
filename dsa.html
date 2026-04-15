@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+/* ANTI-FLASH: runs before paint */
+(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);document.documentElement.classList.add('no-transition');window.addEventListener('load',function(){setTimeout(function(){document.documentElement.classList.remove('no-transition');},60);});}());
+</script>
 <title>DSA Sheet · AI Engineer Roadmap</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#080A0F">
@@ -32,6 +36,7 @@
   --scrollbar:#C2CCDF;--btn-hover:rgba(0,0,0,.03);
   --row-done-bg:rgba(52,211,153,.06);--row-done-border:rgba(52,211,153,.25);
 }
+.no-transition,.no-transition *{transition:none !important}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg-base);color:var(--text-body);font-family:'Inter',sans-serif;font-size:13px;line-height:1.6;transition:background .25s,color .25s}
 a{text-decoration:none;color:inherit}
@@ -252,12 +257,7 @@ function toggleTheme(){
   localStorage.setItem('theme',next);
   document.getElementById('theme-btn').textContent=next==='dark'?'☀️':'🌙';
 }
-(function(){
-  const saved=localStorage.getItem('theme')||'dark';
-  document.documentElement.setAttribute('data-theme',saved);
-  const btn=document.getElementById('theme-btn');
-  if(btn) btn.textContent=saved==='dark'?'☀️':'🌙';
-})();
+/* theme init moved to <head> */
 if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
 
 /* ── DSA DATA ── */

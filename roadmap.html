@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+/* ANTI-FLASH: runs before paint */
+(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);document.documentElement.classList.add('no-transition');window.addEventListener('load',function(){setTimeout(function(){document.documentElement.classList.remove('no-transition');},60);});}());
+</script>
 <title>AI Engineer Roadmap · ₹15–20 LPA</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#080A0F">
