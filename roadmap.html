@@ -720,12 +720,12 @@ function renderTopic(t, ti, pid, c, hexA) {
   const isSel = !!state.topic[key];
   return `
     <div>
-      <div class="topic-row ${isSel?'open':''}" onclick="toggleTopic('${key}')" style="${isSel?'--tc:'+c+';border-color:'+c+'45':''};--tc:${c}">
+      <div class="topic-row ${isSel?'open':''}" onclick="toggleTopic('${key}')" style="--tc:${c};${isSel?'border-color:'+c+'55;background:#161E32':''}">
         <div class="topic-row-inner">
-          <div>
-            <div class="topic-name">${t.name}</div>
+          <div style="flex:1;min-width:0">
+            <div class="topic-name" style="${isSel?'color:'+c:''}">${t.name}</div>
             <div class="topic-tags">
-              ${t.tags.map(tg => `<span class="topic-tag">${tg}</span>`).join('')}
+              ${t.tags.map(tg => `<span class="topic-tag" style="color:${c};background:${hexA(.14)};border:1px solid ${hexA(.38)}">${tg}</span>`).join('')}
             </div>
           </div>
           <span class="topic-chevron">▶</span>
