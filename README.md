@@ -49,16 +49,21 @@ A free, fully offline-capable **Progressive Web App** for anyone who wants to be
 git clone https://github.com/hemasaivattikuti25/roadmap.git
 cd roadmap
 open roadmap.html
-```
+## 🚀 Quick Start
 
-### Option 2 — Deploy free on Netlify
-1. Fork this repo
-2. Go to [app.netlify.com](https://app.netlify.com) → **Add new site → Import from Git**
-3. Select your fork, branch `main`, publish directory `.`
-4. Deploy — live in under 60 seconds
+1.  **Live Demo**: [roadmap-hemasaivattikuti25s-projects.vercel.app](https://vercel.com/hemasaivattikuti25s-projects/roadmap)
+2.  **Install as App**: Open the link on your mobile browser (Chrome/Safari) and select "Add to Home Screen".
+3.  **Data Privacy**: All progress is stored locally in your browser's `localStorage`. No data is sent to any server.
 
-### Option 3 — Install as PWA
-Open the deployed URL in Chrome/Safari → **Add to Home Screen** → works offline like an app
+---
+
+## 🛠 Deployment
+
+The site is optimized for **Vercel** but can also be hosted on **GitHub Pages**.
+
+### Deploy to Vercel (Recommended)
+1.  Push changes to your repository.
+2.  Vercel will automatically build and deploy the update.
 
 ---
 
