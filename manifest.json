@@ -2,7 +2,7 @@
   "name": "AI Engineer Roadmap",
   "short_name": "AI Roadmap",
   "description": "₹15–20 LPA AI Engineer Roadmap — Python → FastAPI → RAG → Agents · Striver A2Z DSA Sheet included",
-  "start_url": "/roadmap.html",
+  "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -22,7 +22,7 @@
       "name": "Roadmap",
       "short_name": "Roadmap",
       "description": "View the 8-phase AI roadmap",
-      "url": "/roadmap.html",
+      "url": "/index.html",
       "icons": [{ "src": "icon.svg", "sizes": "any" }]
     },
     {

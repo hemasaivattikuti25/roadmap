@@ -10,7 +10,7 @@ A free, fully offline-capable **Progressive Web App** for anyone who wants to be
 
 | Page | What it does |
 |------|--------------|
-| [roadmap.html](roadmap.html) | 8-phase AI Engineer roadmap with topics, resources, and projects for each phase |
+| [index.html](index.html) | 8-phase AI Engineer roadmap with topics, resources, and projects for each phase |
 | [dsa.html](dsa.html) | **Striver A2Z DSA Sheet** — 222 problems, 15 chapters, LeetCode & GFG links, ⭐ star to bookmark, progress tracker |
 | [resources.html](resources.html) | Best free & paid resources per skill — curated, no overwhelm |
 | [timetable.html](timetable.html) | Daily study schedule (Weekday / Weekend) |
@@ -48,7 +48,7 @@ A free, fully offline-capable **Progressive Web App** for anyone who wants to be
 ```
 git clone https://github.com/hemasaivattikuti25/roadmap.git
 cd roadmap
-open roadmap.html
+open index.html
 ## 🚀 Quick Start
 
 1.  **Live Demo**: [roadmap-hemasaivattikuti25s-projects.vercel.app](https://vercel.com/hemasaivattikuti25s-projects/roadmap)

@@ -1,6 +1,6 @@
 const CACHE = 'ai-roadmap-v6';
 const ASSETS = [
-  '/roadmap.html',
+  '/index.html',
   '/dsa.html',
   '/resources.html',
   '/timetable.html',
@@ -48,7 +48,7 @@ self.addEventListener('fetch', e => {
           const clone = res.clone();
           caches.open(CACHE).then(c => c.put(e.request, clone));
           return res;
-        }).catch(() => caches.match('/roadmap.html'));
+        }).catch(() => caches.match('/index.html'));
       })
     );
   }

@@ -1,6 +1,4 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/roadmap.html" }
-  ]
+  "trailingSlash": false
 }

@@ -3,5 +3,5 @@
 
 [[redirects]]
   from = "/"
-  to = "/roadmap.html"
+  to = "/index.html"
   status = 302
