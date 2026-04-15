@@ -15,14 +15,14 @@
   --bg-base:#080A0F;--bg-panel:#0D1017;--bg-card:#0C1020;
   --border-nav:rgba(255,255,255,.1);--border-nav-top:rgba(255,255,255,.12);
   --text-body:#D4DCF0;--text-muted:#A0AECF;--text-dim:#6B7DA8;
-  --text-dimmer:#5C6E9A;--text-meta:#7A8AAE;--text-sub:#8B9BBF;
+  --text-dimmer:#5C6E9A;--text-meta:#7A8AAE;--text-sub:#8B9BBF;--text-head:#EEF2FF;
   --scrollbar:#1e2840;--btn-hover:rgba(255,255,255,.025);
 }
 [data-theme="light"]{
   --bg-base:#F0F4FF;--bg-panel:#FFFFFF;--bg-card:#F5F8FF;
   --border-nav:rgba(0,0,0,.1);--border-nav-top:rgba(0,0,0,.12);
   --text-body:#1A2135;--text-muted:#3D4F72;--text-dim:#6B7DA8;
-  --text-dimmer:#5C6E9A;--text-meta:#5A6E94;--text-sub:#5A6E94;
+  --text-dimmer:#5C6E9A;--text-meta:#5A6E94;--text-sub:#5A6E94;--text-head:#1A2135;
   --scrollbar:#C2CCDF;--btn-hover:rgba(0,0,0,.03);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -42,13 +42,13 @@ a{text-decoration:none;color:inherit}
 .nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:5px;color:var(--text-meta);letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .nav-link:hover,.nav-link.active{color:#FBBF24;border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.1)}
 .main{max-width:720px;margin:0 auto;padding:28px 20px 80px}
-.page-title{font-size:20px;font-weight:600;color:#EEF2FF;letter-spacing:-.02em;margin-bottom:4px}
-.page-sub{font-size:12px;color:#5C6E9A;margin-bottom:24px}
+.page-title{font-size:20px;font-weight:600;color:var(--text-head);letter-spacing:-.02em;margin-bottom:4px}
+.page-sub{font-size:12px;color:var(--text-dimmer);margin-bottom:24px}
 
 /* TAB SWITCHER */
-.tabs{display:flex;gap:6px;margin-bottom:24px;background:#0D1017;padding:5px;border-radius:9px;border:1px solid rgba(255,255,255,.1);width:fit-content}
-.tab{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:6px;cursor:pointer;color:#5C6E9A;transition:all .2s;border:1px solid transparent}
-.tab.active{background:#141C30;color:#FBBF24;border-color:rgba(251,191,36,.3)}
+.tabs{display:flex;gap:6px;margin-bottom:24px;background:var(--bg-panel);padding:5px;border-radius:9px;border:1px solid var(--border-nav);width:fit-content}
+.tab{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:6px;cursor:pointer;color:var(--text-dimmer);transition:all .2s;border:1px solid transparent}
+.tab.active{background:var(--bg-card);color:#FBBF24;border-color:rgba(251,191,36,.3)}
 .tab:hover:not(.active){color:#A0AECF}
 
 /* SCHEDULE */
@@ -86,11 +86,12 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
 <body>
 <nav class="nav">
   <div class="nav-top">
-    <div class="nav-logo"><div class="pulse"></div>Hemasai · AI Roadmap</div>
+    <div class="nav-logo"><div class="pulse"></div>AI Roadmap</div>
     <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
   </div>
   <div class="nav-links">
     <a href="roadmap.html" class="nav-link">Roadmap</a>
+  <a href="dsa.html" class="nav-link">DSA Sheet</a>
     <a href="resources.html" class="nav-link">Resources</a>
     <a href="timetable.html" class="nav-link active">Timetable</a>
     <a href="review.html" class="nav-link">Review</a>
@@ -337,7 +338,7 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
 
   <!-- EXAM WEEK -->
   <div class="schedule" id="exam">
-    <div class="page-sub" style="margin-bottom:16px;background:#0D1017;border:1px solid rgba(251,191,36,.25);border-radius:8px;padding:12px 14px;color:#8B9BBF">
+    <div class="page-sub" style="margin-bottom:16px;background:var(--bg-panel);border:1px solid rgba(251,191,36,.25);border-radius:8px;padding:12px 14px;color:var(--text-sub)">
       Exam week = reduced capacity. Protect the non-negotiables. Don't skip DSA — momentum is hard to rebuild.
     </div>
     <div class="rule-card">
@@ -376,13 +377,18 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
     </div>
   </div>
 </div>
-<footer>Hemasai Vattikuti · AI Engineer Roadmap · Daily Schedule</footer>
+<footer>Made by Hemasai · AI Engineer Roadmap · Daily Schedule</footer>
 
 <nav class="bottom-nav">
   <a href="roadmap.html" class="bnav-item">
     <span class="bnav-icon">🗺️</span>
     <span class="bnav-label">Roadmap</span>
   </a>
+  <a href="dsa.html" class="bnav-item">
+    <span class="bnav-icon">📝</span>
+    <span class="bnav-label">DSA</span>
+  </a>
+
   <a href="resources.html" class="bnav-item">
     <span class="bnav-icon">📚</span>
     <span class="bnav-label">Resources</span>

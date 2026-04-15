@@ -1,7 +1,7 @@
 {
-  "name": "Hemasai · AI Engineer Roadmap",
+  "name": "AI Engineer Roadmap",
   "short_name": "AI Roadmap",
-  "description": "₹15–20 LPA AI Engineer Roadmap — Python → FastAPI → RAG → Agents",
+  "description": "₹15–20 LPA AI Engineer Roadmap — Python → FastAPI → RAG → Agents · Striver A2Z DSA Sheet included",
   "start_url": "/roadmap.html",
   "scope": "/",
   "display": "standalone",
@@ -21,21 +21,28 @@
     {
       "name": "Roadmap",
       "short_name": "Roadmap",
-      "description": "View the 8-phase roadmap",
+      "description": "View the 8-phase AI roadmap",
       "url": "/roadmap.html",
+      "icons": [{ "src": "icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "DSA Sheet",
+      "short_name": "DSA",
+      "description": "Striver A2Z DSA complete tracker",
+      "url": "/dsa.html",
       "icons": [{ "src": "icon.svg", "sizes": "any" }]
     },
     {
       "name": "Resources",
       "short_name": "Resources",
-      "description": "All F and Q resources",
+      "description": "All free and paid resources",
       "url": "/resources.html",
       "icons": [{ "src": "icon.svg", "sizes": "any" }]
     },
     {
       "name": "Timetable",
       "short_name": "Schedule",
-      "description": "Daily schedule",
+      "description": "Daily study schedule",
       "url": "/timetable.html",
       "icons": [{ "src": "icon.svg", "sizes": "any" }]
     },

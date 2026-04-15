@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DSA Sheet · AI Engineer Roadmap</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#080A0F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* THEME */
+:root,[data-theme="dark"]{
+  --bg-base:#080A0F;--bg-panel:#0D1017;--bg-card:#0C1020;
+  --bg-topic:#111829;--bg-topic-hover:#161E32;
+  --border-nav:rgba(255,255,255,.1);--border-nav-top:rgba(255,255,255,.12);
+  --border-mild:rgba(255,255,255,.08);
+  --text-body:#D4DCF0;--text-muted:#A0AECF;--text-dim:#6B7DA8;
+  --text-dimmer:#5C6E9A;--text-meta:#7A8AAE;--text-head:#EEF2FF;
+  --scrollbar:#1e2840;--btn-hover:rgba(255,255,255,.025);
+  --row-done-bg:rgba(52,211,153,.04);--row-done-border:rgba(52,211,153,.18);
+  --notes-bg:#080A0F;
+}
+[data-theme="light"]{
+  --bg-base:#F0F4FF;--bg-panel:#FFFFFF;--bg-card:#F5F8FF;
+  --bg-topic:#EEF2FF;--bg-topic-hover:#E4EAFF;
+  --border-nav:rgba(0,0,0,.1);--border-nav-top:rgba(0,0,0,.12);
+  --border-mild:rgba(0,0,0,.08);
+  --text-body:#1A2135;--text-muted:#3D4F72;--text-dim:#6B7DA8;
+  --text-dimmer:#5C6E9A;--text-meta:#5A6E94;--text-head:#1A2135;
+  --scrollbar:#C2CCDF;--btn-hover:rgba(0,0,0,.03);
+  --row-done-bg:rgba(52,211,153,.06);--row-done-border:rgba(52,211,153,.25);
+  --notes-bg:#EEF2FF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg-base);color:var(--text-body);font-family:'Inter',sans-serif;font-size:13px;line-height:1.6;transition:background .25s,color .25s}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--scrollbar);border-radius:2px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:var(--bg-panel);border-bottom:1px solid var(--border-nav);padding:10px 14px;display:flex;flex-direction:column;gap:6px;transition:background .25s,border-color .25s}
+.nav-top{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.pulse{width:6px;height:6px;border-radius:50%;background:#34D399;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.nav-links{display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:5px;color:var(--text-meta);letter-spacing:.1em;text-transform:uppercase;border:1px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.nav-link:hover,.nav-link.active{color:#FBBF24;border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.1)}
+.theme-btn{font-size:14px;border:none;background:transparent;cursor:pointer;padding:4px 6px;border-radius:6px;line-height:1;transition:background .2s;flex-shrink:0}
+.theme-btn:hover{background:var(--btn-hover)}
+
+.main{max-width:820px;margin:0 auto;padding:24px 16px 90px}
+.page-title{font-size:20px;font-weight:600;color:var(--text-head);letter-spacing:-.02em;margin-bottom:4px}
+.page-sub{font-size:12px;color:var(--text-dimmer);margin-bottom:20px;font-family:'JetBrains Mono',monospace}
+
+/* OVERALL PROGRESS */
+.overall-prog{margin-bottom:24px;padding:14px 16px;background:var(--bg-panel);border:1px solid var(--border-nav);border-radius:10px}
+.prog-row{display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dimmer);margin-bottom:8px}
+.prog-track{height:5px;background:var(--bg-topic);border-radius:3px}
+.prog-fill{height:5px;border-radius:3px;background:linear-gradient(90deg,#A78BFA,#60A5FA,#34D399);transition:width .5s ease}
+
+/* CHAPTER */
+.chapter{border:1px solid var(--border-nav);border-radius:12px;background:var(--bg-panel);overflow:hidden;margin-bottom:10px;transition:border-color .2s,background .25s}
+.chapter.open{border-color:rgba(167,139,250,.3)}
+.chap-hdr{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;transition:background .15s;user-select:none}
+.chap-hdr:hover{background:var(--btn-hover)}
+.chap-dot{width:32px;height:32px;border-radius:50%;background:rgba(167,139,250,.15);border:1.5px solid rgba(167,139,250,.35);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#A78BFA;flex-shrink:0}
+.chap-info{flex:1;min-width:0}
+.chap-title{font-size:14px;font-weight:600;color:var(--text-head);margin-bottom:4px}
+.chap-bar-wrap{height:3px;background:var(--bg-topic);border-radius:2px}
+.chap-bar{height:3px;border-radius:2px;background:linear-gradient(90deg,#A78BFA,#60A5FA);transition:width .4s ease}
+.chap-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.chap-count{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dimmer)}
+.chap-pct{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#A78BFA;min-width:32px;text-align:right}
+.chap-arrow{font-size:11px;color:var(--text-dim);transition:transform .2s}
+.chap-arrow.open{transform:rotate(90deg)}
+
+/* PROBLEM TABLE */
+.prob-table{display:none;border-top:1px solid var(--border-mild)}
+.prob-table.open{display:block;animation:fi .15s ease both}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* TABLE HEADER */
+.tbl-hdr{display:grid;grid-template-columns:36px 44px 1fr 90px 80px 80px;gap:0;padding:8px 14px;border-bottom:1px solid var(--border-mild);background:var(--bg-topic)}
+.tbl-hdr span{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dimmer)}
+
+/* PROBLEM ROW */
+.prob-row{display:grid;grid-template-columns:36px 44px 1fr 90px 80px 80px;gap:0;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border-mild);transition:background .15s}
+.prob-row:last-child{border-bottom:none}
+.prob-row:hover{background:var(--bg-topic)}
+.prob-row.done{background:var(--row-done-bg);border-bottom-color:var(--row-done-border)}
+
+/* Checkbox */
+.prob-cb{width:18px;height:18px;border-radius:4px;border:1.5px solid rgba(167,139,250,.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:11px;color:transparent;flex-shrink:0}
+.prob-cb.checked{background:#A78BFA;border-color:#A78BFA;color:#fff}
+.prob-row.done .prob-cb{background:#34D399;border-color:#34D399}
+
+/* Number */
+.prob-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dimmer);padding-left:4px}
+
+/* Name */
+.prob-name-cell{min-width:0;padding-right:8px}
+.prob-name{font-size:12.5px;font-weight:500;color:var(--text-muted);line-height:1.4;transition:color .15s}
+.prob-row.done .prob-name{color:#34D399}
+.prob-row:hover .prob-name{color:var(--text-body)}
+
+/* Links */
+.prob-links{display:flex;gap:5px;flex-wrap:wrap}
+.prob-link{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 7px;border-radius:4px;border:1px solid;transition:all .15s;letter-spacing:.06em;white-space:nowrap}
+.lc-link{color:#F89F1B;border-color:rgba(248,159,27,.3);background:rgba(248,159,27,.06)}
+.lc-link:hover{background:rgba(248,159,27,.15);border-color:rgba(248,159,27,.5)}
+.gfg-link{color:#2F8D46;border-color:rgba(47,141,70,.3);background:rgba(47,141,70,.06)}
+.gfg-link:hover{background:rgba(47,141,70,.15);border-color:rgba(47,141,70,.5)}
+
+/* Difficulty */
+.diff{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:500;white-space:nowrap}
+.diff-easy{color:#34D399;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25)}
+.diff-medium{color:#F59E0B;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25)}
+.diff-hard{color:#FB7185;background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.25)}
+
+/* Notes */
+.notes-btn{font-family:'JetBrains Mono',monospace;font-size:8px;padding:3px 8px;border-radius:5px;border:1px solid var(--border-nav);background:transparent;color:var(--text-dimmer);cursor:pointer;transition:all .2s;letter-spacing:.06em}
+.notes-btn:hover{border-color:rgba(167,139,250,.4);color:#A78BFA;background:rgba(167,139,250,.06)}
+.notes-btn.has-note{border-color:rgba(167,139,250,.4);color:#A78BFA;background:rgba(167,139,250,.08)}
+
+/* Notes modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-box{background:var(--bg-panel);border:1px solid rgba(167,139,250,.3);border-radius:14px;padding:20px;width:100%;max-width:480px;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+.modal-title{font-size:14px;font-weight:600;color:var(--text-head);margin-bottom:4px}
+.modal-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);margin-bottom:14px;letter-spacing:.08em}
+.modal-textarea{width:100%;background:var(--notes-bg);border:1px solid var(--border-nav);border-radius:8px;padding:12px;color:var(--text-body);font-family:'Inter',sans-serif;font-size:13px;line-height:1.7;resize:vertical;min-height:100px;transition:border-color .2s}
+.modal-textarea:focus{outline:none;border-color:rgba(167,139,250,.4)}
+.modal-actions{display:flex;gap:8px;margin-top:12px;justify-content:flex-end}
+.modal-save{font-family:'JetBrains Mono',monospace;font-size:10px;padding:7px 16px;border-radius:7px;border:1px solid rgba(167,139,250,.4);background:rgba(167,139,250,.1);color:#A78BFA;cursor:pointer;letter-spacing:.08em;transition:all .2s}
+.modal-save:hover{background:rgba(167,139,250,.2)}
+.modal-cancel{font-family:'JetBrains Mono',monospace;font-size:10px;padding:7px 14px;border-radius:7px;border:1px solid var(--border-nav);background:transparent;color:var(--text-dimmer);cursor:pointer;letter-spacing:.08em;transition:all .2s}
+.modal-cancel:hover{color:var(--text-muted)}
+
+/* BOTTOM NAV */
+footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);letter-spacing:.1em;margin-bottom:70px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg-panel);border-top:1px solid var(--border-nav-top);display:flex;align-items:stretch;padding:0 2px;transition:background .25s,border-color .25s}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 2px 12px;text-decoration:none;color:var(--text-dimmer);transition:color .2s}
+.bnav-item:hover{color:var(--text-muted)}
+.bnav-item.active{color:#FBBF24}
+.bnav-icon{font-size:16px;line-height:1}
+.bnav-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;line-height:1}
+
+@media(max-width:640px){
+  .tbl-hdr{grid-template-columns:32px 36px 1fr 70px 0 60px}
+  .tbl-hdr .col-diff{display:none}
+  .prob-row{grid-template-columns:32px 36px 1fr 70px 0 60px}
+  .prob-row .prob-links-cell .lc-link.wide{display:none}
+  .prob-links{flex-direction:column}
+  .diff.mobile-hide{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-top">
+    <div class="nav-logo"><div class="pulse"></div>AI Roadmap</div>
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+  </div>
+  <div class="nav-links">
+    <a href="roadmap.html" class="nav-link">Roadmap</a>
+    <a href="dsa.html" class="nav-link active">DSA Sheet</a>
+    <a href="resources.html" class="nav-link">Resources</a>
+    <a href="timetable.html" class="nav-link">Timetable</a>
+    <a href="review.html" class="nav-link">Review</a>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="page-title">Striver A2Z — DSA Sheet</div>
+  <div class="page-sub">Track every problem · Progress auto-saved · Click problem name to open LeetCode</div>
+
+  <div class="overall-prog">
+    <div class="prog-row">
+      <span id="overall-text">Loading…</span>
+      <span id="overall-pct" style="font-weight:600;color:#A78BFA">0%</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="overall-fill" style="width:0%"></div></div>
+  </div>
+
+  <div id="chapters"></div>
+</div>
+
+<footer>Made by Hemasai · AI Engineer Roadmap</footer>
+
+<nav class="bottom-nav">
+  <a href="roadmap.html" class="bnav-item">
+    <span class="bnav-icon">🗺️</span>
+    <span class="bnav-label">Roadmap</span>
+  </a>
+  <a href="dsa.html" class="bnav-item active">
+    <span class="bnav-icon">📝</span>
+    <span class="bnav-label">DSA</span>
+  </a>
+  <a href="resources.html" class="bnav-item">
+    <span class="bnav-icon">📚</span>
+    <span class="bnav-label">Resources</span>
+  </a>
+  <a href="timetable.html" class="bnav-item">
+    <span class="bnav-icon">⏰</span>
+    <span class="bnav-label">Timetable</span>
+  </a>
+  <a href="review.html" class="bnav-item">
+    <span class="bnav-icon">✅</span>
+    <span class="bnav-label">Review</span>
+  </a>
+</nav>
+
+<!-- NOTES MODAL -->
+<div class="modal-overlay" id="modal" style="display:none" onclick="closeModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub">MY NOTES</div>
+    <textarea class="modal-textarea" id="modal-ta" placeholder="Write your approach, observations, time complexity…"></textarea>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-save" onclick="saveNote()">Save Notes</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── THEME ── */
+function toggleTheme(){
+  const html=document.documentElement;
+  const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀️':'🌙';
+}
+(function(){
+  const saved=localStorage.getItem('theme')||'dark';
+  document.documentElement.setAttribute('data-theme',saved);
+  const btn=document.getElementById('theme-btn');
+  if(btn) btn.textContent=saved==='dark'?'☀️':'🌙';
+})();
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+
+/* ── DSA DATA ── */
+// lc: LeetCode URL suffix, gfg: full GFG URL, diff: Easy/Medium/Hard
+const CHAPTERS = [
+{
+  id:'arr1', num:1, title:'Arrays — Basics',
+  problems:[
+    {id:1,  name:'Largest Element in Array',           lc:null,                                          gfg:'https://www.geeksforgeeks.org/c-program-find-largest-element-array/', diff:'Easy'},
+    {id:2,  name:'Second Largest Element',             lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-second-largest-element-array/',   diff:'Easy'},
+    {id:3,  name:'Check if Array is Sorted',           lc:'check-if-array-is-sorted-and-rotated',        gfg:null,                                                                  diff:'Easy'},
+    {id:4,  name:'Remove Duplicates from Sorted Array',lc:'remove-duplicates-from-sorted-array',         gfg:null,                                                                  diff:'Easy'},
+    {id:5,  name:'Left Rotate Array by One',           lc:null,                                          gfg:'https://www.geeksforgeeks.org/array-rotation/',                       diff:'Easy'},
+    {id:6,  name:'Left Rotate by K Places',            lc:'rotate-array',                                gfg:null,                                                                  diff:'Medium'},
+    {id:7,  name:'Move Zeroes to End',                 lc:'move-zeroes',                                 gfg:null,                                                                  diff:'Easy'},
+    {id:8,  name:'Linear Search',                      lc:null,                                          gfg:'https://www.geeksforgeeks.org/linear-search/',                        diff:'Easy'},
+    {id:9,  name:'Union of Two Sorted Arrays',         lc:null,                                          gfg:'https://www.geeksforgeeks.org/union-and-intersection-of-two-sorted-arrays-2/', diff:'Easy'},
+    {id:10, name:'Intersection of Two Sorted Arrays',  lc:'intersection-of-two-arrays-ii',               gfg:null,                                                                  diff:'Easy'},
+    {id:11, name:'Missing Number',                     lc:'missing-number',                              gfg:null,                                                                  diff:'Easy'},
+    {id:12, name:'Max Consecutive Ones',               lc:'max-consecutive-ones',                        gfg:null,                                                                  diff:'Easy'},
+    {id:13, name:'Single Number',                      lc:'single-number',                               gfg:null,                                                                  diff:'Easy'},
+  ]
+},
+{
+  id:'arr2', num:2, title:'Arrays — Medium',
+  problems:[
+    {id:14, name:'Longest Subarray with Sum K (Positives)',lc:null,                                      gfg:'https://www.geeksforgeeks.org/longest-sub-array-sum-k/',              diff:'Medium'},
+    {id:15, name:'Two Sum',                            lc:'two-sum',                                     gfg:null,                                                                  diff:'Easy'},
+    {id:16, name:'Sort 0s, 1s and 2s (Dutch Flag)',    lc:'sort-colors',                                 gfg:null,                                                                  diff:'Medium'},
+    {id:17, name:'Majority Element (> n/2 times)',     lc:'majority-element',                            gfg:null,                                                                  diff:'Easy'},
+    {id:18, name:"Kadane's Algorithm — Max Subarray",  lc:'maximum-subarray',                            gfg:null,                                                                  diff:'Medium'},
+    {id:19, name:'Best Time to Buy and Sell Stock',    lc:'best-time-to-buy-and-sell-stock',             gfg:null,                                                                  diff:'Easy'},
+    {id:20, name:'Rearrange Array by Sign',            lc:'rearrange-array-elements-by-sign',            gfg:null,                                                                  diff:'Medium'},
+    {id:21, name:'Next Permutation',                   lc:'next-permutation',                            gfg:null,                                                                  diff:'Medium'},
+    {id:22, name:'Leaders in an Array',                lc:null,                                          gfg:'https://www.geeksforgeeks.org/leaders-in-an-array/',                  diff:'Easy'},
+    {id:23, name:'Longest Consecutive Sequence',       lc:'longest-consecutive-sequence',                gfg:null,                                                                  diff:'Medium'},
+  ]
+},
+{
+  id:'arr3', num:3, title:'Arrays — Hard',
+  problems:[
+    {id:24, name:'Set Matrix Zeroes',                  lc:'set-matrix-zeroes',                           gfg:null,                                                                  diff:'Medium'},
+    {id:25, name:'Rotate Image 90°',                   lc:'rotate-image',                                gfg:null,                                                                  diff:'Medium'},
+    {id:26, name:'Spiral Matrix',                      lc:'spiral-matrix',                               gfg:null,                                                                  diff:'Medium'},
+    {id:27, name:'Count Subarrays with Sum K',         lc:'subarray-sum-equals-k',                       gfg:null,                                                                  diff:'Medium'},
+    {id:28, name:"Pascal's Triangle",                  lc:'pascals-triangle',                            gfg:null,                                                                  diff:'Easy'},
+    {id:29, name:'Merge Overlapping Intervals',        lc:'merge-intervals',                             gfg:null,                                                                  diff:'Medium'},
+    {id:30, name:'Merge Two Sorted Arrays (In-place)', lc:'merge-sorted-array',                          gfg:null,                                                                  diff:'Easy'},
+    {id:31, name:'Find the Duplicate Number',          lc:'find-the-duplicate-number',                   gfg:null,                                                                  diff:'Medium'},
+    {id:32, name:'Repeat and Missing Number',          lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/', diff:'Hard'},
+    {id:33, name:'Count Inversions',                   lc:null,                                          gfg:'https://www.geeksforgeeks.org/counting-inversions/',                  diff:'Hard'},
+    {id:34, name:'Reverse Pairs',                      lc:'reverse-pairs',                               gfg:null,                                                                  diff:'Hard'},
+    {id:35, name:'Maximum Product Subarray',           lc:'maximum-product-subarray',                    gfg:null,                                                                  diff:'Medium'},
+    {id:36, name:'4 Sum',                              lc:'4sum',                                        gfg:null,                                                                  diff:'Medium'},
+    {id:37, name:'Count Subarrays with XOR = K',       lc:null,                                          gfg:'https://www.geeksforgeeks.org/count-number-subarrays-given-xor/',     diff:'Medium'},
+  ]
+},
+{
+  id:'bs', num:4, title:'Binary Search',
+  problems:[
+    {id:38, name:'Binary Search',                      lc:'binary-search',                               gfg:null,                                                                  diff:'Easy'},
+    {id:39, name:'Lower Bound',                        lc:'find-first-and-last-position-of-element-in-sorted-array', gfg:null,                                                      diff:'Medium'},
+    {id:40, name:'Upper Bound',                        lc:null,                                          gfg:'https://www.geeksforgeeks.org/upper_bound-in-cpp/',                   diff:'Easy'},
+    {id:41, name:'Search Insert Position',             lc:'search-insert-position',                      gfg:null,                                                                  diff:'Easy'},
+    {id:42, name:'Search in Rotated Sorted Array',     lc:'search-in-rotated-sorted-array',              gfg:null,                                                                  diff:'Medium'},
+    {id:43, name:'Minimum in Rotated Sorted Array',    lc:'find-minimum-in-rotated-sorted-array',        gfg:null,                                                                  diff:'Medium'},
+    {id:44, name:'Single Element in Sorted Array',     lc:'single-element-in-a-sorted-array',            gfg:null,                                                                  diff:'Medium'},
+    {id:45, name:'Find Peak Element',                  lc:'find-peak-element',                           gfg:null,                                                                  diff:'Medium'},
+    {id:46, name:'Sqrt of a Number',                   lc:'sqrtx',                                       gfg:null,                                                                  diff:'Easy'},
+    {id:47, name:'Koko Eating Bananas',                lc:'koko-eating-bananas',                         gfg:null,                                                                  diff:'Medium'},
+    {id:48, name:'Minimum Days to Make Bouquets',      lc:'minimum-number-of-days-to-make-m-bouquets',   gfg:null,                                                                  diff:'Medium'},
+    {id:49, name:'Aggressive Cows',                    lc:null,                                          gfg:'https://www.geeksforgeeks.org/aggressive-cows-2/',                    diff:'Hard'},
+    {id:50, name:'Book Allocation Problem',            lc:null,                                          gfg:'https://www.geeksforgeeks.org/allocate-minimum-number-pages/',        diff:'Hard'},
+    {id:51, name:'Split Array Largest Sum',            lc:'split-array-largest-sum',                     gfg:null,                                                                  diff:'Hard'},
+    {id:52, name:"Painter's Partition",                lc:null,                                          gfg:'https://www.geeksforgeeks.org/painters-partition-problem/',            diff:'Hard'},
+    {id:53, name:'Kth Missing Positive Number',        lc:'kth-missing-positive-number',                 gfg:null,                                                                  diff:'Easy'},
+    {id:54, name:'Median of Two Sorted Arrays',        lc:'median-of-two-sorted-arrays',                 gfg:null,                                                                  diff:'Hard'},
+    {id:55, name:'Search a 2D Matrix',                 lc:'search-a-2d-matrix',                          gfg:null,                                                                  diff:'Medium'},
+    {id:56, name:'Row with Maximum 1s',                lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-the-row-with-maximum-number-1s/', diff:'Easy'},
+  ]
+},
+{
+  id:'strings', num:5, title:'Strings',
+  problems:[
+    {id:57, name:'Reverse Words in a String',          lc:'reverse-words-in-a-string',                   gfg:null,                                                                  diff:'Medium'},
+    {id:58, name:'Palindrome Check',                   lc:'valid-palindrome',                            gfg:null,                                                                  diff:'Easy'},
+    {id:59, name:'Roman to Integer',                   lc:'roman-to-integer',                            gfg:null,                                                                  diff:'Easy'},
+    {id:60, name:'Integer to Roman',                   lc:'integer-to-roman',                            gfg:null,                                                                  diff:'Medium'},
+    {id:61, name:'Implement Atoi (String to Integer)', lc:'string-to-integer-atoi',                      gfg:null,                                                                  diff:'Medium'},
+    {id:62, name:'Anagram Check',                      lc:'valid-anagram',                               gfg:null,                                                                  diff:'Easy'},
+    {id:63, name:'Longest Common Prefix',              lc:'longest-common-prefix',                       gfg:null,                                                                  diff:'Easy'},
+    {id:64, name:'Rabin-Karp Algorithm',               lc:'find-the-index-of-the-first-occurrence-in-a-string', gfg:null,                                                          diff:'Hard'},
+    {id:65, name:'KMP Algorithm (Pattern Matching)',   lc:'find-the-index-of-the-first-occurrence-in-a-string', gfg:null,                                                          diff:'Hard'},
+    {id:66, name:'Minimum Chars to Make Palindrome',   lc:'minimum-insertion-steps-to-make-a-string-palindrome', gfg:null,                                                         diff:'Hard'},
+    {id:67, name:'Smallest Window Containing All Chars',lc:'minimum-window-substring',                   gfg:null,                                                                  diff:'Hard'},
+    {id:68, name:'Longest Palindromic Substring',      lc:'longest-palindromic-substring',               gfg:null,                                                                  diff:'Medium'},
+    {id:69, name:'Count Palindromic Substrings',       lc:'palindromic-substrings',                      gfg:null,                                                                  diff:'Medium'},
+    {id:70, name:'String Compression',                 lc:'string-compression',                          gfg:null,                                                                  diff:'Medium'},
+  ]
+},
+{
+  id:'ll', num:6, title:'Linked List',
+  problems:[
+    {id:71, name:'Reverse a Linked List',              lc:'reverse-linked-list',                         gfg:null,                                                                  diff:'Easy'},
+    {id:72, name:'Middle of Linked List',              lc:'middle-of-the-linked-list',                   gfg:null,                                                                  diff:'Easy'},
+    {id:73, name:'Detect Loop (Floyd Cycle)',           lc:'linked-list-cycle',                           gfg:null,                                                                  diff:'Easy'},
+    {id:74, name:'Find Start of Loop',                 lc:'linked-list-cycle-ii',                        gfg:null,                                                                  diff:'Medium'},
+    {id:75, name:'Palindrome Linked List',             lc:'palindrome-linked-list',                      gfg:null,                                                                  diff:'Easy'},
+    {id:76, name:'Nth Node from End',                  lc:'remove-nth-node-from-end-of-list',            gfg:null,                                                                  diff:'Medium'},
+    {id:77, name:'Reverse Nodes in k-Group',           lc:'reverse-nodes-in-k-group',                    gfg:null,                                                                  diff:'Hard'},
+    {id:78, name:'Rotate List',                        lc:'rotate-list',                                 gfg:null,                                                                  diff:'Medium'},
+    {id:79, name:'Copy List with Random Pointer',      lc:'copy-list-with-random-pointer',               gfg:null,                                                                  diff:'Medium'},
+    {id:80, name:'Flatten a Multilevel Linked List',   lc:'flatten-a-multilevel-doubly-linked-list',     gfg:null,                                                                  diff:'Medium'},
+    {id:81, name:'Sort Linked List (Merge Sort)',       lc:'sort-list',                                   gfg:null,                                                                  diff:'Medium'},
+    {id:82, name:'Add Two Numbers (Linked List)',       lc:'add-two-numbers',                             gfg:null,                                                                  diff:'Medium'},
+    {id:83, name:'Intersection of Two Linked Lists',   lc:'intersection-of-two-linked-lists',            gfg:null,                                                                  diff:'Easy'},
+    {id:84, name:'Delete Node without Head Reference', lc:'delete-node-in-a-linked-list',                gfg:null,                                                                  diff:'Medium'},
+    {id:85, name:'Add 1 to a Number (Linked List)',    lc:null,                                          gfg:'https://www.geeksforgeeks.org/add-1-number-represented-linked-list/', diff:'Easy'},
+  ]
+},
+{
+  id:'stacks', num:7, title:'Stacks & Queues',
+  problems:[
+    {id:86, name:'Implement Stack using Queue',        lc:'implement-stack-using-queues',                gfg:null,                                                                  diff:'Easy'},
+    {id:87, name:'Implement Queue using Stack',        lc:'implement-queue-using-stacks',                gfg:null,                                                                  diff:'Easy'},
+    {id:88, name:'Min Stack',                          lc:'min-stack',                                   gfg:null,                                                                  diff:'Medium'},
+    {id:89, name:'Valid Parentheses',                  lc:'valid-parentheses',                           gfg:null,                                                                  diff:'Easy'},
+    {id:90, name:'Next Greater Element I',             lc:'next-greater-element-i',                      gfg:null,                                                                  diff:'Easy'},
+    {id:91, name:'Next Greater Element II (Circular)', lc:'next-greater-element-ii',                     gfg:null,                                                                  diff:'Medium'},
+    {id:92, name:'Largest Rectangle in Histogram',    lc:'largest-rectangle-in-histogram',              gfg:null,                                                                  diff:'Hard'},
+    {id:93, name:'Maximal Rectangle',                  lc:'maximal-rectangle',                           gfg:null,                                                                  diff:'Hard'},
+    {id:94, name:'Sliding Window Maximum',             lc:'sliding-window-maximum',                      gfg:null,                                                                  diff:'Hard'},
+    {id:95, name:'LRU Cache',                          lc:'lru-cache',                                   gfg:null,                                                                  diff:'Medium'},
+    {id:96, name:'LFU Cache',                          lc:'lfu-cache',                                   gfg:null,                                                                  diff:'Hard'},
+    {id:97, name:'Celebrity Problem',                  lc:null,                                          gfg:'https://www.geeksforgeeks.org/the-celebrity-problem/',                diff:'Medium'},
+    {id:98, name:'Stock Span Problem',                 lc:'online-stock-span',                           gfg:null,                                                                  diff:'Medium'},
+    {id:99, name:'Asteroid Collision',                 lc:'asteroid-collision',                          gfg:null,                                                                  diff:'Medium'},
+  ]
+},
+{
+  id:'trees', num:8, title:'Binary Trees',
+  problems:[
+    {id:100,name:'Inorder Traversal (Iterative)',      lc:'binary-tree-inorder-traversal',               gfg:null,                                                                  diff:'Easy'},
+    {id:101,name:'Preorder Traversal (Iterative)',     lc:'binary-tree-preorder-traversal',              gfg:null,                                                                  diff:'Easy'},
+    {id:102,name:'Postorder Traversal (Iterative)',    lc:'binary-tree-postorder-traversal',             gfg:null,                                                                  diff:'Easy'},
+    {id:103,name:'Level Order Traversal',              lc:'binary-tree-level-order-traversal',           gfg:null,                                                                  diff:'Medium'},
+    {id:104,name:'Height / Max Depth of Binary Tree',  lc:'maximum-depth-of-binary-tree',               gfg:null,                                                                  diff:'Easy'},
+    {id:105,name:'Check if Tree is Balanced',          lc:'balanced-binary-tree',                        gfg:null,                                                                  diff:'Easy'},
+    {id:106,name:'Diameter of Binary Tree',            lc:'diameter-of-binary-tree',                     gfg:null,                                                                  diff:'Easy'},
+    {id:107,name:'Zigzag Level Order Traversal',       lc:'binary-tree-zigzag-level-order-traversal',   gfg:null,                                                                  diff:'Medium'},
+    {id:108,name:'Boundary Traversal',                 lc:null,                                          gfg:'https://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/', diff:'Medium'},
+    {id:109,name:'Vertical Order Traversal',           lc:'vertical-order-traversal-of-a-binary-tree', gfg:null,                                                                   diff:'Hard'},
+    {id:110,name:'Top View of Binary Tree',            lc:null,                                          gfg:'https://www.geeksforgeeks.org/print-nodes-top-view-binary-tree/',   diff:'Medium'},
+    {id:111,name:'Bottom View of Binary Tree',         lc:null,                                          gfg:'https://www.geeksforgeeks.org/bottom-view-binary-tree/',             diff:'Medium'},
+    {id:112,name:'Right/Left Side View',               lc:'binary-tree-right-side-view',                gfg:null,                                                                  diff:'Medium'},
+    {id:113,name:'Symmetric Tree',                     lc:'symmetric-tree',                              gfg:null,                                                                  diff:'Easy'},
+    {id:114,name:'Path Sum (Root to Leaf)',             lc:'path-sum',                                   gfg:null,                                                                  diff:'Easy'},
+    {id:115,name:'LCA of Two Nodes',                   lc:'lowest-common-ancestor-of-a-binary-tree',    gfg:null,                                                                  diff:'Medium'},
+    {id:116,name:'Max Width of Binary Tree',           lc:'maximum-width-of-binary-tree',               gfg:null,                                                                  diff:'Medium'},
+    {id:117,name:'Nodes at Distance K',                lc:'all-nodes-distance-k-in-binary-tree',        gfg:null,                                                                  diff:'Medium'},
+    {id:118,name:'Serialize & Deserialize',            lc:'serialize-and-deserialize-binary-tree',       gfg:null,                                                                  diff:'Hard'},
+    {id:119,name:'Flatten Binary Tree to Linked List', lc:'flatten-binary-tree-to-linked-list',         gfg:null,                                                                  diff:'Medium'},
+    {id:120,name:'Construct from Inorder + Preorder',  lc:'construct-binary-tree-from-preorder-and-inorder-traversal', gfg:null,                                                   diff:'Medium'},
+    {id:121,name:'Count Nodes in Complete Binary Tree',lc:'count-complete-tree-nodes',                  gfg:null,                                                                  diff:'Easy'},
+    {id:122,name:'Morris Inorder Traversal',           lc:'binary-tree-inorder-traversal',              gfg:null,                                                                  diff:'Medium'},
+  ]
+},
+{
+  id:'bst', num:9, title:'BST',
+  problems:[
+    {id:123,name:'Search in BST',                      lc:'search-in-a-binary-search-tree',             gfg:null,                                                                  diff:'Easy'},
+    {id:124,name:'Insert into BST',                    lc:'insert-into-a-binary-search-tree',           gfg:null,                                                                  diff:'Medium'},
+    {id:125,name:'Delete Node in BST',                 lc:'delete-node-in-a-bst',                       gfg:null,                                                                  diff:'Medium'},
+    {id:126,name:'Kth Smallest in BST',                lc:'kth-smallest-element-in-a-bst',              gfg:null,                                                                  diff:'Medium'},
+    {id:127,name:'LCA of BST',                         lc:'lowest-common-ancestor-of-a-binary-search-tree', gfg:null,                                                              diff:'Medium'},
+    {id:128,name:'Validate BST',                       lc:'validate-binary-search-tree',                gfg:null,                                                                  diff:'Medium'},
+    {id:129,name:'Two Sum in BST',                     lc:'two-sum-iv-input-is-a-bst',                  gfg:null,                                                                  diff:'Easy'},
+    {id:130,name:'Recover BST (Swapped Nodes)',        lc:'recover-binary-search-tree',                 gfg:null,                                                                  diff:'Medium'},
+    {id:131,name:'BST Iterator',                       lc:'binary-search-tree-iterator',                gfg:null,                                                                  diff:'Medium'},
+    {id:132,name:'Construct BST from Preorder',        lc:'construct-binary-search-tree-from-preorder-traversal', gfg:null,                                                        diff:'Medium'},
+  ]
+},
+{
+  id:'graphs', num:10, title:'Graphs',
+  problems:[
+    {id:133,name:'BFS of Graph',                       lc:'breadth-first-search-or-bfs-for-a-graph',    gfg:'https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/', diff:'Easy'},
+    {id:134,name:'DFS of Graph',                       lc:null,                                         gfg:'https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/',   diff:'Easy'},
+    {id:135,name:'Number of Provinces (Connected Comps)',lc:'number-of-provinces',                      gfg:null,                                                                  diff:'Medium'},
+    {id:136,name:'Flood Fill',                         lc:'flood-fill',                                 gfg:null,                                                                  diff:'Easy'},
+    {id:137,name:'Rotten Oranges (Multi-source BFS)',  lc:'rotting-oranges',                            gfg:null,                                                                  diff:'Medium'},
+    {id:138,name:'Cycle Detection — Undirected (BFS)', lc:null,                                         gfg:'https://www.geeksforgeeks.org/detect-cycle-undirected-graph/',        diff:'Medium'},
+    {id:139,name:'Cycle Detection — Directed (DFS)',   lc:null,                                         gfg:'https://www.geeksforgeeks.org/detect-cycle-in-a-graph/',              diff:'Medium'},
+    {id:140,name:'0/1 Matrix (BFS Distances)',         lc:'01-matrix',                                  gfg:null,                                                                  diff:'Medium'},
+    {id:141,name:'Word Ladder I',                      lc:'word-ladder',                                gfg:null,                                                                  diff:'Hard'},
+    {id:142,name:'Bipartite Graph Check',              lc:'is-graph-bipartite',                         gfg:null,                                                                  diff:'Medium'},
+    {id:143,name:'Topological Sort (BFS — Kahn\'s)',   lc:null,                                         gfg:'https://www.geeksforgeeks.org/kahns-algorithm-vs-dfs-approach-a-comparative-analysis/', diff:'Medium'},
+    {id:144,name:'Topological Sort (DFS)',             lc:null,                                         gfg:'https://www.geeksforgeeks.org/topological-sorting/',                  diff:'Medium'},
+    {id:145,name:'Course Schedule I',                  lc:'course-schedule',                            gfg:null,                                                                  diff:'Medium'},
+    {id:146,name:'Course Schedule II',                 lc:'course-schedule-ii',                         gfg:null,                                                                  diff:'Medium'},
+    {id:147,name:'Alien Dictionary',                   lc:null,                                         gfg:'https://www.geeksforgeeks.org/given-sorted-dictionary-find-precedence-characters/', diff:'Hard'},
+    {id:148,name:"Dijkstra's Algorithm",               lc:'network-delay-time',                         gfg:null,                                                                  diff:'Medium'},
+    {id:149,name:'Bellman-Ford Algorithm',             lc:'cheapest-flights-within-k-stops',            gfg:null,                                                                  diff:'Medium'},
+    {id:150,name:'Floyd-Warshall Algorithm',           lc:'find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance', gfg:null,                                diff:'Medium'},
+    {id:151,name:"Prim's MST",                         lc:'min-cost-to-connect-all-points',             gfg:null,                                                                  diff:'Medium'},
+    {id:152,name:"Kruskal's MST (DSU)",                lc:'min-cost-to-connect-all-points',             gfg:null,                                                                  diff:'Medium'},
+    {id:153,name:'Disjoint Set Union (Union-Find)',    lc:'number-of-provinces',                        gfg:null,                                                                  diff:'Medium'},
+    {id:154,name:'Accounts Merge',                     lc:'accounts-merge',                             gfg:null,                                                                  diff:'Medium'},
+    {id:155,name:'Number of Islands',                  lc:'number-of-islands',                          gfg:null,                                                                  diff:'Medium'},
+    {id:156,name:'Bridges in Graph (Tarjan)',          lc:'critical-connections-in-a-network',          gfg:null,                                                                  diff:'Hard'},
+    {id:157,name:'Strongly Connected Components (Kosaraju)', lc:null,                                   gfg:'https://www.geeksforgeeks.org/strongly-connected-components/',       diff:'Hard'},
+  ]
+},
+{
+  id:'dp', num:11, title:'Dynamic Programming',
+  problems:[
+    {id:158,name:'Climbing Stairs',                    lc:'climbing-stairs',                            gfg:null,                                                                  diff:'Easy'},
+    {id:159,name:'Frog Jump (Min Cost)',                lc:'min-cost-climbing-stairs',                   gfg:null,                                                                  diff:'Easy'},
+    {id:160,name:'House Robber',                       lc:'house-robber',                               gfg:null,                                                                  diff:'Medium'},
+    {id:161,name:'House Robber II (Circular)',         lc:'house-robber-ii',                            gfg:null,                                                                  diff:'Medium'},
+    {id:162,name:'Unique Paths',                       lc:'unique-paths',                               gfg:null,                                                                  diff:'Medium'},
+    {id:163,name:'Unique Paths II (With Obstacles)',   lc:'unique-paths-ii',                            gfg:null,                                                                  diff:'Medium'},
+    {id:164,name:'Minimum Path Sum (Grid)',             lc:'minimum-path-sum',                           gfg:null,                                                                  diff:'Medium'},
+    {id:165,name:'Triangle — Min Path Sum',            lc:'triangle',                                   gfg:null,                                                                  diff:'Medium'},
+    {id:166,name:'Subset Sum Equal to Target',         lc:'partition-equal-subset-sum',                 gfg:null,                                                                  diff:'Medium'},
+    {id:167,name:'Partition Equal Subset Sum',         lc:'partition-equal-subset-sum',                 gfg:null,                                                                  diff:'Medium'},
+    {id:168,name:'Count Subsets with Sum K',           lc:null,                                         gfg:'https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/', diff:'Medium'},
+    {id:169,name:'0/1 Knapsack',                       lc:null,                                         gfg:'https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/',           diff:'Medium'},
+    {id:170,name:'Coin Change — Minimum Coins',        lc:'coin-change',                                gfg:null,                                                                  diff:'Medium'},
+    {id:171,name:'Coin Change — Count Ways',           lc:'coin-change-ii',                             gfg:null,                                                                  diff:'Medium'},
+    {id:172,name:'Unbounded Knapsack',                 lc:null,                                         gfg:'https://www.geeksforgeeks.org/unbounded-knapsack-repetition-items-allowed/', diff:'Medium'},
+    {id:173,name:'Rod Cutting Problem',                lc:null,                                         gfg:'https://www.geeksforgeeks.org/cutting-a-rod-dp-13/',                 diff:'Medium'},
+    {id:174,name:'Longest Common Subsequence',         lc:'longest-common-subsequence',                 gfg:null,                                                                  diff:'Medium'},
+    {id:175,name:'Longest Palindromic Subsequence',    lc:'longest-palindromic-subsequence',            gfg:null,                                                                  diff:'Medium'},
+    {id:176,name:'Edit Distance',                      lc:'edit-distance',                              gfg:null,                                                                  diff:'Hard'},
+    {id:177,name:'Wildcard Matching',                  lc:'wildcard-matching',                          gfg:null,                                                                  diff:'Hard'},
+    {id:178,name:'Longest Increasing Subsequence',     lc:'longest-increasing-subsequence',             gfg:null,                                                                  diff:'Medium'},
+    {id:179,name:'LIS using Binary Search (nlogn)',    lc:'longest-increasing-subsequence',             gfg:null,                                                                  diff:'Medium'},
+    {id:180,name:'Matrix Chain Multiplication',        lc:null,                                         gfg:'https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/',    diff:'Hard'},
+    {id:181,name:'Burst Balloons',                     lc:'burst-balloons',                             gfg:null,                                                                  diff:'Hard'},
+    {id:182,name:'Palindrome Partitioning II',         lc:'palindrome-partitioning-ii',                 gfg:null,                                                                  diff:'Hard'},
+    {id:183,name:'Best Time to Buy/Sell — Cooldown',   lc:'best-time-to-buy-and-sell-stock-with-cooldown', gfg:null,                                                              diff:'Medium'},
+    {id:184,name:'Best Time to Buy/Sell — k Transactions', lc:'best-time-to-buy-and-sell-stock-iv',   gfg:null,                                                                  diff:'Hard'},
+    {id:185,name:'Distinct Subsequences',              lc:'distinct-subsequences',                      gfg:null,                                                                  diff:'Hard'},
+  ]
+},
+{
+  id:'backtrack', num:12, title:'Backtracking',
+  problems:[
+    {id:186,name:'N-Queens',                           lc:'n-queens',                                   gfg:null,                                                                  diff:'Hard'},
+    {id:187,name:'Sudoku Solver',                      lc:'sudoku-solver',                              gfg:null,                                                                  diff:'Hard'},
+    {id:188,name:'Rat in a Maze',                      lc:null,                                         gfg:'https://www.geeksforgeeks.org/rat-in-a-maze-backtracking-2/',        diff:'Medium'},
+    {id:189,name:'Combination Sum I',                  lc:'combination-sum',                            gfg:null,                                                                  diff:'Medium'},
+    {id:190,name:'Combination Sum II (No Duplicates)', lc:'combination-sum-ii',                         gfg:null,                                                                  diff:'Medium'},
+    {id:191,name:'Subsets I',                          lc:'subsets',                                    gfg:null,                                                                  diff:'Medium'},
+    {id:192,name:'Subsets II (With Duplicates)',       lc:'subsets-ii',                                 gfg:null,                                                                  diff:'Medium'},
+    {id:193,name:'Permutations I',                     lc:'permutations',                               gfg:null,                                                                  diff:'Medium'},
+    {id:194,name:'Permutations II (With Duplicates)',  lc:'permutations-ii',                            gfg:null,                                                                  diff:'Medium'},
+    {id:195,name:'Word Search',                        lc:'word-search',                                gfg:null,                                                                  diff:'Medium'},
+    {id:196,name:'Palindrome Partitioning',            lc:'palindrome-partitioning',                    gfg:null,                                                                  diff:'Medium'},
+    {id:197,name:'Letter Combinations (Phone Number)', lc:'letter-combinations-of-a-phone-number',     gfg:null,                                                                  diff:'Medium'},
+    {id:198,name:'Generate Valid Parentheses',         lc:'generate-parentheses',                       gfg:null,                                                                  diff:'Medium'},
+    {id:199,name:'Power Set',                          lc:'subsets',                                    gfg:null,                                                                  diff:'Medium'},
+  ]
+},
+{
+  id:'greedy', num:13, title:'Greedy',
+  problems:[
+    {id:200,name:'Fractional Knapsack',                lc:null,                                         gfg:'https://www.geeksforgeeks.org/fractional-knapsack-problem/',          diff:'Medium'},
+    {id:201,name:'Activity Selection / N Meetings',    lc:null,                                         gfg:'https://www.geeksforgeeks.org/n-meetings-in-one-room-using-greedy-algorithm/', diff:'Easy'},
+    {id:202,name:'Minimum Platforms',                  lc:null,                                         gfg:'https://www.geeksforgeeks.org/minimum-number-platforms-required-railwaybus-station/', diff:'Medium'},
+    {id:203,name:'Jump Game I',                        lc:'jump-game',                                  gfg:null,                                                                  diff:'Medium'},
+    {id:204,name:'Jump Game II (Min Jumps)',            lc:'jump-game-ii',                               gfg:null,                                                                  diff:'Medium'},
+    {id:205,name:'Candy Distribution',                 lc:'candy',                                      gfg:null,                                                                  diff:'Hard'},
+    {id:206,name:'Insert Interval',                    lc:'insert-interval',                            gfg:null,                                                                  diff:'Medium'},
+    {id:207,name:'Non-Overlapping Intervals',          lc:'non-overlapping-intervals',                  gfg:null,                                                                  diff:'Medium'},
+    {id:208,name:'Valid Parenthesis String',           lc:'valid-parenthesis-string',                   gfg:null,                                                                  diff:'Medium'},
+    {id:209,name:'Job Sequencing Problem',             lc:null,                                         gfg:'https://www.geeksforgeeks.org/job-sequencing-problem/',               diff:'Medium'},
+  ]
+},
+{
+  id:'tries', num:14, title:'Tries',
+  problems:[
+    {id:210,name:'Implement Trie (Prefix Tree)',       lc:'implement-trie-prefix-tree',                 gfg:null,                                                                  diff:'Medium'},
+    {id:211,name:'Longest Common Prefix (Trie)',       lc:'longest-common-prefix',                      gfg:null,                                                                  diff:'Easy'},
+    {id:212,name:'Maximum XOR of Two Numbers',         lc:'maximum-xor-of-two-numbers-in-an-array',     gfg:null,                                                                  diff:'Medium'},
+    {id:213,name:'Maximum XOR with Element from Array',lc:'maximum-xor-with-an-element-from-array',     gfg:null,                                                                  diff:'Hard'},
+    {id:214,name:'Count Words Equal To / Starting With',lc:null,                                        gfg:'https://www.geeksforgeeks.org/find-all-words-in-a-dictionary-that-match-a-pattern/', diff:'Medium'},
+  ]
+},
+{
+  id:'heap', num:15, title:'Heaps (Priority Queue)',
+  problems:[
+    {id:215,name:'Kth Largest Element in Array',       lc:'kth-largest-element-in-an-array',            gfg:null,                                                                  diff:'Medium'},
+    {id:216,name:'Kth Smallest Element',               lc:'kth-smallest-element-in-a-sorted-matrix',   gfg:null,                                                                  diff:'Medium'},
+    {id:217,name:'Merge K Sorted Lists',               lc:'merge-k-sorted-lists',                       gfg:null,                                                                  diff:'Hard'},
+    {id:218,name:'Top K Frequent Elements',            lc:'top-k-frequent-elements',                    gfg:null,                                                                  diff:'Medium'},
+    {id:219,name:'Find Median from Data Stream',       lc:'find-median-from-data-stream',               gfg:null,                                                                  diff:'Hard'},
+    {id:220,name:'Sliding Window Median',              lc:'sliding-window-median',                      gfg:null,                                                                  diff:'Hard'},
+    {id:221,name:'Task Scheduler',                     lc:'task-scheduler',                             gfg:null,                                                                  diff:'Medium'},
+    {id:222,name:'Hand of Straights',                  lc:'hand-of-straights',                          gfg:null,                                                                  diff:'Medium'},
+  ]
+},
+];
+
+/* ── STATE ── */
+const openChaps = {};
+let modalProbId = null;
+
+/* ── RENDER ── */
+function renderAll() {
+  document.getElementById('chapters').innerHTML = CHAPTERS.map(renderChapter).join('');
+  renderOverall();
+}
+
+function renderChapter(ch) {
+  const done = ch.problems.filter(p => isDone(p.id)).length;
+  const total = ch.problems.length;
+  const pct = Math.round(done/total*100);
+  const isOpen = !!openChaps[ch.id];
+  return `
+<div class="chapter ${isOpen?'open':''}" id="ch-${ch.id}">
+  <div class="chap-hdr" onclick="toggleChap('${ch.id}')">
+    <div class="chap-dot">${ch.num}</div>
+    <div class="chap-info">
+      <div class="chap-title">${ch.title}</div>
+      <div class="chap-bar-wrap"><div class="chap-bar" style="width:${pct}%"></div></div>
+    </div>
+    <div class="chap-right">
+      <span class="chap-count">${done}/${total}</span>
+      <span class="chap-pct">${pct}%</span>
+      <span class="chap-arrow ${isOpen?'open':''}">▶</span>
+    </div>
+  </div>
+  ${isOpen ? renderTable(ch) : ''}
+</div>`;
+}
+
+function renderTable(ch) {
+  return `
+<div class="prob-table open">
+  <div class="tbl-hdr">
+    <span></span>
+    <span>#</span>
+    <span>Problem</span>
+    <span>Links</span>
+    <span class="col-diff">Difficulty</span>
+    <span>Notes</span>
+  </div>
+  ${ch.problems.map(p => renderRow(p)).join('')}
+</div>`;
+}
+
+function renderRow(p) {
+  const done = isDone(p.id);
+  const note = getNote(p.id);
+  const lcUrl = p.lc ? `https://leetcode.com/problems/${p.lc}/` : null;
+  const diffClass = {Easy:'diff-easy',Medium:'diff-medium',Hard:'diff-hard'}[p.diff]||'diff-easy';
+  return `
+<div class="prob-row ${done?'done':''}" id="pr-${p.id}">
+  <div class="prob-cb ${done?'checked':''}" onclick="toggleDone(${p.id})">${done?'✓':''}</div>
+  <div class="prob-num">${p.id}</div>
+  <div class="prob-name-cell">
+    ${lcUrl ? `<a href="${lcUrl}" target="_blank" rel="noopener" class="prob-name" style="text-decoration:none">${p.name} ↗</a>`
+            : `<span class="prob-name">${p.name}</span>`}
+  </div>
+  <div class="prob-links">
+    ${lcUrl ? `<a href="${lcUrl}" target="_blank" rel="noopener" class="prob-link lc-link">LC ↗</a>` : ''}
+    ${p.gfg ? `<a href="${p.gfg}" target="_blank" rel="noopener" class="prob-link gfg-link">GFG ↗</a>` : ''}
+  </div>
+  <div class="${done?'diff mobile-hide':'diff mobile-hide'} ${diffClass}">${p.diff}</div>
+  <div>
+    <button class="notes-btn ${note?'has-note':''}" onclick="openNotes(${p.id},${JSON.stringify(p.name).replace(/"/g,'&quot;')})">
+      ${note ? 'Notes ✎' : 'Notes'}
+    </button>
+  </div>
+</div>`;
+}
+
+function renderOverall() {
+  let total=0, done=0;
+  CHAPTERS.forEach(ch => {
+    total += ch.problems.length;
+    done += ch.problems.filter(p => isDone(p.id)).length;
+  });
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('overall-text').textContent = `${done} of ${total} problems solved`;
+  document.getElementById('overall-pct').textContent = pct+'%';
+  document.getElementById('overall-fill').style.width = pct+'%';
+}
+
+/* ── TOGGLE CHAPTER ── */
+function toggleChap(id) {
+  openChaps[id] = !openChaps[id];
+  renderAll();
+  if(openChaps[id]) {
+    setTimeout(()=>{
+      const el = document.getElementById('ch-'+id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+    },50);
+  }
+}
+
+/* ── DONE TOGGLE ── */
+function isDone(id) {
+  return localStorage.getItem('dsa_done_'+id) === '1';
+}
+function toggleDone(id) {
+  const now = isDone(id);
+  if(now) localStorage.removeItem('dsa_done_'+id);
+  else localStorage.setItem('dsa_done_'+id,'1');
+  renderAll();
+}
+
+/* ── NOTES ── */
+function getNote(id) {
+  return localStorage.getItem('dsa_note_'+id)||'';
+}
+function openNotes(id, name) {
+  modalProbId = id;
+  document.getElementById('modal-title').textContent = name;
+  document.getElementById('modal-ta').value = getNote(id);
+  document.getElementById('modal').style.display='flex';
+  setTimeout(()=>document.getElementById('modal-ta').focus(),50);
+}
+function saveNote() {
+  const val = document.getElementById('modal-ta').value.trim();
+  if(val) localStorage.setItem('dsa_note_'+modalProbId, val);
+  else localStorage.removeItem('dsa_note_'+modalProbId);
+  closeModal();
+  renderAll();
+}
+function closeModal(e) {
+  if(e && e.target !== document.getElementById('modal')) return;
+  document.getElementById('modal').style.display='none';
+  modalProbId = null;
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('modal').style.display='none'; });
+
+renderAll();
+</script>
+</body>
+</html>
