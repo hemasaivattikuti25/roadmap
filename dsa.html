@@ -173,7 +173,7 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
 
 <div class="main">
   <div class="page-title">Striver A2Z — DSA Sheet</div>
-  <div class="page-sub">Track every problem · Progress auto-saved · Click problem name to open LeetCode</div>
+  <div class="page-sub">330 problems · 20 chapters · ⭐ star to bookmark · ▶ YT on every problem</div>
 
   <div class="overall-prog">
     <div class="prog-row">
@@ -265,7 +265,54 @@ if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
 
 const CHAPTERS = [
 {
-  id:'arr1', num:1, title:'Arrays — Basics',
+  id:'math', num:1, title:'Math & Number Theory',
+  problems:[
+    {id:261,name:'Count Digits in a Number',            lc:null,                                          gfg:'https://www.geeksforgeeks.org/count-digits-in-a-number/', diff:'Easy',   yt:null},
+    {id:262,name:'Reverse a Number',                    lc:'reverse-integer',                             gfg:null,    diff:'Easy',   yt:null},
+    {id:263,name:'Palindrome Number',                   lc:'palindrome-number',                           gfg:null,    diff:'Easy',   yt:null},
+    {id:264,name:'Armstrong Number',                    lc:null,                                          gfg:'https://www.geeksforgeeks.org/program-for-armstrong-numbers/', diff:'Easy', yt:null},
+    {id:265,name:'Print All Divisors of N',             lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-all-divisors-of-a-natural-number-set-2/', diff:'Easy', yt:null},
+    {id:266,name:'Check if N is Prime',                 lc:null,                                          gfg:'https://www.geeksforgeeks.org/primality-test-set-1-introduction-and-school-method/', diff:'Easy', yt:null},
+    {id:267,name:'GCD / HCF — Euclidean Algorithm',     lc:'find-greatest-common-divisor-of-array',       gfg:null,    diff:'Easy',   yt:null},
+    {id:268,name:'Count Primes (Sieve of Eratosthenes)',lc:'count-primes',                                gfg:null,    diff:'Medium', yt:null},
+    {id:269,name:'LCM of Two Numbers',                  lc:null,                                          gfg:'https://www.geeksforgeeks.org/program-to-find-lcm-of-two-numbers/', diff:'Easy', yt:null},
+    {id:270,name:'Excel Sheet Column Number',           lc:'excel-sheet-column-number',                   gfg:null,    diff:'Easy',   yt:null},
+    {id:271,name:'Pow(x, n) — Fast Exponentiation',    lc:'powx-n',                                      gfg:null,    diff:'Medium', yt:null},
+    {id:272,name:'Majority Element (n/3 occurrences)',  lc:'majority-element-ii',                         gfg:null,    diff:'Medium', yt:null},
+    {id:273,name:'Frequency of Each Element in Array',  lc:null,                                          gfg:'https://www.geeksforgeeks.org/counting-frequencies-of-array-elements/', diff:'Easy', yt:null},
+    {id:274,name:'Longest Subarray with Sum 0',         lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/', diff:'Medium', yt:null},
+    {id:275,name:'Count Subarrays with Sum Divisible by K', lc:'subarray-sums-divisible-by-k',            gfg:null,    diff:'Medium', yt:null},
+  ]
+},
+{
+  id:'sorting', num:2, title:'Sorting Algorithms',
+  problems:[
+    {id:276,name:'Selection Sort',                      lc:null,                                          gfg:'https://www.geeksforgeeks.org/selection-sort/', diff:'Easy',                yt:'https://www.youtube.com/watch?v=HGk_ypEuS24'},
+    {id:277,name:'Bubble Sort',                         lc:null,                                          gfg:'https://www.geeksforgeeks.org/bubble-sort/', diff:'Easy',                  yt:'https://www.youtube.com/watch?v=HGk_ypEuS24'},
+    {id:278,name:'Insertion Sort',                      lc:null,                                          gfg:'https://www.geeksforgeeks.org/insertion-sort/', diff:'Easy',               yt:'https://www.youtube.com/watch?v=HGk_ypEuS24'},
+    {id:279,name:'Merge Sort',                          lc:null,                                          gfg:'https://www.geeksforgeeks.org/merge-sort/', diff:'Medium',                 yt:'https://www.youtube.com/watch?v=ogjf7ORKfd8'},
+    {id:280,name:'Quick Sort',                          lc:null,                                          gfg:'https://www.geeksforgeeks.org/quick-sort/', diff:'Medium',                 yt:'https://www.youtube.com/watch?v=WIrA4YexLRQ'},
+    {id:281,name:'Heap Sort',                           lc:null,                                          gfg:'https://www.geeksforgeeks.org/heap-sort/', diff:'Medium',                  yt:null},
+    {id:282,name:'Counting Sort',                       lc:null,                                          gfg:'https://www.geeksforgeeks.org/counting-sort/', diff:'Easy',               yt:null},
+  ]
+},
+{
+  id:'recursion', num:3, title:'Recursion Basics',
+  problems:[
+    {id:283,name:'Print 1 to N using Recursion',        lc:null,                                          gfg:'https://www.geeksforgeeks.org/print-1-to-n-without-using-loops/', diff:'Easy', yt:null},
+    {id:284,name:'Print N to 1 using Recursion',        lc:null,                                          gfg:'https://www.geeksforgeeks.org/program-print-n-1-without-loop/', diff:'Easy', yt:null},
+    {id:285,name:'Factorial of N',                      lc:'factorial-trailing-zeroes',                   gfg:null,    diff:'Easy',   yt:null},
+    {id:286,name:'Fibonacci Number',                    lc:'fibonacci-number',                            gfg:null,    diff:'Easy',   yt:null},
+    {id:287,name:'Reverse an Array',                    lc:'reverse-string',                              gfg:null,    diff:'Easy',   yt:null},
+    {id:288,name:'Check if String is Palindrome (Recursion)', lc:'valid-palindrome',                      gfg:null,    diff:'Easy',   yt:null},
+    {id:289,name:'Sum of First N Numbers',              lc:null,                                          gfg:'https://www.geeksforgeeks.org/sum-of-natural-numbers-using-recursion/', diff:'Easy', yt:null},
+    {id:290,name:'Multiple Recursion Calls (Fibonacci Tree)', lc:'fibonacci-number',                      gfg:null,    diff:'Easy',   yt:null},
+    {id:291,name:'Subsequences of a String (Recursion)', lc:'subsets',                                    gfg:null,    diff:'Medium', yt:null},
+    {id:292,name:'Check if Array is Sorted (Recursion)', lc:'check-if-array-is-sorted-and-rotated',       gfg:null,    diff:'Easy',   yt:null},
+  ]
+},
+{
+  id:'arr1', num:4, title:'Arrays — Basics',
   problems:[
     {id:1,  name:'Largest Element in Array',            lc:null,                                          gfg:'https://www.geeksforgeeks.org/c-program-find-largest-element-array/', diff:'Easy',   yt:'https://www.youtube.com/watch?v=37E9ckMDdTk'},
     {id:2,  name:'Second Largest Element',              lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-second-largest-element-array/',   diff:'Easy',   yt:'https://www.youtube.com/watch?v=37E9ckMDdTk'},
@@ -283,7 +330,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'arr2', num:2, title:'Arrays — Medium',
+  id:'arr2', num:5, title:'Arrays — Medium',
   problems:[
     {id:14, name:'Two Sum',                             lc:'two-sum',                                     gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=dRUpbt8vHpo'},
     {id:15, name:'Sort 0s 1s and 2s (Dutch Flag)',      lc:'sort-colors',                                 gfg:null,    diff:'Medium', yt:'https://www.youtube.com/watch?v=oaVa-9wmpns'},
@@ -300,7 +347,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'arr3', num:3, title:'Arrays — Hard',
+  id:'arr3', num:6, title:'Arrays — Hard',
   problems:[
     {id:26, name:'Trapping Rain Water',                 lc:'trapping-rain-water',                         gfg:null,    diff:'Hard',   yt:'https://www.youtube.com/watch?v=m18Hntz4go8'},
     {id:27, name:'Set Matrix Zeroes',                   lc:'set-matrix-zeroes',                           gfg:null,    diff:'Medium', yt:'https://www.youtube.com/watch?v=N0MgLvceX7M'},
@@ -320,7 +367,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'sw', num:4, title:'Sliding Window & Two Pointers',
+  id:'sw', num:7, title:'Sliding Window & Two Pointers',
   problems:[
     {id:41, name:'Longest Substring Without Repeating Chars', lc:'longest-substring-without-repeating-characters', gfg:null, diff:'Medium', yt:'https://www.youtube.com/watch?v=oFBDd3pudPE'},
     {id:42, name:'Max Consecutive Ones III',            lc:'max-consecutive-ones-iii',                    gfg:null,    diff:'Medium', yt:'https://www.youtube.com/watch?v=3E4JBHSLpYk'},
@@ -336,7 +383,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'bs', num:5, title:'Binary Search',
+  id:'bs', num:8, title:'Binary Search',
   problems:[
     {id:52, name:'Binary Search',                       lc:'binary-search',                               gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=MHf6awe89xw'},
     {id:53, name:'Lower Bound / First Occurrence',      lc:'find-first-and-last-position-of-element-in-sorted-array', gfg:null, diff:'Medium', yt:null},
@@ -360,7 +407,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'strings', num:6, title:'Strings',
+  id:'strings', num:9, title:'Strings',
   problems:[
     {id:71, name:'Reverse Words in a String',           lc:'reverse-words-in-a-string',                   gfg:null,    diff:'Medium', yt:null},
     {id:72, name:'Valid Palindrome',                    lc:'valid-palindrome',                            gfg:null,    diff:'Easy',   yt:null},
@@ -381,7 +428,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'ll', num:7, title:'Linked List',
+  id:'ll', num:10, title:'Linked List',
   problems:[
     {id:87, name:'Reverse a Linked List',               lc:'reverse-linked-list',                         gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=iRtLEoL-r-g'},
     {id:88, name:'Middle of Linked List',               lc:'middle-of-the-linked-list',                   gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=7LjQ57RqgEc'},
@@ -397,11 +444,17 @@ const CHAPTERS = [
     {id:98, name:'Add Two Numbers (Linked List)',        lc:'add-two-numbers',                             gfg:null,    diff:'Medium', yt:'https://www.youtube.com/watch?v=LDFZm4iB7tA'},
     {id:99, name:'Intersection of Two Linked Lists',    lc:'intersection-of-two-linked-lists',            gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=0DYoPz2Tpt4'},
     {id:100,name:'Delete Node without Head Reference',  lc:'delete-node-in-a-linked-list',                gfg:null,    diff:'Medium', yt:null},
+    {id:300,name:'Introduction to Doubly Linked List',  lc:null,                                          gfg:'https://www.geeksforgeeks.org/doubly-linked-list/', diff:'Easy', yt:'https://www.youtube.com/watch?v=0eKMU10uEDI'},
+    {id:301,name:'Insert in Doubly Linked List',        lc:null,                                          gfg:'https://www.geeksforgeeks.org/doubly-linked-list/', diff:'Easy', yt:null},
+    {id:302,name:'Delete in Doubly Linked List',        lc:null,                                          gfg:'https://www.geeksforgeeks.org/delete-a-node-in-a-doubly-linked-list/', diff:'Easy', yt:null},
+    {id:303,name:'Reverse Doubly Linked List',          lc:null,                                          gfg:'https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/', diff:'Easy', yt:null},
+    {id:304,name:'Pairs with Given Sum in DLL',         lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-pairs-given-sum-doubly-linked-list/', diff:'Medium', yt:null},
+    {id:305,name:'Remove Duplicates from Sorted DLL',   lc:null,                                          gfg:'https://www.geeksforgeeks.org/remove-duplicates-sorted-doubly-linked-list/', diff:'Easy', yt:null},
     {id:101,name:'Add 1 to Number (Linked List)',       lc:null,                                          gfg:'https://www.geeksforgeeks.org/add-1-number-represented-linked-list/', diff:'Easy', yt:null},
   ]
 },
 {
-  id:'stacks', num:8, title:'Stacks & Queues',
+  id:'stacks', num:11, title:'Stacks & Queues',
   problems:[
     {id:102,name:'Implement Stack using Queue',         lc:'implement-stack-using-queues',                gfg:null,    diff:'Easy',   yt:null},
     {id:103,name:'Implement Queue using Stack',         lc:'implement-queue-using-stacks',                gfg:null,    diff:'Easy',   yt:null},
@@ -417,11 +470,15 @@ const CHAPTERS = [
     {id:113,name:'Celebrity Problem',                   lc:null,                                          gfg:'https://www.geeksforgeeks.org/the-celebrity-problem/', diff:'Medium', yt:null},
     {id:114,name:'Stock Span Problem',                  lc:'online-stock-span',                           gfg:null,    diff:'Medium', yt:null},
     {id:115,name:'Asteroid Collision',                  lc:'asteroid-collision',                          gfg:null,    diff:'Medium', yt:null},
+    {id:334,name:'Sum of Subarray Minimums',            lc:'sum-of-subarray-minimums',                    gfg:null,    diff:'Medium', yt:null},
+    {id:335,name:'Trapping Rain Water (Stack approach)', lc:'trapping-rain-water',                        gfg:null,    diff:'Hard',   yt:null},
+    {id:336,name:'Remove K Digits to Make Smallest',    lc:'remove-k-digits',                             gfg:null,    diff:'Medium', yt:null},
+    {id:337,name:'Number of Visible People in Queue',   lc:'number-of-visible-people-in-queue',           gfg:null,    diff:'Hard',   yt:null},
     {id:116,name:'Decode String',                       lc:'decode-string',                               gfg:null,    diff:'Medium', yt:null},
   ]
 },
 {
-  id:'trees', num:9, title:'Binary Trees',
+  id:'trees', num:12, title:'Binary Trees',
   problems:[
     {id:117,name:'Inorder Traversal (Iterative)',       lc:'binary-tree-inorder-traversal',               gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=Z_NEgBgbRVI'},
     {id:118,name:'Preorder Traversal (Iterative)',      lc:'binary-tree-preorder-traversal',              gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=RlUu72JrOUM'},
@@ -447,11 +504,15 @@ const CHAPTERS = [
     {id:138,name:'Construct from Inorder + Preorder',   lc:'construct-binary-tree-from-preorder-and-inorder-traversal', gfg:null, diff:'Medium', yt:'https://www.youtube.com/watch?v=aZNaLrVebKQ'},
     {id:139,name:'Count Nodes in Complete Binary Tree', lc:'count-complete-tree-nodes',                   gfg:null,    diff:'Easy',   yt:null},
     {id:140,name:'Check for Children Sum Property',     lc:null,                                          gfg:'https://www.geeksforgeeks.org/check-for-children-sum-property-in-a-binary-tree/', diff:'Medium', yt:null},
+    {id:342,name:'Sum Tree (Check)',                    lc:null,                                          gfg:'https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sum-tree/', diff:'Medium', yt:null},
+    {id:343,name:'Burn Tree from Leaf',                 lc:'amount-of-time-for-binary-tree-to-be-infected', gfg:null, diff:'Hard',   yt:null},
+    {id:344,name:'Maximum Sum of Non-Adjacent Nodes (Tree)', lc:null,                                     gfg:'https://www.geeksforgeeks.org/maximum-sum-of-nodes-in-binary-tree-such-that-no-two-are-adjacent/', diff:'Medium', yt:null},
+    {id:345,name:'Unique Binary Search Trees (Count)',  lc:'unique-binary-search-trees',                  gfg:null,    diff:'Medium', yt:null},
     {id:141,name:'Morris Inorder Traversal',            lc:'binary-tree-inorder-traversal',               gfg:null,    diff:'Medium', yt:null},
   ]
 },
 {
-  id:'bst', num:10, title:'BST',
+  id:'bst', num:13, title:'BST',
   problems:[
     {id:142,name:'Search in BST',                       lc:'search-in-a-binary-search-tree',              gfg:null,    diff:'Easy',   yt:null},
     {id:143,name:'Insert into BST',                     lc:'insert-into-a-binary-search-tree',            gfg:null,    diff:'Medium', yt:null},
@@ -468,7 +529,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'graphs', num:11, title:'Graphs',
+  id:'graphs', num:14, title:'Graphs',
   problems:[
     {id:154,name:'BFS of Graph',                        lc:null,                                          gfg:'https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/', diff:'Easy', yt:'https://www.youtube.com/watch?v=-tgVpUgsQ5k'},
     {id:155,name:'DFS of Graph',                        lc:null,                                          gfg:'https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/', diff:'Easy',  yt:'https://www.youtube.com/watch?v=Qzf1a--rhp8'},
@@ -498,11 +559,17 @@ const CHAPTERS = [
     {id:179,name:'Bridges in Graph (Tarjan)',            lc:'critical-connections-in-a-network',           gfg:null,    diff:'Hard',   yt:'https://www.youtube.com/watch?v=qrAub5z8FeA'},
     {id:180,name:'Articulation Points',                 lc:null,                                          gfg:'https://www.geeksforgeeks.org/articulation-points-or-cut-vertices-in-a-graph/', diff:'Hard', yt:null},
     {id:181,name:'Strongly Connected Components (Kosaraju)', lc:null,                                     gfg:'https://www.geeksforgeeks.org/strongly-connected-components/', diff:'Hard',      yt:'https://www.youtube.com/watch?v=V8qIqJxCioo'},
+    {id:306,name:'Eventual Safe States',               lc:'find-eventual-safe-states',                   gfg:null,    diff:'Medium', yt:null},
+    {id:307,name:'Shortest Path in Binary Matrix',      lc:'shortest-path-in-binary-matrix',              gfg:null,    diff:'Medium', yt:null},
+    {id:308,name:'Path with Minimum Effort',            lc:'path-with-minimum-effort',                    gfg:null,    diff:'Medium', yt:null},
+    {id:309,name:'Number of Enclaves',                  lc:'number-of-enclaves',                          gfg:null,    diff:'Medium', yt:null},
+    {id:310,name:'Making a Large Island (DSU)',         lc:'making-a-large-island',                       gfg:null,    diff:'Hard',   yt:null},
+    {id:311,name:'Most Stones Removed (DSU)',           lc:'most-stones-removed-with-same-row-or-column', gfg:null,    diff:'Medium', yt:null},
     {id:182,name:'Number of Islands II (DSU)',          lc:'number-of-islands-ii',                        gfg:null,    diff:'Hard',   yt:null},
   ]
 },
 {
-  id:'dp', num:12, title:'Dynamic Programming',
+  id:'dp', num:15, title:'Dynamic Programming',
   problems:[
     {id:183,name:'Climbing Stairs',                     lc:'climbing-stairs',                             gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=mLfjzJsN8us'},
     {id:184,name:'Frog Jump (Min Cost)',                 lc:'min-cost-climbing-stairs',                    gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=EgG3jsGoPvQ'},
@@ -533,11 +600,27 @@ const CHAPTERS = [
     {id:209,name:'Best Time to Buy/Sell — Cooldown',    lc:'best-time-to-buy-and-sell-stock-with-cooldown', gfg:null,  diff:'Medium', yt:null},
     {id:210,name:'Best Time to Buy/Sell — k Transactions', lc:'best-time-to-buy-and-sell-stock-iv',      gfg:null,    diff:'Hard',   yt:null},
     {id:211,name:'Distinct Subsequences',               lc:'distinct-subsequences',                       gfg:null,    diff:'Hard',   yt:null},
+    {id:312,name:'Longest Common Substring',            lc:null,                                          gfg:'https://www.geeksforgeeks.org/longest-common-substring-dp-29/', diff:'Medium', yt:null},
+    {id:313,name:'Shortest Common Supersequence',       lc:'shortest-common-supersequence',                gfg:null,    diff:'Hard',   yt:null},
+    {id:314,name:'Min Insertions to Make String Palindrome', lc:'minimum-insertion-steps-to-make-a-string-palindrome', gfg:null, diff:'Hard', yt:null},
+    {id:315,name:'Count Palindromic Subsequences',      lc:'count-palindromic-subsequences',               gfg:null,    diff:'Hard',   yt:null},
+    {id:316,name:'Minimum Cost to Cut Stick',           lc:'minimum-cost-to-cut-a-stick',                 gfg:null,    diff:'Hard',   yt:null},
+    {id:317,name:'Evaluate Expression to True (Boolean Parenthesization)', lc:null,                       gfg:'https://www.geeksforgeeks.org/boolean-parenthesization-problem-dp-37/', diff:'Hard', yt:null},
+    {id:318,name:'Target Sum (Count with +/-)',         lc:'target-sum',                                  gfg:null,    diff:'Medium', yt:null},
+    {id:319,name:'Minimum Switchover Cost (DP on Trees)',lc:null,                                         gfg:'https://www.geeksforgeeks.org/dp-on-trees/', diff:'Medium',               yt:null},
+    {id:320,name:'Ninja Training (3D DP)',              lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-maximum-points-can-obtained-from-n-tasks/', diff:'Medium', yt:null},
+    {id:321,name:'Largest Divisible Subset',            lc:'largest-divisible-subset',                    gfg:null,    diff:'Medium', yt:null},
+    {id:322,name:'Longest Bitonic Subsequence',         lc:null,                                          gfg:'https://www.geeksforgeeks.org/longest-bitonic-subsequence-dp-15/', diff:'Medium', yt:null},
+    {id:323,name:'Number of LIS (Count)',               lc:'number-of-longest-increasing-subsequence',    gfg:null,    diff:'Medium', yt:null},
+    {id:324,name:'Max Profit With at Most 2 Transactions', lc:'best-time-to-buy-and-sell-stock-iii',     gfg:null,    diff:'Hard',   yt:null},
+    {id:325,name:'Reducing Dishes (Greedy/DP)',         lc:'reducing-dishes',                             gfg:null,    diff:'Hard',   yt:null},
+    {id:326,name:'Minimum Score Triangulation of Polygon', lc:'minimum-score-triangulation-of-polygon',  gfg:null,    diff:'Medium', yt:null},
+    {id:327,name:'Strange Printer',                     lc:'strange-printer',                             gfg:null,    diff:'Hard',   yt:null},
     {id:212,name:'Count Subsets with Sum K',            lc:null,                                          gfg:'https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/', diff:'Medium', yt:null},
   ]
 },
 {
-  id:'backtrack', num:13, title:'Backtracking',
+  id:'backtrack', num:16, title:'Backtracking',
   problems:[
     {id:213,name:'N-Queens',                            lc:'n-queens',                                    gfg:null,    diff:'Hard',   yt:'https://www.youtube.com/watch?v=i05Ju7ABtkc'},
     {id:214,name:'Sudoku Solver',                       lc:'sudoku-solver',                               gfg:null,    diff:'Hard',   yt:'https://www.youtube.com/watch?v=FWAIf_EVUKE'},
@@ -555,7 +638,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'greedy', num:14, title:'Greedy',
+  id:'greedy', num:17, title:'Greedy',
   problems:[
     {id:226,name:'Fractional Knapsack',                 lc:null,                                          gfg:'https://www.geeksforgeeks.org/fractional-knapsack-problem/', diff:'Medium',        yt:null},
     {id:227,name:'Activity Selection / N Meetings',     lc:null,                                          gfg:'https://www.geeksforgeeks.org/n-meetings-in-one-room-using-greedy-algorithm/', diff:'Easy', yt:null},
@@ -571,7 +654,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'bits', num:15, title:'Bit Manipulation',
+  id:'bits', num:18, title:'Bit Manipulation',
   problems:[
     {id:237,name:'Number of 1 Bits (Count Set Bits)',   lc:'number-of-1-bits',                            gfg:null,    diff:'Easy',   yt:'https://www.youtube.com/watch?v=3Zv61L2ugcs'},
     {id:238,name:'Counting Bits (0 to n)',              lc:'counting-bits',                               gfg:null,    diff:'Easy',   yt:null},
@@ -582,11 +665,13 @@ const CHAPTERS = [
     {id:243,name:'Find Missing and Repeating (XOR)',    lc:null,                                          gfg:'https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/', diff:'Medium', yt:null},
     {id:244,name:'Pow(x, n) — Fast Exponentiation',    lc:'powx-n',                                      gfg:null,    diff:'Medium', yt:null},
     {id:245,name:'Divide Two Integers (Bit tricks)',    lc:'divide-two-integers',                         gfg:null,    diff:'Medium', yt:null},
+    {id:349,name:'Single Number II (3x+1)',             lc:'single-number-ii',                            gfg:null,    diff:'Medium', yt:null},
+    {id:350,name:'Minimum XOR Value Pair',              lc:null,                                          gfg:'https://www.geeksforgeeks.org/minimum-xor-value-pair/', diff:'Medium',      yt:null},
     {id:246,name:'Power Set using Bitmask',             lc:'subsets',                                     gfg:null,    diff:'Medium', yt:null},
   ]
 },
 {
-  id:'tries', num:16, title:'Tries',
+  id:'tries', num:19, title:'Tries',
   problems:[
     {id:247,name:'Implement Trie (Prefix Tree)',        lc:'implement-trie-prefix-tree',                  gfg:null,    diff:'Medium', yt:'https://www.youtube.com/watch?v=dBGUmUQhjaM'},
     {id:248,name:'Longest Common Prefix (Trie)',        lc:'longest-common-prefix',                       gfg:null,    diff:'Easy',   yt:null},
@@ -596,7 +681,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'heap', num:17, title:'Heaps (Priority Queue)',
+  id:'heap', num:20, title:'Heaps (Priority Queue)',
   problems:[
     {id:252,name:'Kth Largest Element in Array',        lc:'kth-largest-element-in-an-array',             gfg:null,    diff:'Medium', yt:null},
     {id:253,name:'Kth Smallest Element',                lc:'kth-smallest-element-in-a-sorted-matrix',     gfg:null,    diff:'Medium', yt:null},
@@ -674,7 +759,7 @@ function renderRow(p) {
   <div class="prob-links">
     ${lcUrl ? `<a href="${lcUrl}" target="_blank" rel="noopener" class="prob-link lc-link">LC ↗</a>` : ''}
     ${p.gfg ? `<a href="${p.gfg}" target="_blank" rel="noopener" class="prob-link gfg-link">GFG ↗</a>` : ''}
-    ${p.yt  ? `<a href="${p.yt}"  target="_blank" rel="noopener" class="prob-link yt-link">▶ YT</a>`  : ''}
+    <a href="${p.yt||`https://www.youtube.com/results?search_query=striver+${encodeURIComponent(p.name)}+a2z`}" target="_blank" rel="noopener" class="prob-link yt-link">▶ YT</a>
   </div>
   <div class="diff mobile-hide ${diffClass}">${p.diff}</div>
   <div>
