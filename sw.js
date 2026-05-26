@@ -1,4 +1,4 @@
-const CACHE = 'ai-roadmap-v112';
+const CACHE = 'ai-roadmap-v113';
 const ASSETS = [
   '/index.html',
   '/dsa.html',
