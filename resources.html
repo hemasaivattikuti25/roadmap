@@ -345,7 +345,28 @@
 
     .bnav-icon {
       font-size: 18px;
-      line-height: 1
+      line-height: 1;
+      position: relative;
+      display: inline-block;
+    }
+    .bnav-badge {
+      position: absolute;
+      top: -6px;
+      right: -10px;
+      background: #10B981;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: bold;
+      border-radius: 999px;
+      min-width: 14px;
+      height: 14px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0 3px;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+      border: 1px solid var(--bg-panel);
     }
 
     .bnav-label {
@@ -377,19 +398,255 @@
       <a href="index.html" class="nav-link">Roadmap</a>
       <a href="dsa.html" class="nav-link">DSA Sheet</a>
       <a href="resources.html" class="nav-link active">Resources</a>
-      <a href="timetable.html" class="nav-link">Timetable</a>
-      <a href="review.html" class="nav-link">Review</a>
+      <a href="interview.html" class="nav-link">Interview Prep</a>
     </div>
   </nav>
   <div class="main">
-    <div class="page-title">All Resources</div>
-    <div class="page-sub">Every F (fast) and Q (quality) resource across all 8 phases — in one place</div>
+    <div class="page-title">Resources &amp; Portfolio Projects</div>
+    <div class="page-sub">All 6 portfolio projects · Every F (fast) and Q (quality) resource across all 8 phases</div>
 
     <div class="tier-key">
-      <div class="tier-key-item"><span class="badge badge-f">F</span>Fast — optimised for time, covers everything
-        quickly</div>
+      <div class="tier-key-item"><span class="badge badge-f">F</span>Fast — optimised for time, covers everything quickly</div>
       <div class="tier-key-item"><span class="badge badge-q">Q</span>Quality — full mastery, deeper understanding</div>
     </div>
+
+    <!-- ══════════════════════════════════════════
+         PORTFOLIO PROJECTS — ALL 6
+    ══════════════════════════════════════════ -->
+    <div style="margin:24px 0 8px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dimmer);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;">
+        ◆ PORTFOLIO TARGETS — BACKEND &amp; AI ENGINEERING
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <!-- Project 1 -->
+        <div style="background:rgba(52,211,153,0.04);border:1px solid rgba(52,211,153,0.15);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div style="font-size:15px;font-weight:700;color:#34D399;">Project 1: Production Backend API</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(16,185,129,0.12);color:#10B981;border:1px solid rgba(16,185,129,0.2);">EASY</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(255,255,255,0.03);border:1px solid var(--border-res);color:var(--text-muted);">Python · FastAPI · PostgreSQL · Docker</span>
+            </div>
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Clean architectural layout: dynamic dependency injection, domain models, database repositories, custom Exception handlers. Learns robust production-grade API architecture.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;font-size:12px;font-family:'JetBrains Mono',monospace;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Redis Strategy</div><div style="color:var(--text-muted);">None in MVP context; pure relational persistence structure.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Async Setup</div><div style="color:var(--text-muted);">Using async session models (async/await) completely to prevent connection blockages.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Scaling Concerns</div><div style="color:var(--text-muted);">DB locking bottlenecks: implement connection pooling, configure proper query limits, index tables carefully.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Observability</div><div style="color:var(--text-muted);">Integrated standard logging to trace endpoint load metrics and write error telemetry directly.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;font-size:12px;">
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">API Endpoints</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#60A5FA;">
+                <li>• POST /users — create account with validation</li>
+                <li>• POST /login — stateless token generation</li>
+                <li>• GET /items — dynamic query + pagination</li>
+                <li>• PUT /items/{id} — atomic record modification</li>
+              </ul>
+            </div>
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">Dev Checks</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+                <li>• Write structural Pydantic schemas with strict regex validation</li>
+                <li>• Configure unified error middleware for unhandled exceptions</li>
+                <li>• Deploy Docker containers with isolated DB databases</li>
+              </ul>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:6px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+            <span style="font-weight:bold;color:#F59E0B;font-size:9px;text-transform:uppercase;display:block;margin-bottom:3px;">Prod Stack Concern</span>
+            CORS configurations, input boundaries sanitization, database connection timeouts.
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div style="background:rgba(96,165,250,0.04);border:1px solid rgba(96,165,250,0.15);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div style="font-size:15px;font-weight:700;color:#60A5FA;">Project 2: Scalable URL Shortener</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(16,185,129,0.12);color:#10B981;border:1px solid rgba(16,185,129,0.2);">EASY</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(255,255,255,0.03);border:1px solid var(--border-res);color:var(--text-muted);">Python · FastAPI · Redis · Docker</span>
+            </div>
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">High-speed redirection engine. Focuses on in-memory operations, rapid lookups, custom analytics writing, and route protection.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;font-size:12px;font-family:'JetBrains Mono',monospace;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Redis Strategy</div><div style="color:var(--text-muted);">String storage for direct redirects, Hashes for analytics, rate-limiting counters.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Async Setup</div><div style="color:var(--text-muted);">Non-blocking Redis await operations for single-digit millisecond latency responses.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Scaling Concerns</div><div style="color:var(--text-muted);">Massive simultaneous reads: Redis as primary read-path, offload analytics to lazy writers.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Observability</div><div style="color:var(--text-muted);">Sliding window click tracking. Monitor cache hit-ratio to verify optimization quality.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;font-size:12px;">
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">API Endpoints</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#60A5FA;">
+                <li>• POST /shorten — generate short slug with custom TTL</li>
+                <li>• GET /{slug} — performance-centric redirect + analytics</li>
+                <li>• GET /analytics/{slug} — hit maps and visitor metadata</li>
+              </ul>
+            </div>
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">Dev Checks</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+                <li>• Implement sliding rate-limiter in Redis to prevent API abuse</li>
+                <li>• Build lightweight dashboard displaying URL performance maps</li>
+                <li>• Dockerize API and Redis setup under local container networking</li>
+              </ul>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:6px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+            <span style="font-weight:bold;color:#F59E0B;font-size:9px;text-transform:uppercase;display:block;margin-bottom:3px;">Prod Stack Concern</span>
+            High-concurrency cache eviction policies, thundering herds mitigation, securing redirects from infinite loops.
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div style="background:rgba(167,139,250,0.04);border:1px solid rgba(167,139,250,0.15);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div style="font-size:15px;font-weight:700;color:#A78BFA;">Project 3: Async File Processor</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(245,158,11,0.12);color:#F59E0B;border:1px solid rgba(245,158,11,0.2);">MEDIUM</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(255,255,255,0.03);border:1px solid var(--border-res);color:var(--text-muted);">Python · FastAPI · Redis · Celery · Docker</span>
+            </div>
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Distributed queue architecture. FastAPI acts as gateway, passing heavy jobs to Redis broker, which hands them to a decoupled Celery task engine.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;font-size:12px;font-family:'JetBrains Mono',monospace;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Redis Strategy</div><div style="color:var(--text-muted);">Acts as high-speed messaging broker queue and storage backing for Celery workers.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Async Setup</div><div style="color:var(--text-muted);">Complete non-blocking client interaction. HTTP calls return in 10ms; calculations run on backends.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Scaling Concerns</div><div style="color:var(--text-muted);">Queue clogging: implement separate queues for fast vs slow tasks. Scale consumer pods independently.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Observability</div><div style="color:var(--text-muted);">Flower dashboard to monitor queue health. Active task tracing metrics.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;font-size:12px;">
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">API Endpoints</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#60A5FA;">
+                <li>• POST /tasks/process — dispatch job, returns task_id</li>
+                <li>• GET /tasks/status/{id} — poll task completion + telemetry</li>
+              </ul>
+            </div>
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">Dev Checks</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+                <li>• Launch Celery worker container in Docker Compose</li>
+                <li>• Set retry policies on worker tasks for unstable API failures</li>
+                <li>• Integrate polling loop reporting granular task state</li>
+              </ul>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:6px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+            <span style="font-weight:bold;color:#F59E0B;font-size:9px;text-transform:uppercase;display:block;margin-bottom:3px;">Prod Stack Concern</span>
+            Task durability: ensure workers retry crashed file processes. Clean up system file paths safely.
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div style="background:rgba(251,191,36,0.04);border:1px solid rgba(251,191,36,0.15);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div style="font-size:15px;font-weight:700;color:#FBBF24;">Project 4: Real-Time Chat Backend</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(245,158,11,0.12);color:#F59E0B;border:1px solid rgba(245,158,11,0.2);">MEDIUM</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(255,255,255,0.03);border:1px solid var(--border-res);color:var(--text-muted);">FastAPI · Redis · Docker-Compose</span>
+            </div>
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Subscribing routing engine. Handles persistent WebSocket pipelines, using Redis Pub/Sub to mirror chat streams horizontally across multiple backend nodes.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;font-size:12px;font-family:'JetBrains Mono',monospace;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Redis Strategy</div><div style="color:var(--text-muted);">Redis Pub/Sub coordinates multiple running backend nodes to synchronize chat rooms globally.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Async Setup</div><div style="color:var(--text-muted);">Asyncio loops coordinate reading and writing on sockets simultaneously.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Scaling Concerns</div><div style="color:var(--text-muted);">Memory leaks on dangling handles. Max connection bottlenecks: keep state metadata in memory low.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Observability</div><div style="color:var(--text-muted);">Connection lifetime telemetry tracking socket closures.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;font-size:12px;">
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">API Endpoints</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#60A5FA;">
+                <li>• WS /ws/chat/{room_id} — persistent duplex pipeline</li>
+              </ul>
+            </div>
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">Dev Checks</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+                <li>• Implement keepalive ping loops to close inactive connections</li>
+                <li>• Write Pub/Sub listeners in asyncio task loops</li>
+                <li>• Set security middleware checking auth query params</li>
+              </ul>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:6px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+            <span style="font-weight:bold;color:#F59E0B;font-size:9px;text-transform:uppercase;display:block;margin-bottom:3px;">Prod Stack Concern</span>
+            WebSocket handshaking validation, token checking over connection requests, standard connection heartbeats.
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div style="background:rgba(244,63,94,0.04);border:1px solid rgba(244,63,94,0.15);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div style="font-size:15px;font-weight:700;color:#FB7185;">Project 5: Semantical RAG System</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(244,63,94,0.12);color:#FB7185;border:1px solid rgba(244,63,94,0.2);">HARD</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(255,255,255,0.03);border:1px solid var(--border-res);color:var(--text-muted);">FastAPI · PostgreSQL · pgvector · Google GenAI SDK</span>
+            </div>
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Vector ingestion pipeline. Ingests PDFs, chunks structurally, saves similarity indexes inside pgvector, and injects context into Gemini prompt loops.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;font-size:12px;font-family:'JetBrains Mono',monospace;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Redis Strategy</div><div style="color:var(--text-muted);">Semantic caching of similarity queries — resolving repeating questions instantly without hitting LLM API gateways.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Async Setup</div><div style="color:var(--text-muted);">Async streams yield tokens one by one (Server-Sent Events) for real-time generative layouts.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Scaling Concerns</div><div style="color:var(--text-muted);">Embedding throughput limitations. HNSW vector index tuning. Prompt token size allocations.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Observability</div><div style="color:var(--text-muted);">Token calculation logging. Grounding metrics measuring retrieved relevance distances.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;font-size:12px;">
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">API Endpoints</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#60A5FA;">
+                <li>• POST /documents/ingest — process incoming documents</li>
+                <li>• POST /chat/query — query pipeline, returns streamed context-grounded AI text</li>
+              </ul>
+            </div>
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">Dev Checks</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+                <li>• Build semantic chunker slicing paragraphs at real boundary intersections</li>
+                <li>• Expose search routes matching queries with pgvector Cosine Metrics</li>
+                <li>• Implement conversational model interface tracking histories dynamically</li>
+              </ul>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:6px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+            <span style="font-weight:bold;color:#F59E0B;font-size:9px;text-transform:uppercase;display:block;margin-bottom:3px;">Prod Stack Concern</span>
+            Prompt Injection attacks, document format safety, caching expirations, system constraints enforcement.
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div style="background:rgba(139,92,246,0.04);border:1px solid rgba(139,92,246,0.15);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div style="font-size:15px;font-weight:700;color:#8B5CF6;">Project 6: AI Workflow System</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(244,63,94,0.12);color:#FB7185;border:1px solid rgba(244,63,94,0.2);">HARD</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:bold;background:rgba(255,255,255,0.03);border:1px solid var(--border-res);color:var(--text-muted);">FastAPI · PostgreSQL · LangGraph · Google GenAI API · Langfuse</span>
+            </div>
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Functional graph state machine. Models multi-turn AI reasoning loops with strict validation schemas and automated fallbacks.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;font-size:12px;font-family:'JetBrains Mono',monospace;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Redis Strategy</div><div style="color:var(--text-muted);">Session state variables cache, locking concurrent operations.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Async Setup</div><div style="color:var(--text-muted);">Runs concurrent LLM queries dynamically via async gathers in appropriate graph nodes.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Scaling Concerns</div><div style="color:var(--text-muted);">Concurrent state mutations: serialize graph paths. Manage API Rate Limits on multiple API hubs.</div></div>
+            <div><div style="color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;">Observability</div><div style="color:var(--text-muted);">Telemetry tracking latency, step completion ratios, and dollar spend statistics on API loops.</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;font-size:12px;">
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">API Endpoints</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#60A5FA;">
+                <li>• POST /workflow/run — execute structured AI task, returns state node logs</li>
+                <li>• GET /workflow/traces — audit execution footprints and trace output logs</li>
+              </ul>
+            </div>
+            <div><div style="font-family:'JetBrains Mono',monospace;color:var(--text-dimmer);font-size:9px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;">Dev Checks</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+                <li>• Write complete Pydantic model configurations verifying model structure parameters</li>
+                <li>• Configure error recovery nodes dynamically shifting tasks to fallback APIs</li>
+                <li>• Deploy full-stack gateway dashboard to audit execution histories</li>
+              </ul>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:6px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
+            <span style="font-weight:bold;color:#F59E0B;font-size:9px;text-transform:uppercase;display:block;margin-bottom:3px;">Prod Stack Concern</span>
+            Fail-safe state recovery if an intermediate step crashes. Auto-retries with exponential backoffs.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="height:1px;background:rgba(255,255,255,0.07);margin:28px 0;"></div>
 
 
     <!-- PHASE 1 -->
@@ -1174,25 +1431,23 @@
 
   <nav class="bottom-nav">
     <a href="index.html" class="bnav-item">
-      <span class="bnav-icon">🗺️</span>
+      <span class="bnav-icon">
+        🗺️
+        <span class="bnav-badge" id="roadmap-badge"></span>
+      </span>
       <span class="bnav-label">Roadmap</span>
     </a>
-  <a href="dsa.html" class="bnav-item">
-    <span class="bnav-icon">📝</span>
-    <span class="bnav-label">DSA</span>
-  </a>
-
+    <a href="dsa.html" class="bnav-item">
+      <span class="bnav-icon">📝</span>
+      <span class="bnav-label">DSA</span>
+    </a>
     <a href="resources.html" class="bnav-item active">
       <span class="bnav-icon">📚</span>
       <span class="bnav-label">Resources</span>
     </a>
-    <a href="timetable.html" class="bnav-item">
-      <span class="bnav-icon">⏰</span>
-      <span class="bnav-label">Timetable</span>
-    </a>
-    <a href="review.html" class="bnav-item">
-      <span class="bnav-icon">✅</span>
-      <span class="bnav-label">Review</span>
+    <a href="interview.html" class="bnav-item">
+      <span class="bnav-icon">💼</span>
+      <span class="bnav-label">Interview</span>
     </a>
   </nav>
 <script>
@@ -1205,6 +1460,20 @@ function toggleTheme(){
 }
 /* theme init moved to <head> */
 if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+
+function updateRoadmapNavBadge() {
+  const completedPhasesCount = parseInt(localStorage.getItem('sai_completed_phases_count') || '0', 10);
+  const badge = document.getElementById('roadmap-badge');
+  if (badge) {
+    if (completedPhasesCount > 0) {
+      badge.textContent = completedPhasesCount;
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', updateRoadmapNavBadge);
 </script>
 </body>
 

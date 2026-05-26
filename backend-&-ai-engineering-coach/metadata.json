@@ -1,0 +1,6 @@
+{
+  "name": "Backend & AI Engineering Coach",
+  "description": "An AI-native learning execution planner and coaching dashboard for backend + applied AI engineering preparation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

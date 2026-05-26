@@ -180,12 +180,14 @@ a{text-decoration:none;color:inherit}
 .res-link{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:7px;background:var(--bg-topic);border:1px solid var(--border-res);transition:all .15s;cursor:pointer}
 .res-link:hover{border-color:rgba(255,255,255,0.18);transform:translateX(2px)}
 .res-tier{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;letter-spacing:.06em}
-.res-f{background:rgba(52,211,153,.12);color:#34D399;border:1px solid rgba(52,211,153,.25)}
-.res-q{background:rgba(167,139,250,.12);color:#A78BFA;border:1px solid rgba(167,139,250,.25)}
+.res-q{background:rgba(16,185,129,.12);color:#10B981;border:1px solid rgba(16,185,129,.25)}
+.res-f{background:rgba(59,130,246,.12);color:#3B82F6;border:1px solid rgba(59,130,246,.25)}
+.res-f2{background:rgba(245,158,11,.12);color:#F59E0B;border:1px solid rgba(245,158,11,.25)}
 .res-body{flex:1;min-width:0}
 .res-name{font-size:14px;margin-bottom:3px;line-height:1.4}
-.res-f .res-name-f,.res-name-f{color:#34D399}
-.res-name-q{color:#A78BFA}
+.res-name-q{color:#10B981}
+.res-name-f{color:#3B82F6}
+.res-name-f2{color:#F59E0B}
 .res-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);line-height:1.4}
 
 /* BOTTOM STRIP */
@@ -206,7 +208,8 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
 .bnav-item:hover{color:var(--text-muted)}
 .bnav-item.active{color:#FBBF24}
 .bnav-item.active .bnav-icon{color:#FBBF24}
-.bnav-icon{font-size:18px;line-height:1}
+.bnav-icon{font-size:18px;line-height:1;position:relative;display:inline-block}
+.bnav-badge{position:absolute;top:-6px;right:-10px;background:#10B981;color:#fff;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:bold;border-radius:999px;min-width:14px;height:14px;display:none;align-items:center;justify-content:center;padding:0 3px;box-shadow:0 0 6px rgba(16,185,129,.4);border:1px solid var(--bg-panel)}
 .bnav-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;line-height:1}
 
 @media(max-width:640px){
@@ -225,6 +228,76 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
   .milestone-range{min-width:70px;font-size:10px}
   .milestone-result{font-size:13px}
 }
+
+
+    /* Sleek Subtopic Links UI */
+    .subtopic-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-dimmer);
+      letter-spacing: 0.14em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-mild);
+      padding-bottom: 6px;
+    }
+    .subtopics-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .st-item {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 14px;
+      background: var(--bg-topic);
+      border: 1px solid var(--border-res);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .st-item:hover {
+      border-color: var(--tc45);
+      transform: translateX(2px);
+      background: var(--bg-topic-hover);
+    }
+    .st-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .st-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-body);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .st-name i {
+      display: none;
+    }
+    .st-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .st-bar-bg {
+      height: 4px;
+      background: var(--border-mild);
+      border-radius: 2px;
+      overflow: hidden;
+      width: 100%;
+    }
+    .st-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 </style>
 </head>
 <body>
@@ -232,14 +305,17 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
 <nav class="nav">
   <div class="nav-top">
     <div class="nav-logo"><div class="pulse"></div>AI Roadmap</div>
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button id="pwa-install-btn" style="display:none;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);border-radius:6px;cursor:pointer;color:#60A5FA;font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 8px;font-weight:600;transition:all 0.2s;">📱 Install App</button>
+      <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    </div>
   </div>
   <div class="nav-links">
     <a href="index.html" class="nav-link active">Roadmap</a>
     <a href="dsa.html" class="nav-link">DSA Sheet</a>
     <a href="resources.html" class="nav-link">Resources</a>
-    <a href="timetable.html" class="nav-link">Timetable</a>
-    <a href="review.html" class="nav-link">Review</a>
+    <a href="interview.html" class="nav-link">Interview Prep</a>
+    <button class="nav-link" id="tracker-btn" onclick="toggleTracker()" style="background:transparent;border:1px solid rgba(52,211,153,0.3);border-radius:4px;cursor:pointer;color:#34D399;font-family:'JetBrains Mono',monospace;font-size:10px;padding:6px 10px;margin-left:auto;">📊 Weekly Tracker</button>
   </div>
 </nav>
 
@@ -249,15 +325,24 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
     <div class="header-title">Stack: Python → FastAPI → PostgreSQL → LLMs → RAG → Agents</div>
     <div class="tier-row">
       <div class="tier-item">
-        <span class="tier-badge tier-f">F</span>
-        <span class="tier-text">Fast — covers everything · optimised for time · use under 6-month pressure</span>
+        <span class="tier-badge res-q" style="background:rgba(16,185,129,.12);color:#10B981;border:1.5px solid rgba(16,185,129,.25);border-radius:4px;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600">Docs</span>
+        <span class="tier-text">Official Docs — Source of Truth</span>
       </div>
       <div class="tier-item">
-        <span class="tier-badge tier-q">Q</span>
-        <span class="tier-text">Quality — deeper understanding · full mastery · use for 12-month approach</span>
+        <span class="tier-badge res-f" style="background:rgba(59,130,246,.12);color:#3B82F6;border:1.5px solid rgba(59,130,246,.25);border-radius:4px;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600">Fast 1</span>
+        <span class="tier-text">Fast Resource 1 — Quick Conceptual Understanding</span>
+      </div>
+      <div class="tier-item">
+        <span class="tier-badge res-f2" style="background:rgba(245,158,11,.12);color:#F59E0B;border:1.5px solid rgba(245,158,11,.25);border-radius:4px;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600">Fast 2</span>
+        <span class="tier-text">Fast Resource 2 — Practical / Project-oriented</span>
       </div>
     </div>
   </div>
+</div>
+
+<!-- ROADMAP TRACKER PANEL -->
+<div id="tracker-panel" style="display:none;margin:0;padding:12px 14px 0;background:var(--bg-panel);border-bottom:1px solid var(--border-nav);">
+  <div id="tracker-inner"></div>
 </div>
 
 <div class="main" id="main"><!-- phases injected by JS --></div>
@@ -266,7 +351,10 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
 
 <nav class="bottom-nav">
   <a href="index.html" class="bnav-item active">
-    <span class="bnav-icon">🗺️</span>
+    <span class="bnav-icon">
+      🗺️
+      <span class="bnav-badge" id="roadmap-badge"></span>
+    </span>
     <span class="bnav-label">Roadmap</span>
   </a>
   <a href="dsa.html" class="bnav-item">
@@ -277,13 +365,9 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
     <span class="bnav-icon">📚</span>
     <span class="bnav-label">Resources</span>
   </a>
-  <a href="timetable.html" class="bnav-item">
-    <span class="bnav-icon">⏰</span>
-    <span class="bnav-label">Timetable</span>
-  </a>
-  <a href="review.html" class="bnav-item">
-    <span class="bnav-icon">✅</span>
-    <span class="bnav-label">Review</span>
+  <a href="interview.html" class="bnav-item">
+    <span class="bnav-icon">💼</span>
+    <span class="bnav-label">Interview</span>
   </a>
 </nav>
 
@@ -293,467 +377,2245 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
 ───────────────────────────────────────────── */
 const PHASES = [
   {
-    id: "DSA",
-    label: "PARALLEL · EVERY DAY",
-    title: "DSA — Java (Striver A2Z)",
-    subtitle: "Run this every single day in parallel · 2–3 problems/day",
-    tags: ["Striver A2Z Sheet","2–3 problems/day","Arrays → LinkedList → Trees → Graphs → DP"],
-    color: "#A78BFA",
-    optional: false,
-    mentor: {
-      output: ["Solve 150+ problems by end of 6 months","Explain any solution's time & space complexity","Pass standard DSA screening rounds"],
-      mistakes: ["Jumping topics randomly — follow A2Z sheet in order","Watching solutions without attempting 30min first","Skipping revision of solved problems"],
-      apply: "DSA interviews start at any time. 50+ problems = start applying internships."
-    },
-    topics: [
+    "id": 1,
+    "label": "PHASE 1",
+    "title": "Python Engineering",
+    "subtitle": "Fundamentals \u00b7 OOP \u00b7 Asyncio \u00b7 Tooling",
+    "tags": [
+      "Python",
+      "OOP",
+      "Async",
+      "Tooling"
+    ],
+    "color": "#34D399",
+    "optional": false,
+    "topics": [
       {
-        name: "Striver A2Z Sheet",
-        tags: ["Arrays","Binary Search","LinkedList","Stack/Queue","Trees","Graphs","DP","Backtracking"],
-        why: "The single most structured DSA path for product company interviews. Follow in order. Do not skip.",
-        fast: { label:"Striver A2Z Sheet — takeuforward.org", url:"https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/" },
-        quality: { label:"Abdul Bari DSA Full Course — YouTube", url:"https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O" }
+        "name": "Python Fundamentals",
+        "tags": [
+          "Variables",
+          "Functions",
+          "Loops",
+          "Typing"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.python.org/3/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/playlist?list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://realpython.com/"
+        },
+        "subtopics": [
+          {
+            "name": "Variables and data types",
+            "rating": 10,
+            "desc": "Basic language fluency",
+            "url": "https://docs.python.org/3/tutorial/datastructures.html"
+          },
+          {
+            "name": "Functions",
+            "rating": 10,
+            "desc": "Core abstraction skill",
+            "url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions"
+          },
+          {
+            "name": "Scope and closures",
+            "rating": 7,
+            "desc": "Interviews + decorators",
+            "url": "https://docs.python.org/3/tutorial/classes.html#python-scopes-and-namespaces"
+          },
+          {
+            "name": "Comprehensions",
+            "rating": 8,
+            "desc": "Python fluency",
+            "url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions"
+          },
+          {
+            "name": "Iterators and generators",
+            "rating": 9,
+            "desc": "Memory/performance/interviews",
+            "url": "https://docs.python.org/3/howto/functional.html#generators"
+          },
+          {
+            "name": "Decorators",
+            "rating": 8,
+            "desc": "Framework understanding",
+            "url": "https://docs.python.org/3/glossary.html#term-decorator"
+          },
+          {
+            "name": "Context managers",
+            "rating": 8,
+            "desc": "Resource management",
+            "url": "https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers"
+          },
+          {
+            "name": "Exception handling",
+            "rating": 10,
+            "desc": "Reliability",
+            "url": "https://docs.python.org/3/tutorial/errors.html"
+          },
+          {
+            "name": "File I/O",
+            "rating": 7,
+            "desc": "Common backend tasks",
+            "url": "https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files"
+          },
+          {
+            "name": "Modules and packages",
+            "rating": 9,
+            "desc": "Code organization",
+            "url": "https://docs.python.org/3/tutorial/modules.html"
+          },
+          {
+            "name": "Imports",
+            "rating": 8,
+            "desc": "Architecture/debugging",
+            "url": "https://docs.python.org/3/reference/import.html"
+          },
+          {
+            "name": "Typing",
+            "rating": 9,
+            "desc": "Production Python",
+            "url": "https://docs.python.org/3/library/typing.html"
+          },
+          {
+            "name": "Dataclasses",
+            "rating": 7,
+            "desc": "Cleaner models",
+            "url": "https://docs.python.org/3/library/dataclasses.html"
+          },
+          {
+            "name": "Enums",
+            "rating": 5,
+            "desc": "Useful but minor",
+            "url": "https://docs.python.org/3/library/enum.html"
+          }
+        ]
+      },
+      {
+        "name": "Asyncio + Concurrency",
+        "tags": [
+          "asyncio",
+          "Event loop",
+          "Coroutines"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.python.org/3/library/asyncio.html"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://realpython.com/async-io-python/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://fastapi.tiangolo.com/async/"
+        },
+        "subtopics": [
+          {
+            "name": "Threads",
+            "rating": 7,
+            "desc": "Parallel execution",
+            "url": "https://docs.python.org/3/library/threading.html"
+          },
+          {
+            "name": "Multiprocessing",
+            "rating": 6,
+            "desc": "CPU bound tasks",
+            "url": "https://docs.python.org/3/library/multiprocessing.html"
+          },
+          {
+            "name": "asyncio",
+            "rating": 10,
+            "desc": "Critical for AI/Backend",
+            "url": "https://docs.python.org/3/library/asyncio.html"
+          },
+          {
+            "name": "Event loop",
+            "rating": 9,
+            "desc": "Core architecture",
+            "url": "https://docs.python.org/3/library/asyncio-eventloop.html"
+          },
+          {
+            "name": "Coroutines",
+            "rating": 9,
+            "desc": "Async functions",
+            "url": "https://docs.python.org/3/library/asyncio-task.html"
+          },
+          {
+            "name": "async/await",
+            "rating": 10,
+            "desc": "Syntax fluency",
+            "url": "https://docs.python.org/3/library/asyncio-task.html"
+          },
+          {
+            "name": "Concurrency vs parallelism",
+            "rating": 10,
+            "desc": "Interview differentiator",
+            "url": "https://docs.python.org/3/library/concurrency.html"
+          }
+        ]
+      },
+      {
+        "name": "Testing",
+        "tags": [
+          "pytest",
+          "TDD",
+          "Mocking"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.pytest.org/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=cHYq1MRoyI0"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=6tNS--WetLI"
+        },
+        "subtopics": [
+          {
+            "name": "pytest",
+            "rating": 9,
+            "desc": "Standard test runner",
+            "url": "https://docs.pytest.org/"
+          },
+          {
+            "name": "fixtures",
+            "rating": 9,
+            "desc": "Setup and teardown logic",
+            "url": "https://docs.pytest.org/en/stable/explanation/fixtures.html"
+          },
+          {
+            "name": "mocking",
+            "rating": 9,
+            "desc": "Mocking external services",
+            "url": "https://docs.python.org/3/library/unittest.mock.html"
+          },
+          {
+            "name": "TDD basics",
+            "rating": 8,
+            "desc": "Test-driven patterns",
+            "url": "https://docs.pytest.org/"
+          },
+          {
+            "name": "Integration tests",
+            "rating": 8,
+            "desc": "Testing overall flows",
+            "url": "https://docs.pytest.org/en/stable/how-to/index.html"
+          }
+        ]
+      },
+      {
+        "name": "Typing",
+        "tags": [
+          "Mypy",
+          "Static Type Analysis",
+          "Type hints"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.python.org/3/library/typing.html"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://mypy.readthedocs.io/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://realpython.com/python-type-checking/"
+        },
+        "subtopics": [
+          {
+            "name": "Type hints",
+            "rating": 9,
+            "desc": "Defining parameter types",
+            "url": "https://docs.python.org/3/library/typing.html"
+          },
+          {
+            "name": "Mypy checks",
+            "rating": 9,
+            "desc": "Static analysis execution",
+            "url": "https://mypy.readthedocs.io/en/stable/"
+          },
+          {
+            "name": "Generic types",
+            "rating": 8,
+            "desc": "Flexible type declarations",
+            "url": "https://docs.python.org/3/library/typing.html#generics"
+          },
+          {
+            "name": "Union & Optional",
+            "rating": 9,
+            "desc": "Multi-type validation",
+            "url": "https://docs.python.org/3/library/typing.html#typing.Union"
+          }
+        ]
       }
     ]
   },
   {
-    id: 1,
-    label: "PHASE 1",
-    title: "Python Foundation",
-    subtitle: "Core · OOP · Decorators · Generators · Async",
-    tags: ["Core","OOP","Decorators","Generators","Async/Await","File I/O"],
-    color: "#34D399",
-    optional: false,
-    mentor: {
-      output: ["Write any Python script from scratch without searching syntax","Explain async/await and event loop in an interview","Write a decorator and a generator in under 2 minutes"],
-      mistakes: ["Spending 3 weeks on basics — max 2 weeks then move forward","Using Jupyter only — practice in .py files like a real engineer","Skipping async — FastAPI requires it"],
-      tasks: ["Build a CLI task manager with OOP","Write a caching decorator from scratch","Implement an async file reader with asyncio"]
-    },
-    topics: [
+    "id": 2,
+    "label": "PHASE 2",
+    "title": "FastAPI + Backend Engineering",
+    "subtitle": "HTTP \u00b7 REST APIs \u00b7 Auth",
+    "tags": [
+      "FastAPI",
+      "REST",
+      "JWT",
+      "Backend"
+    ],
+    "color": "#60A5FA",
+    "optional": false,
+    "topics": [
       {
-        name: "Python Core + OOP",
-        tags: ["Variables","Functions","Classes","Inheritance","Dunder methods","@property","@classmethod"],
-        why: "Everything in your stack runs on Python. Weak Python = constant blocker in every single phase ahead.",
-        fast: { label:"Python Full Course — Mosh Hamedani · 6h · YouTube", url:"https://www.youtube.com/watch?v=_uQrJ0TkZlc" },
-        quality: { label:"Python Tutorial Playlist — Corey Schafer · YouTube", url:"https://www.youtube.com/playlist?list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU" }
+        "name": "FastAPI",
+        "tags": [
+          "FastAPI Core",
+          "Routing",
+          "DI"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://fastapi.tiangolo.com/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://github.com/jod35/fastapi-beyond-CRUD"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA"
+        },
+        "subtopics": [
+          {
+            "name": "Routing",
+            "rating": 10,
+            "desc": "Endpoint definition",
+            "url": "https://fastapi.tiangolo.com/tutorial/bigger-applications/"
+          },
+          {
+            "name": "Dependency injection",
+            "rating": 9,
+            "desc": "Reusability",
+            "url": "https://fastapi.tiangolo.com/tutorial/dependencies/"
+          },
+          {
+            "name": "Pydantic",
+            "rating": 10,
+            "desc": "Data validation",
+            "url": "https://docs.pydantic.dev/latest/"
+          },
+          {
+            "name": "Async endpoints",
+            "rating": 10,
+            "desc": "I/O bound performance",
+            "url": "https://fastapi.tiangolo.com/async/"
+          },
+          {
+            "name": "Middleware",
+            "rating": 8,
+            "desc": "Request modification",
+            "url": "https://fastapi.tiangolo.com/tutorial/middleware/"
+          },
+          {
+            "name": "Background tasks",
+            "rating": 7,
+            "desc": "Offloading work",
+            "url": "https://fastapi.tiangolo.com/tutorial/background-tasks/"
+          },
+          {
+            "name": "File uploads",
+            "rating": 6,
+            "desc": "Handling binary",
+            "url": "https://fastapi.tiangolo.com/tutorial/request-files/"
+          },
+          {
+            "name": "WebSockets",
+            "rating": 8,
+            "desc": "Real-time comms",
+            "url": "https://fastapi.tiangolo.com/advanced/websockets/"
+          },
+          {
+            "name": "Streaming responses",
+            "rating": 9,
+            "desc": "LLM token streams",
+            "url": "https://fastapi.tiangolo.com/advanced/custom-response/#streamingresponse"
+          }
+        ]
       },
       {
-        name: "Decorators + Generators + Async",
-        tags: ["@decorator","yield","async/await","event loop","asyncio.gather","context managers"],
-        why: "FastAPI is built on async. Decorators are used everywhere in real codebases. Skipping these makes you stuck at Phase 2.",
-        fast: { label:"Python Asyncio — ArjanCodes · 1h · YouTube", url:"https://www.youtube.com/watch?v=2IW-ZEui4h4" },
-        quality: { label:"asyncio Official Docs — Python 3", url:"https://docs.python.org/3/library/asyncio.html" }
+        "name": "HTTP Protocols",
+        "tags": [
+          "Request/Response",
+          "Methods",
+          "Headers"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=iYM2zFP3Zn0"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://restfulapi.net/"
+        },
+        "subtopics": [
+          {
+            "name": "HTTP lifecycle",
+            "rating": 10,
+            "desc": "Core web knowledge",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
+          },
+          {
+            "name": "Request/response model",
+            "rating": 10,
+            "desc": "Communication design",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages"
+          },
+          {
+            "name": "Methods and status codes",
+            "rating": 10,
+            "desc": "REST standards",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status"
+          },
+          {
+            "name": "Headers and cookies",
+            "rating": 8,
+            "desc": "Metadata passing",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies"
+          },
+          {
+            "name": "Serialization",
+            "rating": 8,
+            "desc": "JSON encoding",
+            "url": "https://developer.mozilla.org/en-US/docs/Glossary/Serialization"
+          }
+        ]
       },
       {
-        name: "Error Handling + File I/O + Env",
-        tags: ["try/except","custom exceptions","pathlib","json","csv","dotenv",".env files"],
-        why: "Production code fails gracefully. Every real project reads config from env vars and handles errors properly.",
-        fast: { label:"Python Error Handling — Corey Schafer · YouTube", url:"https://www.youtube.com/watch?v=NIWwJbo-9_8" },
-        quality: { label:"Python 3 Official Tutorial — docs.python.org", url:"https://docs.python.org/3/tutorial/" }
+        "name": "Auth + Security",
+        "tags": [
+          "JWT",
+          "BCrypt",
+          "FastAPI Security"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://fastapi.tiangolo.com/tutorial/security/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://jwt.io/introduction/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=UBUNrFtufWo"
+        },
+        "subtopics": [
+          {
+            "name": "Authentication",
+            "rating": 10,
+            "desc": "Who you are",
+            "url": "https://fastapi.tiangolo.com/tutorial/security/"
+          },
+          {
+            "name": "Authorization",
+            "rating": 10,
+            "desc": "What you can do",
+            "url": "https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/"
+          },
+          {
+            "name": "JWT",
+            "rating": 9,
+            "desc": "Stateless auth",
+            "url": "https://jwt.io/introduction/"
+          },
+          {
+            "name": "Password hashing",
+            "rating": 9,
+            "desc": "Bcrypt security",
+            "url": "https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/"
+          },
+          {
+            "name": "OAuth2 scopes",
+            "rating": 8,
+            "desc": "Access delegation",
+            "url": "https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/"
+          }
+        ]
       }
     ]
   },
   {
-    id: 2,
-    label: "PHASE 2",
-    title: "Backend + Database + API Design + Project 1",
-    subtitle: "FastAPI · Pydantic · Auth · PostgreSQL · Redis · REST Design",
-    tags: ["FastAPI","Pydantic","JWT Auth","PostgreSQL","Redis","REST API","pytest","LLD"],
-    color: "#60A5FA",
-    optional: false,
-    project: {
-      name: "Project 1: Smart Todo API",
-      idea: "A production-grade REST API with auth, rate limiting, caching, and PostgreSQL persistence.",
-      features: ["JWT register/login","CRUD tasks with categories","Redis rate limiting (100 req/min)","Search with PostgreSQL full-text","Pagination + sorting","Swagger UI auto-docs"],
-      stack: ["FastAPI","PostgreSQL","SQLAlchemy","Redis","Docker","pytest"],
-      flow: "Client → FastAPI router → JWT middleware → Depends() injection → SQLAlchemy ORM → PostgreSQL\n       ↳ Redis (rate limiter, cache hot responses)\n       ↳ pytest (unit + integration tests)"
-    },
-    mentor: {
-      output: ["Build and deploy a FastAPI app with auth from scratch","Explain JWT flow, OAuth2, dependency injection in interview","Write proper REST API with pagination, versioning, error handling","Write unit tests with pytest"],
-      mistakes: ["Building without tests — interviewers ask about testing","Not reading error messages — learn to debug before Googling","Using SQLite — always use PostgreSQL, that's what production uses"],
-      tasks: ["Build the Smart Todo API (Project 1)","Write 20 pytest tests for 5 endpoints"]
-    },
-    topics: [
+    "id": 3,
+    "label": "PHASE 3",
+    "title": "PostgreSQL",
+    "subtitle": "SQL \u00b7 Indexing \u00b7 Optimization",
+    "tags": [
+      "PostgreSQL",
+      "SQL",
+      "ACID",
+      "Optimization"
+    ],
+    "color": "#C084FC",
+    "optional": false,
+    "topics": [
       {
-        name: "FastAPI Core",
-        tags: ["Routing","Path/Query params","Pydantic models","Depends()","Background tasks","Middleware","CORS"],
-        why: "#1 Python framework for AI backends. On your resume — own every line. Interviewers go deep on this.",
-        fast: { label:"FastAPI Official Tutorial — fastapi.tiangolo.com", url:"https://fastapi.tiangolo.com/tutorial/" },
-        quality: { label:"FastAPI Full Course — Bitfumes · 5h · YouTube", url:"https://www.youtube.com/results?search_query=FastAPI+full+course+Bitfumes" }
+        "name": "SQL Fundamentals",
+        "tags": [
+          "SELECT",
+          "JOIN",
+          "Transactions"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://www.postgresql.org/docs/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://sqlbolt.com/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://mode.com/sql-tutorial/"
+        },
+        "subtopics": [
+          {
+            "name": "SELECT",
+            "rating": 10,
+            "desc": "Basic querying",
+            "url": "https://www.postgresql.org/docs/current/sql-select.html"
+          },
+          {
+            "name": "WHERE",
+            "rating": 10,
+            "desc": "Filtering logic",
+            "url": "https://www.postgresql.org/docs/current/sql-select.html#SQL-WHERE"
+          },
+          {
+            "name": "JOIN",
+            "rating": 10,
+            "desc": "Relational mapping",
+            "url": "https://www.postgresql.org/docs/current/tutorial-join.html"
+          },
+          {
+            "name": "GROUP BY",
+            "rating": 9,
+            "desc": "Bucketing data",
+            "url": "https://www.postgresql.org/docs/current/queries-table-expressions.html#queries-group"
+          },
+          {
+            "name": "ORDER BY",
+            "rating": 8,
+            "desc": "Sorting results",
+            "url": "https://www.postgresql.org/docs/current/queries-order.html"
+          },
+          {
+            "name": "Aggregations",
+            "rating": 9,
+            "desc": "Math over rows",
+            "url": "https://www.postgresql.org/docs/current/functions-aggregate.html"
+          },
+          {
+            "name": "Constraints",
+            "rating": 9,
+            "desc": "Data integrity",
+            "url": "https://www.postgresql.org/docs/current/ddl-constraints.html"
+          },
+          {
+            "name": "Foreign keys",
+            "rating": 9,
+            "desc": "Relational integrity",
+            "url": "https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-FOREIGN-KEYS"
+          },
+          {
+            "name": "Transactions",
+            "rating": 10,
+            "desc": "Safe multi-step execution",
+            "url": "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+          },
+          {
+            "name": "ACID",
+            "rating": 10,
+            "desc": "Core database principles",
+            "url": "https://en.wikipedia.org/wiki/ACID"
+          },
+          {
+            "name": "Normalization",
+            "rating": 8,
+            "desc": "Schema design",
+            "url": "https://en.wikipedia.org/wiki/Database_normalization"
+          }
+        ]
       },
       {
-        name: "JWT Auth + OAuth2",
-        tags: ["JWT structure","Access token","Refresh token","bcrypt","OAuth2 flow","HTTP Bearer"],
-        why: "Interviewers ask this every single round. You must explain the token flow — not just 'I used a library'.",
-        fast: { label:"JWT Explained — Web Dev Simplified · 15min · YouTube", url:"https://www.youtube.com/watch?v=7Q17ubqLfaM" },
-        quality: { label:"FastAPI Security Docs — Official JWT + OAuth2", url:"https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/" }
-      },
-      {
-        name: "PostgreSQL + SQLAlchemy + Alembic",
-        tags: ["JOINs","Indexes","Transactions","ORM","Alembic migrate","alembic upgrade head","alembic revision","pgvector","EXPLAIN ANALYZE"],
-        why: "pgvector is how you store AI embeddings. Every real FastAPI+Postgres project requires Alembic migrations — you cannot manually alter tables in production. If you can't run an Alembic migration, you can't maintain a production schema.",
-        fast: { label:"SQL Full Course — freeCodeCamp · YouTube", url:"https://www.youtube.com/watch?v=HXV3zeQKqGY" },
-        quality: { label:"Alembic Official Docs — alembic.sqlalchemy.org", url:"https://alembic.sqlalchemy.org/en/latest/tutorial.html" }
-      },
-      {
-        name: "Redis + Caching",
-        tags: ["Cache-aside","Write-through","TTL","Rate limiting","Pub/Sub","Session storage"],
-        why: "Every backend interview: 'How do you rate limit?' 'Why Redis over DB?' Also — LLM response caching saves real money.",
-        fast: { label:"Redis Crash Course — Traversy Media · 30min · YouTube", url:"https://www.youtube.com/watch?v=jgpVdJB2sKQ" },
-        quality: { label:"Redis University — RU101 Free Course", url:"https://university.redis.com/courses/ru101/" }
-      },
-      {
-        name: "REST API Design",
-        tags: ["HTTP methods","Status codes","Versioning /v1","Pagination","Error handling","Idempotency"],
-        why: "You'll build APIs that AI systems consume. Bad API design breaks everything downstream. Interviewers notice.",
-        fast: { label:"REST API Best Practices — freeCodeCamp · YouTube", url:"https://www.youtube.com/watch?v=-MTSQjw5DrM" },
-        quality: { label:"API Design Patterns — JJ Geewax · Manning Book", url:"https://www.manning.com/books/api-design-patterns" }
-      },
-      {
-        name: "LLD + Design Patterns",
-        tags: ["SOLID","Strategy","Factory","Observer","Repository pattern","Class design"],
-        why: "Product companies (Razorpay, Groww, Zepto) ask LLD in every backend round. This is mandatory, not optional.",
-        fast: { label:"SOLID Principles in Python — ArjanCodes · YouTube", url:"https://www.youtube.com/results?search_query=ArjanCodes+SOLID+principles+Python" },
-        quality: { label:"LLD Full Playlist — Concept && Coding · YouTube", url:"https://www.youtube.com/results?search_query=Concept+and+Coding+LLD+low+level+design+playlist" }
-      },
-      {
-        name: "pytest + Logging",
-        tags: ["Unit tests","Fixtures","Mocking","TestClient","logging module","Structured JSON logs"],
-        why: "Every serious backend role expects tests. No tests = 'this engineer isn't production-ready'. This gets you hired.",
-        fast: { label:"pytest Tutorial — Corey Schafer · YouTube", url:"https://www.youtube.com/watch?v=cHYq1MRoyI0" },
-        quality: { label:"pytest Official Docs — docs.pytest.org", url:"https://docs.pytest.org/en/stable/" }
+        "name": "Query Optimization",
+        "tags": [
+          "Indexes",
+          "EXPLAIN ANALYZE"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://www.postgresql.org/docs/current/using-explain.html"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://use-the-index-luke.com/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.pgmustard.com/"
+        },
+        "subtopics": [
+          {
+            "name": "Indexes",
+            "rating": 10,
+            "desc": "B-Tree performance",
+            "url": "https://www.postgresql.org/docs/current/indexes.html"
+          },
+          {
+            "name": "Query optimization",
+            "rating": 10,
+            "desc": "Performance tuning",
+            "url": "https://www.postgresql.org/docs/current/performance-tips.html"
+          },
+          {
+            "name": "EXPLAIN ANALYZE",
+            "rating": 9,
+            "desc": "Debugging slow queries",
+            "url": "https://www.postgresql.org/docs/current/using-explain.html"
+          },
+          {
+            "name": "Locking basics",
+            "rating": 7,
+            "desc": "Concurrency management",
+            "url": "https://www.postgresql.org/docs/current/explicit-locking.html"
+          },
+          {
+            "name": "Joins internally",
+            "rating": 9,
+            "desc": "Hash vs Merge vs Nested",
+            "url": "https://www.postgresql.org/docs/current/planner-optimizer.html"
+          },
+          {
+            "name": "Index tradeoffs",
+            "rating": 10,
+            "desc": "Read vs Write impacts",
+            "url": "https://www.postgresql.org/docs/current/indexes-intro.html"
+          },
+          {
+            "name": "Transaction isolation",
+            "rating": 8,
+            "desc": "Read committed vs Serializable",
+            "url": "https://www.postgresql.org/docs/current/transaction-iso.html"
+          },
+          {
+            "name": "Query bottlenecks",
+            "rating": 10,
+            "desc": "Identifying slow DB queries",
+            "url": "https://www.postgresql.org/docs/current/runtime-config-logging.html"
+          }
+        ]
       }
     ]
   },
   {
-    id: 3,
-    label: "PHASE 3",
-    title: "System Design (Basic) + Deployment + Project 2",
-    subtitle: "HLD · CAP · Queues · Docker · CI/CD · OS/Networks",
-    tags: ["HLD","CAP theorem","Message Queues","Docker","CI/CD","OS","Computer Networks"],
-    color: "#C084FC",
-    optional: false,
-    project: {
-      name: "Project 2: URL Shortener + Analytics API",
-      idea: "A high-throughput URL shortener designed for system design interview depth.",
-      features: ["Shorten URLs with custom alias","Redis cache (99% read hits)","Click analytics async via queue","Rate limiting by IP","Docker Compose full stack","GitHub Actions CI/CD → Render"],
-      stack: ["FastAPI","PostgreSQL","Redis","Celery","Docker","GitHub Actions"],
-      flow: "POST /shorten → validate → generate short code → store PostgreSQL\nGET /:code → Redis cache hit → 301 redirect (cache miss → PostgreSQL → cache set)\nClick event → Celery queue → async analytics worker → PostgreSQL analytics table"
-    },
-    mentor: {
-      output: ["Deploy any app with Docker + GitHub Actions in under 1 hour","Design URL shortener / notification system in system design interview","Explain CAP theorem, consistent hashing, load balancing clearly","Answer 'what happens when you type a URL' completely"],
-      mistakes: ["Deploying on localhost only — deploy every project to Render/Railway","Skipping OS/Networks — comes up in CS fundamentals rounds at 15LPA+ companies","Not knowing Docker — every company uses it, not knowing it is disqualifying"],
-      tasks: ["Deploy Project 1 (Todo API) to Render with Docker","Build Project 2 (URL Shortener) with full CI/CD"]
-    },
-    topics: [
+    "id": 4,
+    "label": "PHASE 4",
+    "title": "Redis",
+    "subtitle": "Caching \u00b7 TTL \u00b7 Pub/Sub",
+    "tags": [
+      "Redis",
+      "Caching",
+      "PubSub"
+    ],
+    "color": "#FB7185",
+    "optional": false,
+    "topics": [
       {
-        name: "HLD Fundamentals",
-        tags: ["Client-Server","Load balancing","CDN","Caching layer","DB replication","Horizontal scaling"],
-        why: "Every ₹15 LPA+ interview has a system design round. No prep here = automatic reject regardless of DSA performance.",
-        fast: { label:"System Design Primer — GitHub · donnemartin", url:"https://github.com/donnemartin/system-design-primer" },
-        quality: { label:"ByteByteGo — System Design Newsletter + YouTube", url:"https://bytebytego.com/" }
-      },
-      {
-        name: "AI System Design Patterns",
-        tags: ["Design a RAG system","batch vs real-time inference","embedding pipeline design","LLM gateway","AI chatbot at scale","vector DB at scale","model serving"],
-        why: "₹15 LPA AI roles ask AI-specific system design questions, not just URL shorteners. 'Design a document Q&A for 10,000 concurrent users' is a completely different problem. Zero coverage here = automatic fail in the AI system design round.",
-        fast: { label:"ByteByteGo AI System Design — bytebytego.com", url:"https://bytebytego.com/" },
-        quality: { label:"Designing Machine Learning Systems — Chip Huyen · O'Reilly", url:"https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" }
-      },
-      {
-        name: "CAP Theorem + Distributed Systems",
-        tags: ["Consistency","Availability","Partition tolerance","BASE vs ACID","Eventual consistency"],
-        why: "Interviewers ask CAP in almost every distributed systems conversation. Takes 2 hours to master. Just do it.",
-        fast: { label:"CAP Theorem Explained — ByteByteGo · YouTube", url:"https://www.youtube.com/results?search_query=CAP+theorem+explained+ByteByteGo" },
-        quality: { label:"Designing Data-Intensive Applications — Martin Kleppmann · Book", url:"https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/" }
-      },
-      {
-        name: "Message Queues + Async Patterns",
-        tags: ["Kafka basics","RabbitMQ","Event-driven","Worker queues","Celery","Fan-out"],
-        why: "AI pipelines use queues for long-running tasks (embedding jobs, LLM calls). Every senior AI role needs this.",
-        fast: { label:"Message Queues Explained — Hussein Nasser · YouTube", url:"https://www.youtube.com/results?search_query=message+queues+Hussein+Nasser" },
-        quality: { label:"Kafka Official Docs — Introduction", url:"https://kafka.apache.org/documentation/" }
-      },
-      {
-        name: "Docker + GitHub Actions CI/CD",
-        tags: ["Dockerfile","docker-compose","Multi-stage builds","GitHub Actions","Render deploy","Secrets management"],
-        why: "Every AI project must be deployable. Docker is the universal standard. Not knowing it is disqualifying at ₹15 LPA.",
-        fast: { label:"Docker Full Course — freeCodeCamp · YouTube", url:"https://www.youtube.com/watch?v=fqMOX6JJhGo" },
-        quality: { label:"Docker Official Docs — Get Started Series", url:"https://docs.docker.com/get-started/" }
-      },
-      {
-        name: "OS + Computer Networks",
-        tags: ["Process vs Thread","Deadlock","Virtual memory","HTTP/HTTPS","TCP vs UDP","DNS resolution"],
-        why: "CS fundamentals rounds staple at good companies. 'What happens when you type a URL' — must answer cold, no hesitation.",
-        fast: { label:"OS + Networks — Gate Smashers · YouTube", url:"https://www.youtube.com/results?search_query=operating+systems+interview+Gate+Smashers+1+hour" },
-        quality: { label:"Computer Networks Full — Neso Academy · YouTube", url:"https://www.youtube.com/playlist?list=PLBlnK6fEyqRhX6r2uhhlubuF5QextdCSM" }
+        "name": "Caching & Pub/Sub",
+        "tags": [
+          "Redis Core",
+          "TTL",
+          "PubSub"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://redis.io/docs/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=jgpVdJB2sKQ"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://university.redis.com/"
+        },
+        "subtopics": [
+          {
+            "name": "Key-value basics",
+            "rating": 8,
+            "desc": "Core data structures",
+            "url": "https://redis.io/docs/manual/data-types/"
+          },
+          {
+            "name": "Caching",
+            "rating": 10,
+            "desc": "Performance optimization",
+            "url": "https://redis.io/docs/manual/patterns/"
+          },
+          {
+            "name": "TTL",
+            "rating": 9,
+            "desc": "Cache invalidation",
+            "url": "https://redis.io/commands/expire/"
+          },
+          {
+            "name": "Pub/Sub",
+            "rating": 8,
+            "desc": "Message broadcasting",
+            "url": "https://redis.io/docs/manual/pubsub/"
+          },
+          {
+            "name": "Queues",
+            "rating": 9,
+            "desc": "Task offloading",
+            "url": "https://redis.io/docs/manual/data-types/#lists"
+          },
+          {
+            "name": "Session storage",
+            "rating": 7,
+            "desc": "Auth management",
+            "url": "https://redis.io/docs/manual/patterns/"
+          },
+          {
+            "name": "Rate limiting",
+            "rating": 9,
+            "desc": "DDoS protection",
+            "url": "https://redis.io/commands/incr/"
+          }
+        ]
       }
     ]
   },
   {
-    id: 4,
-    label: "PHASE 4",
-    title: "AI Core — LLM + Embeddings",
-    subtitle: "LLM fundamentals · HuggingFace · Embeddings · NumPy · Transformers",
-    tags: ["LLM fundamentals","HuggingFace","Embeddings","cosine similarity","HNSW","NumPy","Pandas"],
-    color: "#FB7185",
-    optional: false,
-    mentor: {
-      output: ["Explain tokenization, context window, temperature to any interviewer","Load any HuggingFace model and run inference in Python","Build an embedding-based semantic search in under 2 hours","Manipulate data pipelines with NumPy and Pandas"],
-      mistakes: ["Only calling the API without understanding what's happening inside","Skipping NumPy — embedding pipelines need it constantly","Going too deep on math — understand concepts, not equations"],
-      tasks: ["Build a semantic search over 1000 Wikipedia articles using pgvector","Experiment with 3 different embedding models and compare their cosine similarity scores"]
-    },
-    topics: [
+    "id": 5,
+    "label": "PHASE 5",
+    "title": "Docker",
+    "subtitle": "Containerization \u00b7 Dockerfile \u00b7 Compose",
+    "tags": [
+      "Docker",
+      "Containers",
+      "Orchestration"
+    ],
+    "color": "#2DD4BF",
+    "optional": false,
+    "topics": [
       {
-        name: "LLM Fundamentals",
-        tags: ["Tokens","Context window","Temperature","Top-p","Sampling","Model families","GPT vs Gemini vs Claude"],
-        why: "Applied AI engineers who don't understand LLMs are just API callers. Build the mental model — interviews go here.",
-        fast: { label:"Intro to LLMs — Andrej Karpathy · 1h · YouTube", url:"https://www.youtube.com/watch?v=zjkBMFhNj_g" },
-        quality: { label:"Build GPT from Scratch — Andrej Karpathy · YouTube", url:"https://www.youtube.com/watch?v=kCc8FmEb1nY" }
+        "name": "Containerization",
+        "tags": [
+          "Containers",
+          "Dockerfile",
+          "Compose"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.docker.com/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=3c-iBn73dDE"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://docker-curriculum.com/"
+        },
+        "subtopics": [
+          {
+            "name": "Containers",
+            "rating": 10,
+            "desc": "Execution isolation",
+            "url": "https://docs.docker.com/get-started/"
+          },
+          {
+            "name": "Dockerfile",
+            "rating": 10,
+            "desc": "Image definition",
+            "url": "https://docs.docker.com/engine/reference/builder/"
+          },
+          {
+            "name": "Images",
+            "rating": 9,
+            "desc": "Executable packages",
+            "url": "https://docs.docker.com/glossary/#image"
+          },
+          {
+            "name": "Layers",
+            "rating": 8,
+            "desc": "Build caching",
+            "url": "https://docs.docker.com/build/guide/layers/"
+          },
+          {
+            "name": "Volumes",
+            "rating": 8,
+            "desc": "Data persistence",
+            "url": "https://docs.docker.com/storage/volumes/"
+          },
+          {
+            "name": "Networking",
+            "rating": 8,
+            "desc": "Container communication",
+            "url": "https://docs.docker.com/network/"
+          },
+          {
+            "name": "docker-compose",
+            "rating": 10,
+            "desc": "Multi-container orchestration",
+            "url": "https://docs.docker.com/compose/"
+          }
+        ]
       },
       {
-        name: "HuggingFace + Transformers",
-        tags: ["pipeline()","AutoTokenizer","AutoModel","Model hub","Inference API","GGUF models"],
-        why: "Industry standard for loading and running any open-source model. Every AI JD mentions it.",
-        fast: { label:"HuggingFace Crash Course — Patrick Loeber · 1h · YouTube", url:"https://www.youtube.com/watch?v=QEaBAZQCtwE" },
-        quality: { label:"HuggingFace NLP Course — huggingface.co · Free", url:"https://huggingface.co/learn/nlp-course/chapter1/1" }
-      },
-      {
-        name: "Embeddings + Vector Similarity",
-        tags: ["Word2Vec","Sentence embeddings","Cosine similarity","Dot product","HNSW indexing","pgvector","ChromaDB","Qdrant","Pinecone","pgvector vs Qdrant tradeoffs"],
-        why: "Embeddings are the core of every RAG system. You need to understand them deeply — not just call an API. 'Why pgvector over Pinecone/Qdrant?' is a real interview question at every AI startup. Know the tradeoff: local dev = ChromaDB, existing Postgres = pgvector, production scale = Qdrant.",
-        fast: { label:"Vector Embeddings Explained — Pinecone Learn", url:"https://www.pinecone.io/learn/vector-embeddings/" },
-        quality: { label:"Vector DB + Embeddings — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/" }
-      },
-      {
-        name: "Local Models + Inference (Ollama)",
-        tags: ["Ollama","Llama 3","Mistral","GGUF","local inference","quantization","cost reduction","ollama run","ollama serve"],
-        why: "Every startup interview asks: 'How would you cut LLM API costs by 90%?' The answer is Ollama + Llama 3. If you can only call OpenAI's API, you are an API customer, not a production AI engineer. Gets a local model running in 10 minutes.",
-        fast: { label:"Ollama Official Quickstart — github.com/ollama/ollama", url:"https://github.com/ollama/ollama" },
-        quality: { label:"HuggingFace Open-Source AI Cookbook — huggingface.co/learn/cookbook", url:"https://huggingface.co/learn/cookbook" }
-      },
-      {
-        name: "NumPy + Pandas",
-        tags: ["Arrays","Broadcasting","Vectorized ops","DataFrames","Filtering","Groupby","Merge/Join"],
-        why: "Data layer for all AI pipelines. You process documents, embeddings, and evaluation outputs with these daily.",
-        fast: { label:"NumPy + Pandas Crash Course — Keith Galli · YouTube", url:"https://www.youtube.com/watch?v=vmEHCJofslg" },
-        quality: { label:"NumPy Full Course — freeCodeCamp · YouTube", url:"https://www.youtube.com/watch?v=GPVsHOlRBBI" }
+        "name": "CI/CD",
+        "tags": [
+          "GitHub Actions",
+          "Pipelines"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.github.com/en/actions"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=R8_veQiYBjI"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=TLB5MY9BBa4"
+        },
+        "subtopics": [
+          {
+            "name": "GitHub Actions",
+            "rating": 9,
+            "desc": "CI/CD automation",
+            "url": "https://docs.github.com/en/actions"
+          },
+          {
+            "name": "Automated testing",
+            "rating": 9,
+            "desc": "Pre-deployment checks",
+            "url": "https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration"
+          },
+          {
+            "name": "Deployment pipelines",
+            "rating": 8,
+            "desc": "Continuous delivery",
+            "url": "https://docs.github.com/en/actions/deployment/about-deployments"
+          }
+        ]
       }
     ]
   },
   {
-    id: 5,
-    label: "PHASE 5",
-    title: "Applied AI — RAG + LangChain + Project 3",
-    subtitle: "Prompt Engineering · LangChain · RAG · LangGraph · Streaming",
-    tags: ["Prompt Engineering","LangChain","RAG","LangGraph","Agents","Streaming","LCEL"],
-    color: "#2DD4BF",
-    optional: false,
-    project: {
-      name: "Project 3: RAG Document Q&A API",
-      idea: "Upload any PDF → ask questions → get grounded answers with citations. The most in-demand AI demo.",
-      features: ["PDF upload + chunking endpoint","Gemini/OpenAI embeddings → pgvector","Semantic retrieval with cosine threshold","Streaming LLM response via SSE","Citation sources in response","RAGAS evaluation score endpoint"],
-      stack: ["FastAPI","LangChain","pgvector","Gemini API","Redis","Docker","Render"],
-      flow: "POST /upload → RecursiveTextSplitter → embed chunks → pgvector HNSW index\nPOST /ask → embed query → top-5 chunk retrieval → LangChain RAG chain → StreamingResponse\nGET /eval → RAGAS faithfulness + context precision scores"
-    },
-    mentor: {
-      output: ["Build a production RAG pipeline from scratch","Explain chunking, reranking, cosine threshold decisions in interviews","Wire streaming LLM response from API to frontend","Evaluate RAG quality with RAGAS"],
-      mistakes: ["Building RAG without evaluating it — add RAGAS from day 1","Using generic chunk sizes — always explain why you chose 500 chars","Skipping streaming — all production AI apps stream responses"],
-      tasks: ["Build Project 3 (RAG Q&A API) with streaming","Add RAGAS evaluation and report scores in the README"],
-      apply: "Phase 5 = start actively applying for AI Engineer roles. You have 3 real projects."
-    },
-    topics: [
+    "id": 6,
+    "label": "PHASE 6",
+    "title": "Linux",
+    "subtitle": "CLI \u00b7 Bash \u00b7 File System",
+    "tags": [
+      "Linux",
+      "CLI",
+      "Shell"
+    ],
+    "color": "#34D399",
+    "optional": false,
+    "topics": [
       {
-        name: "Prompt Engineering",
-        tags: ["Zero-shot","Few-shot","Chain-of-thought","ReAct","Structured outputs","System prompts"],
-        why: "80% of Applied AI daily work is prompt engineering. This is your actual job. Master it methodically.",
-        fast: { label:"Prompt Engineering Guide — DAIR.AI · Free", url:"https://www.promptingguide.ai/" },
-        quality: { label:"Prompt Engineering for Devs — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" }
-      },
-      {
-        name: "LangChain + RAG Pipeline",
-        tags: ["LCEL pipe","Chains","Retrievers","Memory","Document loaders","Output parsers","chunk_size","chunk_overlap","semantic chunking","HyDE","Reranking","Cohere rerank"],
-        why: "Industry standard. Every AI startup uses this. 'Why did you use 500 character chunks? What's the overlap?' is a real interview question about your own project. If you cannot explain your chunking strategy, you don't understand your system.",
-        fast: { label:"LangChain Full Course — freeCodeCamp · 5h · YouTube", url:"https://www.youtube.com/watch?v=HSZ_uaif57o" },
-        quality: { label:"RAG From Scratch — LangChain Official · YouTube Series", url:"https://www.youtube.com/playlist?list=PLfaIDFEXuae2LXbO1_PKyVJiQ23ZztA0x" }
-      },
-      {
-        name: "RAG Evaluation (RAGAS + LangSmith)",
-        tags: ["RAGAS","Context Precision","Faithfulness","Answer Relevancy","LangSmith tracing","hallucination detection","evaluation dataset","ragas.evaluate()"],
-        why: "Building a RAG system is easy. Proving it doesn't hallucinate is hard. 'What's your faithfulness score?' is asked in every serious Applied AI interview. Add RAGAS from the first day you write a retrieval chain — not one phase later.",
-        fast: { label:"RAGAS Official Quickstart — docs.ragas.io", url:"https://docs.ragas.io/en/latest/" },
-        quality: { label:"Evaluating Generative AI — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/evaluating-debugging-generative-ai/" }
-      },
-      {
-        name: "AI Stack Containerization",
-        tags: ["Dockerfile","docker-compose","FastAPI container","ChromaDB service","pgvector service","multi-service orchestration","environment variables","docker-compose up"],
-        why: "'How do I run your RAG system on my machine?' If your answer is 'deploy to Render', you fail. If your answer is docker-compose up, you get the offer. Packaging your entire AI stack into one command is a production engineering requirement.",
-        fast: { label:"FastAPI Docker Deployment Guide — fastapi.tiangolo.com", url:"https://fastapi.tiangolo.com/deployment/docker/" },
-        quality: { label:"Docker Crash Course — TechWorld with Nana · YouTube", url:"https://www.youtube.com/results?search_query=TechWorld+with+Nana+Docker+crash+course" }
-      },
-      {
-        name: "LangGraph + Agents",
-        tags: ["ReAct pattern","Tool use","StateGraph","Conditional edges","Multi-step reasoning","Agent memory"],
-        why: "Agents are the current frontier. Every AI JD in 2025–26 mentions agents. This is the skill that gets you hired at ₹15 LPA.",
-        fast: { label:"LangGraph Quickstart — Official Docs · Free", url:"https://langchain-ai.github.io/langgraph/tutorials/introduction/" },
-        quality: { label:"AI Agents in LangGraph — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/" }
-      },
-      {
-        name: "Streaming + LLM API Integration",
-        tags: ["Server-sent events","StreamingResponse","Function calling","Tool calling","Cost management","Retry logic"],
-        why: "Production AI apps always stream. You must wire streaming from LLM API to frontend. Interviewers ask this directly.",
-        fast: { label:"OpenAI API Quickstart — Official Docs", url:"https://platform.openai.com/docs/quickstart" },
-        quality: { label:"Functions, Tools & Agents — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/" }
+        "name": "CLI & Bash",
+        "tags": [
+          "Bash",
+          "Linux Basics",
+          "SSH"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://tldp.org/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://missing.csail.mit.edu/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://linuxjourney.com/"
+        },
+        "subtopics": [
+          {
+            "name": "Processes",
+            "rating": 9,
+            "desc": "Monitoring execution",
+            "url": "https://tldp.org/LDP/intro-linux/html/sect_04_01.html"
+          },
+          {
+            "name": "Ports",
+            "rating": 9,
+            "desc": "Network traffic",
+            "url": "https://tldp.org/LDP/nag2/x-087-2-appl.services.html"
+          },
+          {
+            "name": "SSH",
+            "rating": 8,
+            "desc": "Remote access",
+            "url": "https://www.openssh.com/manual.html"
+          },
+          {
+            "name": "Logs",
+            "rating": 10,
+            "desc": "System debugging",
+            "url": "https://tldp.org/LDP/intro-linux/html/sect_08_02.html"
+          },
+          {
+            "name": "Environment variables",
+            "rating": 10,
+            "desc": "Configuration",
+            "url": "https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html"
+          },
+          {
+            "name": "File systems",
+            "rating": 7,
+            "desc": "Permissions & structure",
+            "url": "https://tldp.org/LDP/intro-linux/html/sect_03_01.html"
+          }
+        ]
       }
     ]
   },
   {
-    id: 6,
-    label: "PHASE 6",
-    title: "Advanced AI — Agents + Optimization + Project 4",
-    subtitle: "Multi-Agent · LLMOps · RAG Evaluation · Production Patterns",
-    tags: ["Multi-Agent","LangSmith","RAGAS","Production AI","Cost optimization","LLM caching"],
-    color: "#38BDF8",
-    optional: false,
-    project: {
-      name: "Project 4: Multi-Agent Research Assistant",
-      idea: "A supervisor agent that routes tasks to specialized sub-agents — research, coding, writing. Your star interview demo.",
-      features: ["Supervisor LLM routes task to specialist","Research agent (Tavily web search)","Coding agent (code generation + execution)","Writing agent (document drafting)","Shared state across agents","Gradio UI deployed on HuggingFace Spaces"],
-      stack: ["LangGraph","FastAPI","Tavily API","HuggingFace Spaces","Gradio","LangSmith"],
-      flow: "User query → Supervisor agent (reads intent) → route decision\n  → Research node (Tavily search → summarize)\n  → Coding node (generate + test code)\n  → Writing node (draft → review loop)\nAll nodes share state dict → final answer compiled → streaming to user"
-    },
-    mentor: {
-      output: ["Build a multi-agent system with LangGraph from scratch","Add LangSmith tracing to any LangChain app","Optimize RAG latency with caching + HNSW","Explain agent patterns (ReAct, Supervisor, Plan-Execute) in interviews"],
-      mistakes: ["Building agents without observability — add LangSmith from day 1","Not measuring token costs — track every API call with a counter","Over-engineering agents — simple chains first, agents only when needed"],
-      tasks: ["Build Project 4 (Multi-Agent System) deployed on HuggingFace Spaces","Add LangSmith tracing + cost tracking to all 4 projects"]
-    },
-    topics: [
+    "id": 7,
+    "label": "PHASE 7",
+    "title": "System Design",
+    "subtitle": "Scaling \u00b7 Latency \u00b7 Balancing",
+    "tags": [
+      "System Design",
+      "Scaling",
+      "Load Balancing"
+    ],
+    "color": "#38BDF8",
+    "optional": false,
+    "topics": [
       {
-        name: "LangGraph Multi-Agent Systems",
-        tags: ["Supervisor pattern","StateGraph","MemorySaver","interrupt_before","Human-in-the-loop","Parallel nodes"],
-        why: "Multi-agent collaboration is the frontier skill. Building this puts you in the top 5% of candidates in India.",
-        fast: { label:"LangGraph Multi-Agent Tutorial — Official Docs", url:"https://langchain-ai.github.io/langgraph/tutorials/multi_agent/multi-agent-collaboration/" },
-        quality: { label:"Multi-Agent Systems — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/" }
-      },
-      {
-        name: "RAG Evaluation + LLMOps",
-        tags: ["RAGAS","Faithfulness","Context precision","Hallucination detection","LangSmith tracing","Latency tracking"],
-        why: "No junior candidate thinks about RAG evaluation. Mentioning RAGAS scores in an interview = immediate senior signal.",
-        fast: { label:"RAGAS Docs — RAG Evaluation Framework", url:"https://docs.ragas.io/en/latest/" },
-        quality: { label:"Evaluating Generative AI — DeepLearning.AI · Free", url:"https://www.deeplearning.ai/short-courses/evaluating-debugging-generative-ai/" }
-      },
-      {
-        name: "Production AI Patterns",
-        tags: ["Rate limiting LLM calls","per-user token budgets","exponential backoff on 429","Fallback models","fallback model chains","Async job queues","Cost optimization","Response caching","Retry with backoff"],
-        why: "Building a demo is easy. Making it production-grade is what companies pay ₹15–20 LPA for. 'How do you prevent one user from burning $100 of tokens?' — LLM rate limiting is structurally different from general API rate limiting. This is the real gap.",
-        fast: { label:"LLM Patterns — eugeneyan.com · Free Blog", url:"https://eugeneyan.com/writing/llm-patterns/" },
-        quality: { label:"Full Stack LLM Bootcamp — The Full Stack · YouTube", url:"https://www.youtube.com/playlist?list=PL1T8fO7ArWleMMI8KPJ_5D5XSlovTW_Ur" }
-      },
-      {
-        name: "LLM Guardrails + Safety",
-        tags: ["prompt injection","output validation","toxicity filtering","guardrails-ai","input sanitization","jailbreak detection","NeMo Guardrails"],
-        why: "'What happens if a user injects a malicious prompt into your RAG system?' Zero answer = reject at senior AI roles. Guardrails are table stakes in production. Mentioning this in an interview signals you've built beyond demos.",
-        fast: { label:"Guardrails AI Docs — docs.getguardrails.ai", url:"https://docs.getguardrails.ai/" },
-        quality: { label:"NVIDIA NeMo Guardrails — GitHub", url:"https://github.com/NVIDIA/NeMo-Guardrails" }
+        "name": "Architecture & Scale",
+        "tags": [
+          "Latency",
+          "Throughput",
+          "Load Balancing"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://github.com/donnemartin/system-design-primer"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/@ByteByteGo"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "http://highscalability.com/"
+        },
+        "subtopics": [
+          {
+            "name": "Latency",
+            "rating": 10,
+            "desc": "Response time optimization",
+            "url": "https://github.com/donnemartin/system-design-primer#latency-vs-throughput"
+          },
+          {
+            "name": "Throughput",
+            "rating": 9,
+            "desc": "Handling scale",
+            "url": "https://github.com/donnemartin/system-design-primer#latency-vs-throughput"
+          },
+          {
+            "name": "Bottlenecks",
+            "rating": 10,
+            "desc": "Finding system limits",
+            "url": "https://github.com/donnemartin/system-design-primer#performance-vs-scalability"
+          },
+          {
+            "name": "Horizontal scaling",
+            "rating": 9,
+            "desc": "Adding more machines",
+            "url": "https://github.com/donnemartin/system-design-primer#scalability"
+          },
+          {
+            "name": "Load balancing",
+            "rating": 8,
+            "desc": "Traffic distribution",
+            "url": "https://github.com/donnemartin/system-design-primer#load-balancer"
+          },
+          {
+            "name": "Reliability",
+            "rating": 10,
+            "desc": "System uptime",
+            "url": "https://github.com/donnemartin/system-design-primer#availability"
+          },
+          {
+            "name": "Caching",
+            "rating": 10,
+            "desc": "Read optimization",
+            "url": "https://redis.io/docs/manual/patterns/"
+          },
+          {
+            "name": "Queues",
+            "rating": 10,
+            "desc": "Write decoupling",
+            "url": "https://redis.io/docs/manual/data-types/#lists"
+          },
+          {
+            "name": "Retries",
+            "rating": 10,
+            "desc": "Transient failures",
+            "url": "https://github.com/donnemartin/system-design-primer#failover"
+          },
+          {
+            "name": "Circuit breakers",
+            "rating": 7,
+            "desc": "Cascading failure prevention",
+            "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker"
+          },
+          {
+            "name": "Async processing",
+            "rating": 10,
+            "desc": "Decoupling workloads",
+            "url": "https://github.com/donnemartin/system-design-primer#asynchronous"
+          }
+        ]
       }
     ]
   },
   {
-    id: 7,
-    label: "PHASE 7",
-    title: "Production + LLMOps + Job Layer",
-    subtitle: "Portfolio polish · Interview execution · Salary negotiation · 300+ applications",
-    tags: ["Resume","GitHub portfolio","Mock interviews","Salary negotiation","Cold DMs","300+ applications"],
-    color: "#FBBF24",
-    optional: false,
-    mentor: {
-      output: ["Clear any Applied AI screening call with confidence","Negotiate every offer — never accept first number","Close ₹15–20 LPA offer within 3 months of phase start","Explain any of your 4 projects in 3 minutes cold"],
-      mistakes: ["Accepting first offer — always counter, always have competing offer","Applying to only 10-20 jobs — need minimum 300 applications","Not cold DMing — 50% of AI hires come through warm intros","Poor GitHub READMEs — every project needs a live URL + architecture diagram"],
-      apply: "300+ applications · 50+ cold DMs to founders · Pramp mocks 3x/week",
-      tasks: ["Polish all 4 project GitHub READMEs with architecture diagrams + live URLs","Record yourself explaining each project — find gaps before interviewer does","Apply 300+ jobs: Wellfound, LinkedIn, cold email, referrals"]
-    },
-    topics: [
+    "id": 8,
+    "label": "PHASE 8",
+    "title": "LLM Fundamentals",
+    "subtitle": "Tokens \u00b7 Prompting \u00b7 APIs",
+    "tags": [
+      "LLMs",
+      "Prompting",
+      "APIs"
+    ],
+    "color": "#FBBF24",
+    "optional": false,
+    "topics": [
       {
-        name: "Resume + GitHub Portfolio",
-        tags: ["1-page resume","Quantified impact","Live project URLs","Architecture diagrams","Pinned repos","README structure"],
-        why: "Your resume is your first filter. 690 real users, RAGAS score 0.87, 80ms semantic search — numbers get interviews.",
-        fast: { label:"Technical Resume Guide — Codebasics · YouTube", url:"https://www.youtube.com/results?search_query=software+engineer+resume+guide+2024" },
-        quality: { label:"Harvard Resume Guide — Free PDF", url:"https://ocs.fas.harvard.edu/files/ocs/files/hes-resume-cover-letter-guide.pdf" }
+        "name": "OpenAI API",
+        "tags": [
+          "OpenAI",
+          "Prompting",
+          "Tokens"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://platform.openai.com/docs/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://cookbook.openai.com/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/"
+        },
+        "subtopics": [
+          {
+            "name": "Tokens",
+            "rating": 10,
+            "desc": "Cost & compute units",
+            "url": "https://platform.openai.com/docs/guides/embeddings"
+          },
+          {
+            "name": "Context windows",
+            "rating": 10,
+            "desc": "Memory limitations",
+            "url": "https://platform.openai.com/docs/models"
+          },
+          {
+            "name": "Temperature",
+            "rating": 8,
+            "desc": "Creativity vs determinism",
+            "url": "https://developers.openai.com/api/reference/overview"
+          },
+          {
+            "name": "Hallucinations",
+            "rating": 10,
+            "desc": "Accuracy risks",
+            "url": "https://platform.openai.com/docs/guides/safety-best-practices"
+          },
+          {
+            "name": "Prompting",
+            "rating": 8,
+            "desc": "Instruction design",
+            "url": "https://platform.openai.com/docs/guides/prompt-engineering"
+          },
+          {
+            "name": "Structured outputs",
+            "rating": 10,
+            "desc": "JSON generation",
+            "url": "https://platform.openai.com/docs/guides/structured-outputs"
+          },
+          {
+            "name": "Tool calling",
+            "rating": 10,
+            "desc": "Agentic actions",
+            "url": "https://platform.openai.com/docs/guides/function-calling"
+          },
+          {
+            "name": "Streaming",
+            "rating": 9,
+            "desc": "Perceived latency",
+            "url": "https://developers.openai.com/api/reference/overview"
+          }
+        ]
       },
       {
-        name: "Interview Execution",
-        tags: ["STAR method","DSA under pressure","System design framework","Behavioral scripts","Mock interviews","Pramp","situation-task-action-result"],
-        why: "Most rejections are not from lack of knowledge — it's delivery. 'Tell me about a time your system failed in production' needs a structured STAR answer. Practice this as deliberately as you practice code.",
-        fast: { label:"Pramp — Free Peer Mock Interviews", url:"https://www.pramp.com/" },
-        quality: { label:"STAR Method Guide — Indeed Career Advice · Free", url:"https://www.indeed.com/career-advice/interviewing/how-to-use-the-star-interview-response-technique" }
-      },
-      {
-        name: "Salary Negotiation",
-        tags: ["Never name first","Competing offers","Anchor high","Counter every offer","Email negotiation","₹15–20 LPA script"],
-        why: "Every LPA you don't negotiate is money you lose for years. One 30-minute conversation = ₹2–5L extra per year.",
-        fast: { label:"Salary Negotiation — Kalzumeus · Free Article", url:"https://www.kalzumeus.com/2012/01/23/salary-negotiation/" },
-        quality: { label:"Never Split the Difference — Chris Voss · Book", url:"https://www.amazon.in/Never-Split-Difference-Negotiating-Depended/dp/1847941494" }
-      },
-      {
-        name: "Cold Outreach + Network",
-        tags: ["LinkedIn DMs","Founder cold email","Twitter/X engagement","Alumni network","Referral pipeline","Follow-up cadence"],
-        why: "50% of AI hires in India come through warm intros. Cold DMs to founders work when you have 4 live projects to show.",
-        fast: { label:"Wellfound (AngelList) — AI Engineer Jobs India", url:"https://wellfound.com/" },
-        quality: { label:"LinkedIn Job Search — Optimize Profile + Outreach", url:"https://www.linkedin.com/jobs/" }
+        "name": "Anthropic API",
+        "tags": [
+          "Anthropic",
+          "Claude",
+          "System Prompts"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.anthropic.com/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://github.com/anthropics/anthropic-cookbook"
+        },
+        "subtopics": [
+          {
+            "name": "System prompts",
+            "rating": 9,
+            "desc": "Setting agent context",
+            "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts"
+          },
+          {
+            "name": "Prompt caching",
+            "rating": 9,
+            "desc": "Cost & speed gains",
+            "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching"
+          },
+          {
+            "name": "Prefill",
+            "rating": 8,
+            "desc": "Guiding Claude outputs",
+            "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prefill-claude-response"
+          },
+          {
+            "name": "Context management",
+            "rating": 9,
+            "desc": "Handling large contexts",
+            "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview"
+          }
+        ]
       }
     ]
   },
   {
-    id: 8,
-    label: "PHASE 8 · OPTIONAL",
-    title: "ML / DL — Depth Layer",
-    subtitle: "Use when time allows · Not required for ₹15 LPA · Instant senior signal",
-    tags: ["ML Fundamentals","Deep Learning","PyTorch","Fine-tuning LoRA","Transformers Architecture"],
-    color: "#FB923C",
-    optional: true,
-    mentor: {
-      output: ["Explain attention mechanism and why transformers work","Fine-tune a small LLM with LoRA on custom data","Train a classification model with PyTorch and evaluate it","Move from ₹15 LPA → ₹20–25 LPA conversations"],
-      mistakes: ["Doing this phase before completing Phases 1–7","Going too deep into math — focus on intuition, not derivations","Fine-tuning before mastering RAG — RAG solves 90% of use cases cheaper"],
-      tasks: ["Fine-tune GPT-2 on your own writing style with LoRA","Build a text classifier in PyTorch from scratch — no HuggingFace trainer"]
-    },
-    topics: [
+    "id": 9,
+    "label": "PHASE 9",
+    "title": "Embeddings & RAG",
+    "subtitle": "Semantic Vectors \u00b7 Chunking \u00b7 Retrieval",
+    "tags": [
+      "Embeddings",
+      "RAG",
+      "Retrieval"
+    ],
+    "color": "#FB923C",
+    "optional": false,
+    "topics": [
       {
-        name: "ML Fundamentals",
-        tags: ["Regression","Classification","Clustering","Bias-variance tradeoff","Cross-validation","scikit-learn"],
-        why: "Gives you language to talk about model behaviour in interviews. Needed when you explain ML-based decisions in AI products.",
-        fast: { label:"scikit-learn Crash Course — freeCodeCamp · 2.5h · YouTube", url:"https://www.youtube.com/watch?v=0B5eIE_1vpU" },
-        quality: { label:"Hands-On ML — Aurélien Géron · O'Reilly Book", url:"https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/" }
+        "name": "Vector Embeddings",
+        "tags": [
+          "Embeddings",
+          "Vectors",
+          "Similarity"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://platform.openai.com/docs/guides/embeddings"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.pinecone.io/learn/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://github.com/run-llama/llama_index"
+        },
+        "subtopics": [
+          {
+            "name": "Semantic vectors",
+            "rating": 10,
+            "desc": "Meaning representation",
+            "url": "https://platform.openai.com/docs/guides/embeddings"
+          },
+          {
+            "name": "Embedding dimensions",
+            "rating": 7,
+            "desc": "Vector size",
+            "url": "https://platform.openai.com/docs/guides/embeddings"
+          },
+          {
+            "name": "Similarity search",
+            "rating": 10,
+            "desc": "Finding matches",
+            "url": "https://docs.llamaindex.ai/"
+          },
+          {
+            "name": "Embedding quality",
+            "rating": 8,
+            "desc": "Model evaluation",
+            "url": "https://docs.llamaindex.ai/"
+          }
+        ]
       },
       {
-        name: "Deep Learning Basics",
-        tags: ["Neural networks","Backpropagation","Activation functions","Overfitting","Dropout","Batch normalization"],
-        why: "Foundation for understanding why transformers and LLMs work. Without this, you can't reason about model failures.",
-        fast: { label:"Neural Networks from Scratch — 3Blue1Brown · YouTube", url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" },
-        quality: { label:"Deep Learning Specialization — Andrew Ng · Coursera", url:"https://www.coursera.org/specializations/deep-learning" }
+        "name": "RAG Architectures",
+        "tags": [
+          "RAG",
+          "Chunking",
+          "Retrieval"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.llamaindex.ai/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://python.langchain.com/docs/tutorials/rag/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.pinecone.io/learn/retrieval-augmented-generation/"
+        },
+        "subtopics": [
+          {
+            "name": "Fixed chunking",
+            "rating": 8,
+            "desc": "Basic splitting",
+            "url": "https://docs.llamaindex.ai/en/stable/module_guides/loading/documents_and_nodes/usage_documents/"
+          },
+          {
+            "name": "Sliding window",
+            "rating": 8,
+            "desc": "Context preservation",
+            "url": "https://docs.llamaindex.ai/en/stable/"
+          },
+          {
+            "name": "Overlap strategy",
+            "rating": 9,
+            "desc": "Boundary handling",
+            "url": "https://docs.llamaindex.ai/en/stable/"
+          },
+          {
+            "name": "Semantic chunking",
+            "rating": 9,
+            "desc": "Meaningful splitting",
+            "url": "https://docs.llamaindex.ai/en/stable/"
+          },
+          {
+            "name": "Cosine similarity",
+            "rating": 10,
+            "desc": "Vector distance",
+            "url": "https://en.wikipedia.org/wiki/Cosine_similarity"
+          },
+          {
+            "name": "ANN search",
+            "rating": 9,
+            "desc": "Fast search algorithms",
+            "url": "https://en.wikipedia.org/wiki/Nearest_neighbor_search#Approximate_nearest_neighbor"
+          },
+          {
+            "name": "Top-k retrieval",
+            "rating": 10,
+            "desc": "Fetching best results",
+            "url": "https://docs.llamaindex.ai/"
+          },
+          {
+            "name": "Hybrid search",
+            "rating": 9,
+            "desc": "Dense + Sparse search",
+            "url": "https://docs.llamaindex.ai/"
+          },
+          {
+            "name": "Reranking",
+            "rating": 9,
+            "desc": "Cross-encoder scoring",
+            "url": "https://docs.llamaindex.ai/"
+          },
+          {
+            "name": "Grounding",
+            "rating": 10,
+            "desc": "Factual anchoring",
+            "url": "https://docs.llamaindex.ai/"
+          },
+          {
+            "name": "Citation systems",
+            "rating": 9,
+            "desc": "Verifiable output",
+            "url": "https://docs.llamaindex.ai/"
+          },
+          {
+            "name": "Retrieval constraints",
+            "rating": 9,
+            "desc": "Restricting generation",
+            "url": "https://docs.llamaindex.ai/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "label": "PHASE 10",
+    "title": "Vector Databases",
+    "subtitle": "pgvector \u00b7 Qdrant \u00b7 Search Indexes",
+    "tags": [
+      "VectorDB",
+      "pgvector",
+      "Qdrant"
+    ],
+    "color": "#C084FC",
+    "optional": false,
+    "topics": [
+      {
+        "name": "pgvector",
+        "tags": [
+          "pgvector",
+          "SQL",
+          "Indexing"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://github.com/pgvector/pgvector"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://supabase.com/docs/guides/database/extensions/pgvector"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://neon.tech/docs/extensions/pgvector"
+        },
+        "subtopics": [
+          {
+            "name": "IVFFlat Index",
+            "rating": 8,
+            "desc": "Partition-based index",
+            "url": "https://github.com/pgvector/pgvector#ivfflat"
+          },
+          {
+            "name": "HNSW Index",
+            "rating": 10,
+            "desc": "Graph-based index",
+            "url": "https://github.com/pgvector/pgvector#hnsw"
+          },
+          {
+            "name": "Distance operators",
+            "rating": 9,
+            "desc": "L2, cosine, inner product",
+            "url": "https://github.com/pgvector/pgvector#distance-operators"
+          },
+          {
+            "name": "SQL integrations",
+            "rating": 9,
+            "desc": "pgvector with SQL",
+            "url": "https://github.com/pgvector/pgvector-python"
+          }
+        ]
       },
       {
-        name: "PyTorch — Deep Dive",
-        tags: ["Tensors","Autograd","Training loop","Dataloaders","Save/load model","GPU usage"],
-        why: "Every ML interview tests basic PyTorch. If you explain RAG internals in depth, you'll need this as foundation.",
-        fast: { label:"PyTorch in 1 Hour — Daniel Bourke · YouTube", url:"https://www.youtube.com/watch?v=Z_ikDlimN6A" },
-        quality: { label:"PyTorch Full Course — Daniel Bourke · YouTube · 26h", url:"https://www.youtube.com/watch?v=Z_ikDlimN6A" }
+        "name": "Qdrant",
+        "tags": [
+          "Qdrant",
+          "Collections",
+          "Payload"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://qdrant.tech/documentation/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://qdrant.tech/documentation/tutorials/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=dN0lsF2cvm4"
+        },
+        "subtopics": [
+          {
+            "name": "Collections",
+            "rating": 8,
+            "desc": "Vector storage units",
+            "url": "https://qdrant.tech/documentation/concepts/collections/"
+          },
+          {
+            "name": "Payload filtering",
+            "rating": 9,
+            "desc": "Metadata search",
+            "url": "https://qdrant.tech/documentation/concepts/filtering/"
+          },
+          {
+            "name": "Storage configurations",
+            "rating": 8,
+            "desc": "Memory vs disk",
+            "url": "https://qdrant.tech/documentation/concepts/storage/"
+          },
+          {
+            "name": "Qdrant API client",
+            "rating": 9,
+            "desc": "Python SDK usage",
+            "url": "https://qdrant.tech/documentation/tutorials/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "label": "PHASE 11",
+    "title": "Celery & Queues",
+    "subtitle": "Background Jobs \u00b7 Workers \u00b7 RabbitMQ",
+    "tags": [
+      "Celery",
+      "RabbitMQ",
+      "Queues"
+    ],
+    "color": "#FB7185",
+    "optional": false,
+    "topics": [
+      {
+        "name": "Background Tasks",
+        "tags": [
+          "Celery",
+          "Workers",
+          "Cron"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.celeryq.dev/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://testdriven.io/courses/django-celery/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=THxCy-6EnQM"
+        },
+        "subtopics": [
+          {
+            "name": "Asynchronous tasks",
+            "rating": 10,
+            "desc": "Non-blocking jobs",
+            "url": "https://docs.celeryq.dev/en/stable/userguide/tasks.html"
+          },
+          {
+            "name": "Task worker pools",
+            "rating": 9,
+            "desc": "Concurrency models",
+            "url": "https://docs.celeryq.dev/en/stable/userguide/workers.html#concurrency"
+          },
+          {
+            "name": "Task monitoring",
+            "rating": 8,
+            "desc": "Flower tracking tool",
+            "url": "https://docs.celeryq.dev/en/stable/userguide/monitoring.html"
+          },
+          {
+            "name": "Scheduled cron tasks",
+            "rating": 8,
+            "desc": "Celery Beat usage",
+            "url": "https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html"
+          }
+        ]
       },
       {
-        name: "Transformers Architecture",
-        tags: ["Self-attention","Multi-head attention","Positional encoding","Encoder-Decoder","BERT vs GPT","KV cache"],
-        why: "If you can explain attention in an interview cold, you immediately signal senior AI engineer level. Rare skill in India.",
-        fast: { label:"Attention is All You Need — Yannic Kilcher · YouTube", url:"https://www.youtube.com/watch?v=iDulhoQ2pro" },
-        quality: { label:"Illustrated Transformer — Jay Alammar · Blog", url:"https://jalammar.github.io/illustrated-transformer/" }
+        "name": "RabbitMQ",
+        "tags": [
+          "RabbitMQ",
+          "Broker",
+          "Topology"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://www.rabbitmq.com/docs"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.rabbitmq.com/tutorials"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.cloudamqp.com/blog/part1-rabbitmq-for-beginners-what-is-rabbitmq.html"
+        },
+        "subtopics": [
+          {
+            "name": "Exchanges & queues",
+            "rating": 9,
+            "desc": "Routing topology",
+            "url": "https://www.rabbitmq.com/tutorials/amqp-concepts"
+          },
+          {
+            "name": "Message acknowledgment",
+            "rating": 10,
+            "desc": "Delivery guarantees",
+            "url": "https://www.rabbitmq.com/confirms.html"
+          },
+          {
+            "name": "Publish/Subscribe",
+            "rating": 9,
+            "desc": "Broadcast patterns",
+            "url": "https://www.rabbitmq.com/tutorials/tutorial-three-python"
+          },
+          {
+            "name": "Dead letter exchanges",
+            "rating": 8,
+            "desc": "Handling failed tasks",
+            "url": "https://www.rabbitmq.com/dlx.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "label": "PHASE 12",
+    "title": "Streaming & Event Systems",
+    "subtitle": "Server-Sent Events \u00b7 WebSockets",
+    "tags": [
+      "SSE",
+      "WebSockets",
+      "Realtime"
+    ],
+    "color": "#38BDF8",
+    "optional": false,
+    "topics": [
+      {
+        "name": "Server-Sent Events",
+        "tags": [
+          "SSE",
+          "FastAPI SSE",
+          "Unidirectional"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=2Nt-ZrNP22A"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=4HlNv1qpZFY"
+        },
+        "subtopics": [
+          {
+            "name": "Unidirectional stream",
+            "rating": 9,
+            "desc": "Server-to-client events",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events"
+          },
+          {
+            "name": "Event stream format",
+            "rating": 8,
+            "desc": "Text/event-stream spec",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events"
+          },
+          {
+            "name": "FastAPI integration",
+            "rating": 10,
+            "desc": "StreamingResponse routing",
+            "url": "https://fastapi.tiangolo.com/advanced/custom-response/#streamingresponse"
+          },
+          {
+            "name": "Connection timeouts",
+            "rating": 8,
+            "desc": "Keeping connections alive",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events"
+          }
+        ]
       },
       {
-        name: "Fine-tuning (LoRA / QLoRA)",
-        tags: ["When to fine-tune vs RAG","LoRA concept","QLoRA","Dataset prep","HuggingFace Trainer","PEFT library"],
-        why: "Most AI engineers only do RAG. Fine-tuning knowledge = immediate senior/lead signal. Pushes you to ₹20–25 LPA range.",
-        fast: { label:"Finetuning LLMs — DeepLearning.AI · Free Short Course", url:"https://www.deeplearning.ai/short-courses/finetuning-large-language-models/" },
-        quality: { label:"HuggingFace Fine-tuning Guide — huggingface.co", url:"https://huggingface.co/learn/nlp-course/chapter3/1" }
+        "name": "WebSockets",
+        "tags": [
+          "WebSockets",
+          "FastAPI WS",
+          "Bidirectional"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://fastapi.tiangolo.com/advanced/websockets/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=2Nt-ZrNP22A"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=4HlNv1qpZFY"
+        },
+        "subtopics": [
+          {
+            "name": "Bidirectional socket",
+            "rating": 9,
+            "desc": "Full-duplex channels",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"
+          },
+          {
+            "name": "Connection lifecycle",
+            "rating": 9,
+            "desc": "Accept and disconnect",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers"
+          },
+          {
+            "name": "State management",
+            "rating": 8,
+            "desc": "Active socket registries",
+            "url": "https://fastapi.tiangolo.com/advanced/websockets/"
+          },
+          {
+            "name": "Websocket security",
+            "rating": 8,
+            "desc": "Token-based validation",
+            "url": "https://fastapi.tiangolo.com/advanced/websockets/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "label": "PHASE 13",
+    "title": "Observability & Tracing",
+    "subtitle": "OpenTelemetry \u00b7 Langfuse \u00b7 Telemetry",
+    "tags": [
+      "OTel",
+      "Langfuse",
+      "Tracing"
+    ],
+    "color": "#2DD4BF",
+    "optional": false,
+    "topics": [
+      {
+        "name": "OpenTelemetry",
+        "tags": [
+          "OTel",
+          "Traces",
+          "Spans"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://opentelemetry.io/docs/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://opentelemetry.io/docs/languages/python/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=AwCntHuBon8"
+        },
+        "subtopics": [
+          {
+            "name": "Distributed traces",
+            "rating": 9,
+            "desc": "Request paths tracking",
+            "url": "https://opentelemetry.io/docs/concepts/signals/traces/"
+          },
+          {
+            "name": "Spans & parent scopes",
+            "rating": 9,
+            "desc": "Sub-operation timings",
+            "url": "https://opentelemetry.io/docs/concepts/signals/traces/#spans"
+          },
+          {
+            "name": "OTel Python SDK",
+            "rating": 10,
+            "desc": "Auto-instrumentation",
+            "url": "https://opentelemetry.io/docs/languages/python/"
+          },
+          {
+            "name": "Metrics & Logs collector",
+            "rating": 8,
+            "desc": "Telemetry ingestion",
+            "url": "https://opentelemetry.io/docs/collector/"
+          }
+        ]
+      },
+      {
+        "name": "Langfuse",
+        "tags": [
+          "Langfuse",
+          "AI Ingestion",
+          "Dashboard"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://langfuse.com/docs"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://github.com/langfuse/langfuse"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://langfuse.com/docs/get-started"
+        },
+        "subtopics": [
+          {
+            "name": "Trace collections",
+            "rating": 9,
+            "desc": "AI step tracking",
+            "url": "https://langfuse.com/docs/tracing"
+          },
+          {
+            "name": "Latency breakdown",
+            "rating": 10,
+            "desc": "Identifying slow steps",
+            "url": "https://langfuse.com/docs/analytics"
+          },
+          {
+            "name": "Token billing logging",
+            "rating": 9,
+            "desc": "Auditing cost stats",
+            "url": "https://langfuse.com/docs/"
+          },
+          {
+            "name": "Langfuse SDK integration",
+            "rating": 10,
+            "desc": "Decorator-based tracing",
+            "url": "https://langfuse.com/docs/sdk/python"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "label": "PHASE 14",
+    "title": "AI Evaluation",
+    "subtitle": "Ragas \u00b7 Eval Pipelines \u00b7 Metrics",
+    "tags": [
+      "Ragas",
+      "Evaluation",
+      "Benchmarks"
+    ],
+    "color": "#FBBF24",
+    "optional": false,
+    "topics": [
+      {
+        "name": "Eval Frameworks",
+        "tags": [
+          "Ragas",
+          "Recall",
+          "Precision"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.ragas.io/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=oncKd5Q4ixQ"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://docs.smith.langchain.com/evaluation"
+        },
+        "subtopics": [
+          {
+            "name": "LLM-as-a-judge",
+            "rating": 10,
+            "desc": "Automated Critic scoring",
+            "url": "https://docs.ragas.io/en/stable/concepts/metrics/"
+          },
+          {
+            "name": "Recall & Precision metrics",
+            "rating": 9,
+            "desc": "Search quality testing",
+            "url": "https://docs.ragas.io/en/stable/concepts/metrics/"
+          },
+          {
+            "name": "Faithfulness scoring",
+            "rating": 10,
+            "desc": "Hallucination audits",
+            "url": "https://docs.ragas.io/en/stable/concepts/metrics/"
+          },
+          {
+            "name": "Dataset benchmarking",
+            "rating": 8,
+            "desc": "Golden evaluation sets",
+            "url": "https://docs.ragas.io/en/stable/"
+          },
+          {
+            "name": "Answer relevance",
+            "rating": 9,
+            "desc": "Context alignment checks",
+            "url": "https://docs.ragas.io/en/stable/concepts/metrics/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "label": "PHASE 15",
+    "title": "AI Workflows",
+    "subtitle": "LangGraph \u00b7 DSPy \u00b7 Orchestration",
+    "tags": [
+      "LangGraph",
+      "DSPy",
+      "Agents"
+    ],
+    "color": "#FB923C",
+    "optional": false,
+    "topics": [
+      {
+        "name": "Agent Graphs",
+        "tags": [
+          "LangGraph",
+          "Nodes",
+          "Edges"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=jGg36u1HrB8"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://academy.langchain.com/"
+        },
+        "subtopics": [
+          {
+            "name": "Stateful graphs",
+            "rating": 10,
+            "desc": "State preservation loops",
+            "url": "https://langchain-ai.github.io/langgraph/concepts/low_level/"
+          },
+          {
+            "name": "Nodes & edges",
+            "rating": 10,
+            "desc": "Conditional step execution",
+            "url": "https://langchain-ai.github.io/langgraph/concepts/low_level/#nodes"
+          },
+          {
+            "name": "State Checkpointing",
+            "rating": 9,
+            "desc": "Session persistence layers",
+            "url": "https://langchain-ai.github.io/langgraph/how-tos/persistence/"
+          },
+          {
+            "name": "Human-in-the-loop",
+            "rating": 9,
+            "desc": "Pause-and-resume gates",
+            "url": "https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/"
+          }
+        ]
+      },
+      {
+        "name": "DSPy",
+        "tags": [
+          "DSPy",
+          "Optimizers",
+          "Signatures"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://dspy-docs.vercel.app/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://github.com/stanfordnlp/dspy"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=41EfOY0Ldkc"
+        },
+        "subtopics": [
+          {
+            "name": "Programming over prompting",
+            "rating": 9,
+            "desc": "Code-driven declarations",
+            "url": "https://dspy.ai/learn/programming/signatures/"
+          },
+          {
+            "name": "Signatures & Modules",
+            "rating": 9,
+            "desc": "Standardizing tasks",
+            "url": "https://dspy.ai/learn/programming/modules/"
+          },
+          {
+            "name": "DSPy Optimizers",
+            "rating": 10,
+            "desc": "Auto-tuning prompts",
+            "url": "https://dspy.ai/learn/optimization/optimizers/"
+          },
+          {
+            "name": "Teleprompters",
+            "rating": 8,
+            "desc": "Few-shot generation models",
+            "url": "https://dspy.ai/learn/optimization/optimizers/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "label": "PHASE 16",
+    "title": "Model Serving",
+    "subtitle": "vLLM \u00b7 PagedAttention \u00b7 GPU",
+    "tags": [
+      "vLLM",
+      "Inference",
+      "Serving"
+    ],
+    "color": "#FB923C",
+    "optional": false,
+    "topics": [
+      {
+        "name": "Local Inference",
+        "tags": [
+          "vLLM",
+          "PagedAttention",
+          "Continuous Batching"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.vllm.ai/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://github.com/vllm-project/vllm"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=80bIUggRJf4"
+        },
+        "subtopics": [
+          {
+            "name": "PagedAttention",
+            "rating": 10,
+            "desc": "Dynamic KV cache blocks",
+            "url": "https://docs.vllm.ai/en/latest/"
+          },
+          {
+            "name": "Continuous batching",
+            "rating": 10,
+            "desc": "Request queue scheduling",
+            "url": "https://docs.vllm.ai/en/latest/"
+          },
+          {
+            "name": "Model weight memory",
+            "rating": 9,
+            "desc": "GPU memory constraints",
+            "url": "https://docs.vllm.ai/en/latest/"
+          },
+          {
+            "name": "Inference latency",
+            "rating": 9,
+            "desc": "Token generation speed",
+            "url": "https://docs.vllm.ai/en/latest/"
+          },
+          {
+            "name": "vLLM CLI serving",
+            "rating": 9,
+            "desc": "Deploying OpenAI-spec API",
+            "url": "https://docs.vllm.ai/en/latest/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "label": "PHASE 17",
+    "title": "Fine-Tuning",
+    "subtitle": "PEFT \u00b7 LoRA \u00b7 HF Adapter",
+    "tags": [
+      "PEFT",
+      "LoRA",
+      "HuggingFace"
+    ],
+    "color": "#C084FC",
+    "optional": false,
+    "topics": [
+      {
+        "name": "PEFT & LoRA",
+        "tags": [
+          "LoRA",
+          "PEFT",
+          "JSONL"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://huggingface.co/docs/peft/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=dA-NhCtrrVE"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://huggingface.co/learn/nlp-course/chapter3/1"
+        },
+        "subtopics": [
+          {
+            "name": "Low-Rank Adaptation",
+            "rating": 10,
+            "desc": "Weight matrix factorization",
+            "url": "https://huggingface.co/docs/peft/developer_guides/lora"
+          },
+          {
+            "name": "PEFT adapters",
+            "rating": 9,
+            "desc": "Freezing base model weights",
+            "url": "https://huggingface.co/docs/peft/index"
+          },
+          {
+            "name": "JSONL datasets",
+            "rating": 9,
+            "desc": "Supervised instruction tuning",
+            "url": "https://huggingface.co/docs/peft/index"
+          },
+          {
+            "name": "Rank & Alpha parameters",
+            "rating": 8,
+            "desc": "Adapter capacity controls",
+            "url": "https://huggingface.co/docs/peft/developer_guides/lora"
+          },
+          {
+            "name": "Catastrophic forgetting",
+            "rating": 8,
+            "desc": "Loss of general reasoning",
+            "url": "https://huggingface.co/docs/peft/index"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "label": "PHASE 18",
+    "title": "Multimodal AI",
+    "subtitle": "Vision API \u00b7 OCR \u00b7 Ingestion",
+    "tags": [
+      "Vision",
+      "OCR",
+      "Multimodal"
+    ],
+    "color": "#60A5FA",
+    "optional": false,
+    "topics": [
+      {
+        "name": "OCR & Vision",
+        "tags": [
+          "Vision API",
+          "OCR",
+          "Tesseract"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://tesseract-ocr.github.io/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://www.youtube.com/watch?v=PY_N1XdFp4w"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://realpython.com/python-opencv-color-spaces/"
+        },
+        "subtopics": [
+          {
+            "name": "Vision APIs",
+            "rating": 9,
+            "desc": "Processing visual data",
+            "url": "https://ai.google.dev/gemini-api/docs/vision"
+          },
+          {
+            "name": "OCR engines",
+            "rating": 8,
+            "desc": "Extracting text from docs",
+            "url": "https://tesseract-ocr.github.io/"
+          },
+          {
+            "name": "Image preprocessing",
+            "rating": 8,
+            "desc": "Improving image resolution",
+            "url": "https://docs.opencv.org/"
+          },
+          {
+            "name": "Multimodal embeddings",
+            "rating": 9,
+            "desc": "Joint text/visual space",
+            "url": "https://huggingface.co/docs/transformers/model_doc/clip"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "label": "PHASE 19",
+    "title": "Git Version Control",
+    "subtitle": "Branching \u00b7 Merging \u00b7 Conflicts",
+    "tags": [
+      "Git",
+      "GitHub",
+      "VCS"
+    ],
+    "color": "#34D399",
+    "optional": false,
+    "topics": [
+      {
+        "name": "Version Control",
+        "tags": [
+          "Git",
+          "Commits",
+          "Rebase"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://git-scm.com/doc"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://learngitbranching.js.org/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://gitimmersion.com/"
+        },
+        "subtopics": [
+          {
+            "name": "Staging & Commits",
+            "rating": 10,
+            "desc": "Version snapshots",
+            "url": "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+          },
+          {
+            "name": "Branching models",
+            "rating": 10,
+            "desc": "Parallel development",
+            "url": "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell"
+          },
+          {
+            "name": "Pull Requests",
+            "rating": 9,
+            "desc": "Code review workflows",
+            "url": "https://docs.github.com/en/pull-requests"
+          },
+          {
+            "name": "Rebase vs Merge",
+            "rating": 8,
+            "desc": "Rewriting commit history",
+            "url": "https://git-scm.com/book/en/v2/Git-Branching-Rebasing"
+          },
+          {
+            "name": "Merge conflicts",
+            "rating": 9,
+            "desc": "Resolving overlaps",
+            "url": "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merge_conflicts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "label": "PHASE 20",
+    "title": "AWS Cloud Services",
+    "subtitle": "EC2 \u00b7 S3 \u00b7 RDS \u00b7 IAM",
+    "tags": [
+      "AWS",
+      "EC2",
+      "S3",
+      "Cloud"
+    ],
+    "color": "#38BDF8",
+    "optional": false,
+    "topics": [
+      {
+        "name": "Cloud Services",
+        "tags": [
+          "AWS",
+          "Compute",
+          "Storage"
+        ],
+        "quality": {
+          "label": "Official Docs",
+          "url": "https://docs.aws.amazon.com/"
+        },
+        "fast1": {
+          "label": "Fast Resource 1",
+          "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/"
+        },
+        "fast2": {
+          "label": "Fast Resource 2",
+          "url": "https://www.youtube.com/watch?v=3hLmDS179YE"
+        },
+        "subtopics": [
+          {
+            "name": "EC2 Instances",
+            "rating": 9,
+            "desc": "Virtual compute servers",
+            "url": "https://docs.aws.amazon.com/ec2/"
+          },
+          {
+            "name": "S3 Object Store",
+            "rating": 9,
+            "desc": "File storage buckets",
+            "url": "https://docs.aws.amazon.com/s3/"
+          },
+          {
+            "name": "RDS Ingestion",
+            "rating": 9,
+            "desc": "Relational database hosts",
+            "url": "https://docs.aws.amazon.com/rds/"
+          },
+          {
+            "name": "IAM Security Rules",
+            "rating": 8,
+            "desc": "Access permissions policies",
+            "url": "https://docs.aws.amazon.com/iam/"
+          }
+        ]
       }
     ]
   }
-];
+];;;;
 
 /* ─────────────────────────────────────────────
    RENDER ENGINE
@@ -770,6 +2632,14 @@ function renderPhase(p, pi) {
   const isOpen = state.phase === p.id;
   const hexA = (a) => c + Math.round(a*255).toString(16).padStart(2,'0');
 
+  const total = p.topics.length;
+  const done = p.topics.filter((t,ti) => completedTopics[p.id+'__'+ti]).length;
+  const pct = total > 0 ? Math.round((done/total)*100) : 0;
+
+  const pctColor = pct === 100 ? '#34D399' : pct > 0 ? '#60A5FA' : 'var(--text-dimmer)';
+  const pctBg = pct === 100 ? 'rgba(52,211,153,0.1)' : pct > 0 ? 'rgba(96,165,250,0.1)' : 'rgba(255,255,255,0.03)';
+  const pctBorder = pct === 100 ? 'rgba(52,211,153,0.2)' : pct > 0 ? 'rgba(96,165,250,0.2)' : 'rgba(255,255,255,0.07)';
+
   return `
     ${pi > 0 ? `<div class="connector"><div class="connector-line"></div></div>` : ''}
     <div class="phase-card ${isOpen?'open':''}" id="pc-${p.id}" style="--pc:${c};border-color:${isOpen ? hexA(.22) : 'var(--border-subtle)'};${isOpen ? 'background:'+hexA(.04) : ''}">
@@ -781,13 +2651,25 @@ function renderPhase(p, pi) {
           }
         </div>
         <div class="phase-info">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:bold;color:${c};letter-spacing:0.05em;text-transform:uppercase;">Phase ${p.id}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);">~${PHASE_HOURS[p.id]||0}h</span>
+          </div>
           <div class="phase-title-row">
             <span class="phase-title ${isOpen?'active':''}" style="${isOpen?'color:'+c:''}">${p.title}</span>
             ${p.optional ? `<span class="opt-badge" style="background:${hexA(.12)};color:${c};border:1px solid ${hexA(.25)}">OPTIONAL</span>` : ''}
           </div>
-          <div class="phase-sub">${p.subtitle}</div>
+          <div style="width:120px;height:2px;background:rgba(255,255,255,0.07);border-radius:1px;overflow:hidden;margin-top:4px;margin-bottom:4px;">
+            <div style="height:100%;width:${pct}%;background:${c};border-radius:1px;transition:width .4s;"></div>
+          </div>
+          <div class="phase-sub" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span>${p.subtitle}</span>
+          </div>
         </div>
-        <div class="phase-arrow ${isOpen?'open':''}">▶</div>
+        <div style="display:flex;align-items:center;margin-left:auto;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:bold;padding:2px 6px;border-radius:4px;border:1px solid ${pctBorder};background:${pctBg};color:${pctColor};margin-right:8px;display:inline-block;">${pct}%</span>
+          <div class="phase-arrow ${isOpen?'open':''}">▶</div>
+        </div>
       </div>
 
       ${isOpen ? renderPhaseBody(p, c, hexA) : ''}
@@ -814,7 +2696,6 @@ function renderPhaseBody(p, c, hexA) {
         </div>
       </div>` : ''}
 
-      ${p.project ? renderProject(p.project, c, hexA) : ''}
 
       <div class="topics-list">
         ${p.topics.map((t, ti) => renderTopic(t, ti, p.id, c, hexA)).join('')}
@@ -856,15 +2737,65 @@ function renderProject(proj, c, hexA) {
     </div>`;
 }
 
+
+
+function getRatingColor(r) {
+  if (r >= 9) return '#34D399';
+  if (r >= 7) return '#60A5FA';
+  if (r >= 5) return '#FBBF24';
+  return '#F87171';
+}
+
 function renderTopic(t, ti, pid, c, hexA) {
   const key = `${pid}__${ti}`;
   const isSel = !!state.topic[key];
+  const isDone = !!completedTopics[key];
+  
+  let subtopicsHtml = '';
+  if (t.subtopics && t.subtopics.length > 0) {
+    subtopicsHtml = `
+      <div class="subtopic-header">Topic Priorities & Docs</div>
+      <div class="subtopics-list">
+        ${t.subtopics.map((st, sti) => {
+          const stKey = `${pid}__${ti}__sub__${sti}`;
+          const stDone = !!completedSubtopics[stKey];
+          return `
+          <div style="display:flex;align-items:center;gap:0;position:relative;">
+            <div onclick="toggleSubtopicDoneDirect('${pid}',${ti},${sti},event)"
+              style="flex-shrink:0;width:16px;height:16px;border-radius:3px;border:1.5px solid ${stDone?c:'rgba(255,255,255,0.18)'};
+              background:${stDone?c:'transparent'};display:flex;align-items:center;justify-content:center;
+              cursor:pointer;transition:all .2s;margin-right:8px;z-index:2;">
+              ${stDone ? '<span style="color:#000;font-size:9px;font-weight:bold;line-height:1;">✓</span>' : ''}
+            </div>
+            <a href="${st.url}" target="_blank" rel="noopener" class="st-item" style="text-decoration:none;flex:1;">
+              <div class="st-info" style="margin-bottom: 0;">
+                <div style="display: flex; flex-direction: column; gap: 2px;">
+                  <span class="st-name" style="${stDone?'text-decoration:line-through;opacity:0.55':''}">${st.name} <span style="font-size: 10px; opacity: 0.6; margin-left: 2px;">↗</span></span>
+                  ${st.desc ? `<span style="font-size: 11.5px; color: var(--text-dimmer);">${st.desc}</span>` : ''}
+                </div>
+                <span class="st-score" style="color: ${getRatingColor(st.rating)}">${st.rating}/10</span>
+              </div>
+            </a>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+  } else if (t.why) {
+     subtopicsHtml = `<div class="td-why">${t.why}</div>`;
+  }
+
   return `
     <div>
       <div class="topic-row ${isSel?'open':''}" onclick="toggleTopic('${key}')" style="--tc:${c};${isSel?'border-color:'+c+'55;background:var(--bg-topic-hover)':''}">  
         <div class="topic-row-inner">
+          <div onclick="toggleTopicDoneDirect('${pid}',${ti},event)"
+            style="flex-shrink:0;width:18px;height:18px;border-radius:4px;border:1.5px solid ${isDone?c:'rgba(255,255,255,0.18)'};
+            background:${isDone?c+'22':'transparent'};display:flex;align-items:center;justify-content:center;
+            cursor:pointer;transition:all .2s;margin-right:10px;z-index:2;">
+            ${isDone ? `<span style="color:${c};font-size:10px;font-weight:bold;line-height:1;">✓</span>` : ''}
+          </div>
           <div style="flex:1;min-width:0">
-            <div class="topic-name" style="${isSel?'color:'+c:''}">${t.name}</div>
+            <div class="topic-name" style="${isSel?'color:'+c:''};${isDone?'text-decoration:line-through;opacity:0.65':''}">${t.name}</div>
             <div class="topic-tags">
               ${t.tags.map(tg => `<span class="topic-tag" style="color:${c};background:${hexA(.14)};border:1px solid ${hexA(.38)}">${tg}</span>`).join('')}
             </div>
@@ -874,22 +2805,36 @@ function renderTopic(t, ti, pid, c, hexA) {
       </div>
       ${isSel ? `
       <div class="topic-detail" style="--td-border:${c}20;--td-accent:${c}55;border-color:${c}20;border-left-color:${c}55">
-        <div class="td-why">${t.why}</div>
+        ${subtopicsHtml}
+        <div class="subtopic-header" style="margin-top: 24px;">Core Resources</div>
         <div class="resources">
-          <a href="${t.fast.url}" target="_blank" rel="noopener" class="res-link">
-            <span class="res-tier res-f">F</span>
-            <div class="res-body">
-              <div class="res-name res-name-f">${t.fast.label} ↗</div>
-              <div class="res-meta">Covers everything · Optimised for time · Use under 6-month pressure</div>
-            </div>
-          </a>
+          ${t.quality ? `
           <a href="${t.quality.url}" target="_blank" rel="noopener" class="res-link">
-            <span class="res-tier res-q">Q</span>
+            <span class="res-tier res-q">Docs</span>
             <div class="res-body">
               <div class="res-name res-name-q">${t.quality.label} ↗</div>
-              <div class="res-meta">Full mastery · Deeper understanding · Use for 12-month approach</div>
+              <div class="res-meta">Official Documentation · Primary Source of Truth</div>
             </div>
           </a>
+          ` : ''}
+          ${t.fast1 ? `
+          <a href="${t.fast1.url}" target="_blank" rel="noopener" class="res-link">
+            <span class="res-tier res-f">Fast 1</span>
+            <div class="res-body">
+              <div class="res-name res-name-f">${t.fast1.label} ↗</div>
+              <div class="res-meta">Fast Resource 1 · Quick conceptual understanding</div>
+            </div>
+          </a>
+          ` : ''}
+          ${t.fast2 ? `
+          <a href="${t.fast2.url}" target="_blank" rel="noopener" class="res-link">
+            <span class="res-tier res-f2">Fast 2</span>
+            <div class="res-body">
+              <div class="res-name res-name-f2">${t.fast2.label} ↗</div>
+              <div class="res-meta">Fast Resource 2 · Practical/project-oriented learning</div>
+            </div>
+          </a>
+          ` : ''}
         </div>
       </div>` : ''}
     </div>`;
@@ -898,27 +2843,457 @@ function renderTopic(t, ti, pid, c, hexA) {
 /* ─────────────────────────────────────────────
    BOTTOM STRIP
 ───────────────────────────────────────────── */
+const PORTFOLIO_PROJECTS = [
+  {
+    title: 'Project 1: Production Backend API',
+    difficulty: 'Easy',
+    stack: 'Python, FastAPI, PostgreSQL, Docker',
+    desc: 'Clean architectural layout: dynamic dependency injection, domain models, database repositories, custom Exception handlers. Learns robust production-grade API architecture.',
+    redis: 'None in MVP context; pure relational persistence structure.',
+    async: 'Using asynchronous session models (async/await) completely to prevent connection blockages.',
+    endpoints: [
+      'POST /users - Create active account validation',
+      'POST /login - stateless token generations',
+      'GET /items - dynamic query pagination filters',
+      'PUT /items/{id} - atomic record modification operations'
+    ],
+    checks: [
+      'Write structural Pydantic input schemas with strict regex validation',
+      'Configure unified error response middlewares capturing unhandled core exceptions',
+      'Deploy localized docker containers containing both web structures and isolated DB databases'
+    ],
+    concern: 'Cross-Origin Resource Sharing (CORS) configurations, input boundaries sanitization, database connections timeouts.'
+  },
+  {
+    title: 'Project 2: Scalable URL Shortener',
+    difficulty: 'Easy',
+    stack: 'Python, FastAPI, Redis, Docker',
+    desc: 'High-speed redirection engine. Focuses on in-memory operations, rapid lookups, custom analytics writing, and route protection.',
+    redis: 'In-memory key estimation & data types. String storage for direct redirects, Hashes for analytics, and rate-limiting counters.',
+    async: 'Non-blocking Redis await operations for single-digit millisecond latency response.',
+    endpoints: [
+      'POST /shorten - Generate short slug with custom TTL or customized key aliases',
+      'GET /{slug} - Performance-centric redirection lookup yielding analytics counters',
+      'GET /analytics/{slug} - Retrieve detailed hit maps, time intervals, and visitor metadata'
+    ],
+    checks: [
+      'Implement a slide rate-limiter in Redis to prevent API abuse',
+      'Build a lightweight dashboard displaying URL performance maps & click metrics',
+      'Dockerize the API and Redis setup to run under local container networking'
+    ],
+    concern: 'High-concurrency cache eviction policies, thundering herds mitigation, and securing redirect pathways from infinite loops.'
+  },
+  {
+    title: 'Project 3: Async File Processor',
+    difficulty: 'Medium',
+    stack: 'Python, FastAPI, Redis, Celery, Docker',
+    desc: 'Distributed queue architecture. FastAPI acts as gateway, passing heavy jobs to Redis broker, which hands them to a decoupled Celery task engine.',
+    redis: 'Acts as highly speed messaging broker queue and storage backing.',
+    async: 'Complete non-blocking client interaction. HTTP calls return in 10ms; long-lasting calculations run on backends.',
+    endpoints: [
+      'POST /tasks/process - dispatch a new job task, returns task_id',
+      'GET /tasks/status/{id} - poll task completion status state and telemetry outputs'
+    ],
+    checks: [
+      'Launch background Celery worker container within Docker Compose setup',
+      'Set retry policies on worker tasks protecting against unstable API targets failures',
+      'Integrate simple polling loop on API endpoint to report granular state'
+    ],
+    concern: 'Task durability: ensure workers retry crashed files processes. Clean up system files paths safely.'
+  },
+  {
+    title: 'Project 4: Real-Time Chat Backend',
+    difficulty: 'Medium',
+    stack: 'FastAPI, Redis, Docker-Compose',
+    desc: 'Subscribing routing engine. Handles incoming persistent websocket pipelines, using Redis Pub/Sub mechanisms to mirror chat streams horizontally.',
+    redis: 'Redis Pub/Sub coordinates multiple running backend nodes to synchronize chat rooms globally.',
+    async: 'Asyncio loops coordinate reading and writing on sockets simultaneously.',
+    endpoints: [
+      '/ws/chat/{room_id} - persistent duplex pipeline'
+    ],
+    checks: [
+      'Implement keepalive ping loops to close inactive connections',
+      'Write Pub/Sub listeners executing in structural asyncio tasks loops',
+      'Set security middleware checking authentication query params'
+    ],
+    concern: 'Websocket handshaking validation, token checking over connection requests, standard connection heartbeats.'
+  },
+  {
+    title: 'Project 5: Semantical RAG System',
+    difficulty: 'Hard',
+    stack: 'FastAPI, PostgreSQL, pgvector, Google GenAI SDK',
+    desc: 'Vector ingestion pipeline. Ingests PDFs, chunks structurally, saves similarity indexes inside pgvector, and injects context into Gemini prompt loops.',
+    redis: 'Semantic caching of similarity queries, resolving repeating questions instantly without hitting LLM API gateways.',
+    async: 'Async streams yield tokens one by one (Server-Sent-Events) for real-time generative layouts.',
+    endpoints: [
+      'POST /documents/ingest - process incoming documents',
+      'POST /chat/query - query pipeline, returns streams of context-grounded AI text'
+    ],
+    checks: [
+      '01. Build semantic chunker slicing paragraphs at real boundary intersections',
+      '02. Expose search routes matching queries with pgvector Cosine Metrics',
+      '03. Implement conversational model interface tracking histories dynamically'
+    ],
+    concern: 'Prompt Injection attacks, document format safety, caching expirations, system constraints enforcement.'
+  },
+  {
+    title: 'Project 6: AI Workflow System',
+    difficulty: 'Hard',
+    stack: 'FastAPI, PostgreSQL, LangGraph, Google GenAI API, Langfuse',
+    desc: 'Functional graph state machine. Models multi-turn AI reasoning loops with strict validation schemas and automated fallbacks.',
+    redis: 'Session state variables cache, locking concurrent operations.',
+    async: 'Runs concurrent LLM queries dynamically via async gathers in appropriate graph nodes.',
+    endpoints: [
+      'POST /workflow/run - execute structured AI task, returns state nodes logs',
+      'GET /workflow/traces - audit execution footprints and trace outputs logs'
+    ],
+    checks: [
+      '01. Write complete Pydantic model configurations verifying models structure parameters',
+      '02. Configure error recovery nodes dynamically shifting tasks to fallback APIs',
+      '03. Deploy full-stack gateway dashboard to audit execution histories'
+    ],
+    concern: 'Fail-safe state recovery if an intermediate step crashes. Auto-retries with exponential backoffs.'
+  }
+];
+
 function renderBottom() {
-  const milestones = [
-    { range:"DSA · Phase 1–2", result:"Entry level + first income · Start applying internships at 50+ problems", col:"#34D399" },
-    { range:"Phase 3–4",       result:"₹10–15 LPA readiness · 2 live projects · Docker + system design", col:"#60A5FA" },
-    { range:"Phase 5–6",       result:"₹15–20 LPA target · 4 live AI projects · RAG + Agents in production", col:"#2DD4BF" },
-    { range:"Phase 7",         result:"Offer collection phase · 300+ applications · Negotiate every offer", col:"#FBBF24" },
-    { range:"Phase 8",         result:"Optional depth · Pushes to ₹20–25 LPA · Fine-tuning + Transformers", col:"#FB923C" },
-  ];
   return `
     <div class="connector"><div class="connector-line"></div></div>
-    <div class="bottom-strip">
-      <div class="bottom-label">FINAL TRUTH — PHASE MILESTONES</div>
-      <div class="milestone-list">
-        ${milestones.map(m => `
-          <div class="milestone-row">
-            <span class="milestone-range" style="color:${m.col}">${m.range}</span>
-            <span class="milestone-sep"></span>
-            <span class="milestone-result">${m.result}</span>
-          </div>`).join('')}
+    <div class="bottom-strip" style="margin-top:28px; padding:20px; background:var(--bg-panel); border:1px solid var(--border-nav-top); border-radius:10px;">
+      <div class="bottom-label" style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-dimmer); letter-spacing:.14em; margin-bottom:18px;">PORTFOLIO TARGETS — CORE ENGINEERING EXECUTIONS</div>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        ${PORTFOLIO_PROJECTS.map(p => `
+          <div style="background:rgba(255,255,255,0.015); border:1px solid var(--border-mild); border-radius:8px; padding:18px; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div style="font-size:15px; font-weight:700; color:var(--text-phase);">${p.title}</div>
+              <div style="display:flex; gap:6px;">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:9px; padding:2px 6px; border-radius:4px; font-weight:bold; background:${p.difficulty === 'Easy' ? 'rgba(16,185,129,0.12)' : p.difficulty === 'Hard' ? 'rgba(244,63,94,0.12)' : 'rgba(245,158,11,0.12)'}; color:${p.difficulty === 'Easy' ? '#10B981' : p.difficulty === 'Hard' ? '#FB7185' : '#F59E0B'}; border:1px solid ${p.difficulty === 'Easy' ? 'rgba(16,185,129,0.2)' : p.difficulty === 'Hard' ? 'rgba(244,63,94,0.2)' : 'rgba(245,158,11,0.2)'};">${p.difficulty.toUpperCase()}</span>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:9px; padding:2px 6px; border-radius:4px; font-weight:bold; background:rgba(255,255,255,0.03); border:1px solid var(--border-res); color:var(--text-muted);">${p.stack}</span>
+              </div>
+            </div>
+
+            <div style="font-size:13px; color:var(--text-elem); line-height:1.6;">${p.desc}</div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; font-size:12px; font-family:'JetBrains Mono',monospace; border-top:1px solid var(--border-subtle); padding-top:12px;">
+              <div>
+                <div style="color:var(--text-dimmer); font-size:9px; font-weight:bold; text-transform:uppercase; margin-bottom:4px;">Redis Messaging Strategy</div>
+                <div style="color:var(--text-muted); line-height:1.5;">${p.redis}</div>
+              </div>
+              <div>
+                <div style="color:var(--text-dimmer); font-size:9px; font-weight:bold; text-transform:uppercase; margin-bottom:4px;">Asynchronous Processing</div>
+                <div style="color:var(--text-muted); line-height:1.5;">${p.async}</div>
+              </div>
+              <div>
+                <div style="color:var(--text-dimmer); font-size:9px; font-weight:bold; text-transform:uppercase; margin-bottom:4px;">Prod Stack Concern</div>
+                <div style="color:var(--text-muted); line-height:1.5;">${p.concern}</div>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; border-top:1px solid var(--border-subtle); padding-top:12px; font-size:12px;">
+              <div>
+                <div style="font-family:'JetBrains Mono',monospace; color:var(--text-dimmer); font-size:9px; font-weight:bold; text-transform:uppercase; margin-bottom:6px;">API Contract Endpoints</div>
+                <ul style="list-style:none; padding-left:0; display:flex; flex-direction:column; gap:4px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#60A5FA;">
+                  ${p.endpoints.map(ep => `<li>• ${ep}</li>`).join('')}
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:'JetBrains Mono',monospace; color:var(--text-dimmer); font-size:9px; font-weight:bold; text-transform:uppercase; margin-bottom:6px;">Step-by-Step Dev Checks</div>
+                <ul style="list-style:none; padding-left:0; display:flex; flex-direction:column; gap:4px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-muted);">
+                  ${p.checks.map(ck => `<li>• ${ck}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          </div>
+        `).join('')}
       </div>
     </div>`;
+}
+
+/* ─────────────────────────────────────────────
+   ROADMAP TRACKER
+───────────────────────────────────────────── */
+// Each phase's estimated hours
+const PHASE_HOURS = {1:40,2:35,3:45,4:40,5:30,6:50,7:45,8:35,9:50,10:25,'∞':20};
+
+// Completion state: key = "phaseId__topicIdx"
+let completedTopics = {};
+try {
+  const saved = localStorage.getItem('sai_roadmap_tracker');
+  if(saved) completedTopics = JSON.parse(saved);
+} catch(e) {}
+
+let completedSubtopics = {};
+try {
+  const savedSub = localStorage.getItem('sai_roadmap_subtopics_tracker');
+  if(savedSub) completedSubtopics = JSON.parse(savedSub);
+} catch(e) {}
+
+function saveTracker() {
+  localStorage.setItem('sai_roadmap_tracker', JSON.stringify(completedTopics));
+}
+
+function saveSubtopicsTracker() {
+  localStorage.setItem('sai_roadmap_subtopics_tracker', JSON.stringify(completedSubtopics));
+}
+
+function updateRoadmapBadge() {
+  let completedPhasesCount = 0;
+  let doneTotal = 0;
+  let totalTopics = 0;
+
+  PHASES.forEach(p => {
+    const total = p.topics.length;
+    totalTopics += total;
+    if (total > 0) {
+      const done = p.topics.filter((t, ti) => {
+        const key = p.id + '__' + ti;
+        if (completedTopics[key]) {
+          doneTotal++;
+          return true;
+        }
+        return false;
+      }).length;
+      if (done === total) {
+        completedPhasesCount++;
+      }
+    }
+  });
+
+  localStorage.setItem('sai_completed_phases_count', completedPhasesCount);
+  localStorage.setItem('sai_roadmap_completed_count', doneTotal);
+  localStorage.setItem('sai_roadmap_total_count', totalTopics);
+
+  const badge = document.getElementById('roadmap-badge');
+  if (badge) {
+    if (completedPhasesCount > 0) {
+      badge.textContent = completedPhasesCount;
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+}
+
+function toggleTopicDone(pid, ti) {
+  const key = pid + '__' + ti;
+  completedTopics[key] = !completedTopics[key];
+  saveTracker();
+  updateRoadmapBadge();
+  renderTrackerPanel();
+  render(); // re-render phase cards to update the % badge
+  renderBottomStrip();
+}
+
+function toggleTopicDoneDirect(pid, ti, event) {
+  event.stopPropagation();
+  const key = pid + '__' + ti;
+  completedTopics[key] = !completedTopics[key];
+  saveTracker();
+  updateRoadmapBadge();
+  renderTrackerPanel();
+  render();
+  renderBottomStrip();
+}
+
+function toggleSubtopicDoneDirect(pid, ti, sti, event) {
+  event.stopPropagation();
+  const stKey = `${pid}__${ti}__sub__${sti}`;
+  completedSubtopics[stKey] = !completedSubtopics[stKey];
+  saveSubtopicsTracker();
+  
+  const phaseObj = PHASES.find(p => String(p.id) === String(pid));
+  if (phaseObj) {
+    const topicObj = phaseObj.topics[ti];
+    if (topicObj && topicObj.subtopics && topicObj.subtopics.length > 0) {
+      const allSubDone = topicObj.subtopics.every((st, idx) => completedSubtopics[`${pid}__${ti}__sub__${idx}`]);
+      const key = `${pid}__${ti}`;
+      if (allSubDone && !completedTopics[key]) {
+        completedTopics[key] = true;
+        saveTracker();
+      } else if (!allSubDone && completedTopics[key]) {
+        completedTopics[key] = false;
+        saveTracker();
+      }
+    }
+  }
+  
+  updateRoadmapBadge();
+  renderTrackerPanel();
+  render();
+  renderBottomStrip();
+}
+
+let trackerVisible = false;
+function toggleTracker() {
+  trackerVisible = !trackerVisible;
+  const panel = document.getElementById('tracker-panel');
+  const btn = document.getElementById('tracker-btn');
+  if(trackerVisible) {
+    panel.style.display = 'block';
+    btn.style.color = '#34D399';
+    renderTrackerPanel();
+  } else {
+    panel.style.display = 'none';
+    btn.style.color = 'var(--text-dimmer)';
+  }
+}
+
+function renderTrackerPanel() {
+  const el = document.getElementById('tracker-inner');
+  if(!el) return;
+
+  // Overall stats
+  const allTopicsFlat = PHASES.flatMap((p, pi) => p.topics.map((t, ti) => ({ pid: p.id, ti, key: p.id+'__'+ti, name: t.name })));
+  const totalTopics = allTopicsFlat.length;
+  const doneTotal = allTopicsFlat.filter(x => completedTopics[x.key]).length;
+  const pct = totalTopics > 0 ? Math.round((doneTotal/totalTopics)*100) : 0;
+
+  // Total hours remaining
+  const totalHours = PHASES.reduce((s, p) => s + (PHASE_HOURS[p.id]||0), 0);
+  const doneHours = PHASES.reduce((s, p) => {
+    const phTopics = p.topics;
+    const donePh = phTopics.filter((t,ti) => completedTopics[p.id+'__'+ti]).length;
+    const phFrac = phTopics.length > 0 ? donePh/phTopics.length : 0;
+    return s + Math.round((PHASE_HOURS[p.id]||0) * phFrac);
+  }, 0);
+
+  // Subtopics stats
+  let totalSub = 0;
+  let doneSub = 0;
+  PHASES.forEach(p => {
+    p.topics.forEach((t, ti) => {
+      if (t.subtopics) {
+        totalSub += t.subtopics.length;
+        t.subtopics.forEach((st, sti) => {
+          if (completedSubtopics[`${p.id}__${ti}__sub__${sti}`]) doneSub++;
+        });
+      }
+    });
+  });
+
+  // DSA stats
+  let dsaDone = 0;
+  const dsaTotal = 455; // Approx total for Striver A2Z
+  for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i).startsWith('dsa_done_')) {
+      dsaDone++;
+    }
+  }
+  const dsaPct = Math.round((dsaDone/dsaTotal)*100);
+
+  let phasesHtml = PHASES.map((p, pi) => {
+    const phTopics = p.topics;
+    const donePh = phTopics.filter((t,ti) => completedTopics[p.id+'__'+ti]).length;
+    const totalPh = phTopics.length;
+    const phPct = totalPh > 0 ? Math.round((donePh/totalPh)*100) : 0;
+    const hours = PHASE_HOURS[p.id] || 0;
+    const col = p.color;
+
+    // SVG mini donut: r=14, C=87.96
+    const C = 87.96;
+    const filled = totalPh > 0 ? (donePh/totalPh)*C : 0;
+    const svg = `<svg width="40" height="40" viewBox="0 0 40 40" style="flex-shrink:0">
+      <circle cx="20" cy="20" r="14" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="5"/>
+      <circle cx="20" cy="20" r="14" fill="none" stroke="${col}" stroke-width="5"
+        stroke-dasharray="${filled} ${C-filled}" stroke-dashoffset="${C*0.25}" stroke-linecap="butt"
+        transform="rotate(-90 20 20)" opacity="0.85"/>
+      <text x="20" y="24" text-anchor="middle" fill="${col}" font-size="9" font-weight="bold"
+        font-family="JetBrains Mono,monospace">${phPct}%</text>
+    </svg>`;
+
+    const topicChecks = phTopics.map((t, ti) => {
+      const key = p.id+'__'+ti;
+      const done = !!completedTopics[key];
+      return `<label style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+        <input type="checkbox" ${done?'checked':''} onchange="toggleTopicDone('${p.id}',${ti})"
+          style="accent-color:${col};width:13px;height:13px;flex-shrink:0;cursor:pointer;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:${done?col:'var(--text-muted)'};
+          ${done?'text-decoration:line-through;opacity:0.7':''};transition:color .2s;">${t.name}</span>
+      </label>`;
+    }).join('');
+
+    const isExpanded = !!window._trackerExpanded?.[p.id];
+
+    return `<div style="border:1px solid ${col}22;border-radius:8px;overflow:hidden;background:rgba(255,255,255,0.015);">
+      <div onclick="toggleTrackerPhase('${p.id}')" style="display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;
+        background:${phPct===100?col+'10':'rgba(255,255,255,0.02)'};transition:background .2s;">
+        ${svg}
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:${col};">
+              ${typeof p.id==='number'?'Phase '+p.id:'Optional'}: ${p.title}
+            </span>
+            <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);">~${hours}h</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:bold;padding:2px 6px;border-radius:3px;
+                background:${phPct===100?col+'22':phPct>0?'rgba(96,165,250,0.1)':'rgba(255,255,255,0.04)'};
+                color:${phPct===100?col:phPct>0?'#60A5FA':'var(--text-dimmer)'};
+                border:1px solid ${phPct===100?col+'33':phPct>0?'rgba(96,165,250,0.2)':'rgba(255,255,255,0.08)'};">
+                ${donePh}/${totalPh}
+              </span>
+            </div>
+          </div>
+          <!-- mini progress bar -->
+          <div style="width:100%;height:2px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:6px;overflow:hidden;">
+            <div style="height:100%;width:${phPct}%;background:${col};border-radius:2px;transition:width .4s;"></div>
+          </div>
+        </div>
+        <span style="font-size:10px;color:var(--text-dimmer);flex-shrink:0;">${isExpanded?'▲':'▼'}</span>
+      </div>
+      ${isExpanded ? `<div style="padding:8px 12px 10px;border-top:1px solid ${col}18;">${topicChecks}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <!-- Overall stats bar -->
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border-subtle);">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:#34D399;">${pct}%</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);text-transform:uppercase;">Overall</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:#60A5FA;">${doneTotal}/${totalTopics}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);text-transform:uppercase;">Topics</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:#A78BFA;">${doneSub}/${totalSub}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);text-transform:uppercase;">Subtopics</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:#FBBF24;">${dsaDone}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);text-transform:uppercase;">DSA Solved</div>
+        </div>
+      </div>
+      <!-- overall progress bar -->
+      <div style="flex:1;min-width:180px;">
+        <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);margin-bottom:4px;">
+          <span>Roadmap: ${pct}%</span>
+          <span>DSA: ${dsaPct}%</span>
+        </div>
+        <div style="display:flex;gap:4px;">
+          <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;">
+            <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#34D399,#60A5FA);border-radius:3px;transition:width .5s;"></div>
+          </div>
+          <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;">
+            <div style="height:100%;width:${dsaPct}%;background:linear-gradient(90deg,#FBBF24,#F59E0B);border-radius:3px;transition:width .5s;"></div>
+          </div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dimmer);margin-top:4px;text-align:right;">${doneHours}h / ${totalHours}h done</div>
+      </div>
+    </div>
+    <!-- Phase grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;padding-bottom:14px;">
+      ${phasesHtml}
+    </div>
+  `;
+}
+
+window._trackerExpanded = {};
+function toggleTrackerPhase(pid) {
+  const parsed = isNaN(pid) ? pid : parseInt(pid);
+  window._trackerExpanded[parsed] = !window._trackerExpanded[parsed];
+  renderTrackerPanel();
 }
 
 /* ─────────────────────────────────────────────
@@ -979,11 +3354,39 @@ window.onerror = function(msg, src, line, col, err) {
 try {
   render();
   renderBottomStrip();
+  updateRoadmapBadge();
 } catch(e) {
   const main = document.getElementById('main');
   if(main) main.innerHTML = '<div style="color:#FB7185;padding:20px 16px;font-family:monospace;font-size:13px;background:#0D1017;border-radius:8px;margin:16px">Error: ' + e.message + '</div>';
 }
 if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+
+// PWA Install Logic
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('pwa-install-btn');
+  if (btn) {
+    btn.style.display = 'inline-block';
+    btn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          btn.style.display = 'none';
+        }
+        deferredPrompt = null;
+      }
+    });
+  }
+});
+
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('pwa-install-btn');
+  if (btn) btn.style.display = 'none';
+  deferredPrompt = null;
+});
 </script>
 </body>
 </html>

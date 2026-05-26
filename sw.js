@@ -1,10 +1,9 @@
-const CACHE = 'ai-roadmap-v6';
+const CACHE = 'ai-roadmap-v112';
 const ASSETS = [
   '/index.html',
   '/dsa.html',
   '/resources.html',
-  '/timetable.html',
-  '/review.html',
+  '/interview.html',
   '/manifest.json',
   '/icon.svg',
   '/sw.js'

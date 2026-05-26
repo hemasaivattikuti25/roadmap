@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Define custom scrollbar variables for progressive enhancement */
+:root {
+  --scrollbar-thumb: #d4d4d8;
+  --scrollbar-track: #f4f4f5;
+}
+.dark {
+  --scrollbar-thumb: #27272a;
+  --scrollbar-track: #09090b;
+}
+
+/* Redefine Tailwind v4 theme variables so they swap seamlessly when .dark class is set */
+:root {
+  /* Light Mode values: Backgrounds map to light shades, text maps to dark shades */
+  --color-zinc-955: #f9fafb; /* light bg fallback */
+  --color-zinc-950: #fcfcfd; /* bg-zinc-950: near-white bg */
+  --color-zinc-905: #f4f4f6; /* light grey card bg */
+  --color-zinc-900: #f4f4f5; /* bg-zinc-900: light grey background */
+  --color-zinc-850: #e4e4e7; /* bg-zinc-850: light borders */
+  --color-zinc-805: #dadade;
+  --color-zinc-800: #d4d4d8; /* bg-zinc-800: border line */
+  --color-zinc-750: #bcbcbe;
+  --color-zinc-700: #a1a1aa; /* text/border zinc-700 */
+  --color-zinc-655: #78787c;
+  --color-zinc-650: #71717a; /* mid grey */
+  --color-zinc-605: #5c5c60;
+  --color-zinc-550: #52525b;
+  --color-zinc-505: #4a4a50;
+  --color-zinc-500: #52525b; /* dark text zinc-500 */
+  --color-zinc-455: #3f3f46;
+  --color-zinc-450: #3f3f46;
+  --color-zinc-405: #3f3f46; /* additional mid shade */
+  --color-zinc-400: #27272a; /* text-zinc-400: dark body text */
+  --color-zinc-355: #1f1f23;
+  --color-zinc-350: #18181b;
+  --color-zinc-305: #18181b;
+  --color-zinc-300: #18181b; /* text-zinc-300: near-black headers */
+  --color-zinc-250: #09090b;
+  --color-zinc-200: #09090b; /* text-zinc-200: black text */
+  --color-zinc-150: #e4e4e7; /* selected light tab bg */
+  --color-zinc-100: #000000; /* text-zinc-100: solid black text */
+  --color-zinc-50: #ffffff;  /* bg-zinc-50: pure white card bg */
+  
+  --color-emerald-450: #047857;
+  --color-emerald-405: #065f46;
+  --color-emerald-505: #047857;
+  
+  --color-rose-450: #b91c1c;
+  --color-rose-455: #991b1b;
+  --color-rose-505: #b91c1c;
+  
+  --color-cyan-455: #0369a1;
+  --color-amber-505: #b45309;
+
+  --color-white: #ffffff;
+}
+
+.dark {
+  /* Dark Mode values (Tailwind standard values) */
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-150: #ececef;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-250: #d8d8e0;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-305: #c5c5cd;
+  --color-zinc-350: #b8b8c0;
+  --color-zinc-355: #b0b0b8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-405: #a1a1aa;
+  --color-zinc-450: #9898a0;
+  --color-zinc-455: #909098;
+  --color-zinc-500: #71717a;
+  --color-zinc-505: #808088;
+  --color-zinc-600: #52525b;
+  --color-zinc-605: #585860;
+  --color-zinc-650: #4a4a52;
+  --color-zinc-655: #45454a;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-750: #35353a;
+  --color-zinc-800: #27272a;
+  --color-zinc-805: #232327;
+  --color-zinc-850: #202024;
+  --color-zinc-900: #18181b;
+  --color-zinc-905: #121215;
+  --color-zinc-950: #09090b;
+  --color-zinc-955: #050507;
+
+  --color-emerald-450: #34d399;
+  --color-emerald-405: #34d399;
+  --color-emerald-505: #10b981;
+  
+  --color-rose-450: #f87171;
+  --color-rose-455: #f43f5e;
+  --color-rose-505: #f87171;
+  
+  --color-cyan-455: #22d3ee;
+  --color-amber-505: #fbbf24;
+}
+
+/* Custom scrollbars styling based on progressive enhancement guidelines */
+.overflow-y-auto, .overflow-x-auto {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+@supports not (scrollbar-color: auto) {
+  .overflow-y-auto::-webkit-scrollbar, .overflow-x-auto::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-thumb, .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-track, .overflow-x-auto::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
