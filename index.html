@@ -227,6 +227,9 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
   .bottom-strip{padding:14px}
   .milestone-range{min-width:70px;font-size:10px}
   .milestone-result{font-size:13px}
+  #tracker-btn { margin-left: 0 !important; }
+  .tracker-text { display: none; }
+  .install-text { display: none; }
 }
 
 
@@ -306,7 +309,7 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
   <div class="nav-top">
     <div class="nav-logo"><div class="pulse"></div>AI Roadmap</div>
     <div style="display:flex;align-items:center;gap:10px;">
-      <button id="pwa-install-btn" style="display:none;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);border-radius:6px;cursor:pointer;color:#60A5FA;font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 8px;font-weight:600;transition:all 0.2s;">📱 Install App</button>
+      <button id="pwa-install-btn" style="display:none;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);border-radius:6px;cursor:pointer;color:#60A5FA;font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 8px;font-weight:600;transition:all 0.2s;">📱 <span class="install-text">Install App</span></button>
       <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
     </div>
   </div>
@@ -315,7 +318,7 @@ footer{text-align:center;padding:20px;border-top:1px solid var(--border-nav);fon
     <a href="dsa.html" class="nav-link">DSA Sheet</a>
     <a href="resources.html" class="nav-link">Resources</a>
     <a href="interview.html" class="nav-link">Interview Prep</a>
-    <button class="nav-link" id="tracker-btn" onclick="toggleTracker()" style="background:transparent;border:1px solid rgba(52,211,153,0.3);border-radius:4px;cursor:pointer;color:#34D399;font-family:'JetBrains Mono',monospace;font-size:10px;padding:6px 10px;margin-left:auto;">📊 Weekly Tracker</button>
+    <button class="nav-link" id="tracker-btn" onclick="toggleTracker()" style="background:transparent;border:1px solid rgba(52,211,153,0.3);border-radius:4px;cursor:pointer;color:#34D399;font-family:'JetBrains Mono',monospace;font-size:10px;padding:6px 10px;margin-left:auto;">📊 <span class="tracker-text">Weekly Tracker</span></button>
   </div>
 </nav>
 
@@ -3324,10 +3327,6 @@ function toggleTopic(key) {
 function renderBottomStrip() {
   const existing = document.getElementById('bottom-strip-wrap');
   if(existing) existing.remove();
-  const div = document.createElement('div');
-  div.id = 'bottom-strip-wrap';
-  div.innerHTML = renderBottom();
-  document.getElementById('main').appendChild(div);
 }
 
 // THEME
